@@ -163,6 +163,40 @@ body {
   animation: radarSweep 10s linear infinite;
 }
 
+@keyframes floatParticleSlow {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-24px) translateX(12px);
+    opacity: 0.85;
+  }
+}
+
+@keyframes floatParticleDrift {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(-36px) translateX(-14px);
+    opacity: 0.75;
+  }
+}
+
+.animate-particle-1 {
+  animation: floatParticleSlow 8s ease-in-out infinite;
+}
+
+.animate-particle-2 {
+  animation: floatParticleDrift 10s ease-in-out infinite;
+}
+
+.animate-particle-3 {
+  animation: floatParticleSlow 12s ease-in-out infinite reverse;
+}
+
 /* Reduced Motion Respect */
 @media (prefers-reduced-motion: reduce) {
   * {

@@ -1,6 +1,6 @@
 # 24 Hours LEAP Agritech Hackathon 2026 🌾⚡
 
-A futuristic, award-level single-page 3D website built for the **24 Hours LEAP Agritech Hackathon 2026**, organized by **G. Madegowda Institute of Technology (GMIT), Mandya** in association with **Karnataka Innovation and Technology Society (KITS), Department of Electronics, IT & BT, Government of Karnataka**.
+A futuristic, high-performance website built for the **24 Hours LEAP Agritech Hackathon 2026**, organized by **G. Madegowda Institute of Technology (GMIT), Mandya** in association with **Karnataka Innovation and Technology Society (KITS), Department of Electronics, IT & BT, Government of Karnataka**.
 
 ---
 
@@ -8,8 +8,7 @@ A futuristic, award-level single-page 3D website built for the **24 Hours LEAP A
 
 - **Framework**: Next.js 16 (App Router) + TypeScript
 - **Styling**: Tailwind CSS v4 + Custom Glassmorphism System
-- **3D Graphics**: React Three Fiber + @react-three/drei (Procedural floating farm island, drone patrol, sensors, holographic sprout, and bio-particles)
-- **Animation & Transitions**: Framer Motion + Lenis Smooth Scrolling
+- **Animation & Transitions**: CSS Ambient Bio-Particles + Lenis Smooth Scrolling
 - **Icons**: Lucide React
 - **Architecture**: 100% Static & Client-Safe (No backend, no database, zero env variables required)
 - **Deployment Target**: Vercel (Zero-configuration instant deploy)
