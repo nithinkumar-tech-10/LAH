@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { Sprout } from "lucide-react";
 
 // Client-only lazy load for 3D Canvas
@@ -25,18 +25,27 @@ function SceneFallback() {
   );
 }
 
+const emptySubscribe = () => () => {};
+
 export default function Hero3DWrapper() {
-  const [mounted, setMounted] = useState(false);
-  const [prefersReduced, setPrefersReduced] = useState(false);
+  const isMounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
 
-  useEffect(() => {
-    setMounted(true);
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReduced(media.matches);
-  }, []);
+  const prefersReduced = useSyncExternalStore(
+    (callback) => {
+      if (typeof window === "undefined") return () => {};
+      const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+      media.addEventListener("change", callback);
+      return () => media.removeEventListener("change", callback);
+    },
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    () => false
+  );
 
-  if (!mounted) return <SceneFallback />;
-  if (prefersReduced) return <SceneFallback />;
+  if (!isMounted || prefersReduced) return <SceneFallback />;
 
   return (
     <div className="w-full h-full relative">

@@ -1,7 +1,7 @@
 "use client";
 
 import { HACKATHON_DATA } from "@/lib/data";
-import { AlertTriangle, Clock, MapPin } from "lucide-react";
+import { AlertTriangle, Clock } from "lucide-react";
 
 export default function AccommodationNotice() {
   return (

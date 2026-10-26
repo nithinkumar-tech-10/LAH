@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { HACKATHON_DATA } from "@/lib/data";
-import { PhoneCall, X, Phone, User } from "lucide-react";
+import { PhoneCall, X, Phone } from "lucide-react";
 
 export default function FloatingCallButton() {
   const [open, setOpen] = useState(false);

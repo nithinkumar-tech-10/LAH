@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { HACKATHON_DATA, Coordinator } from "@/lib/data";
-import { Phone, Copy, Check, MessageSquare, GraduationCap, Users } from "lucide-react";
+import { Phone, Copy, Check, GraduationCap, Users } from "lucide-react";
 
 export default function Coordinators() {
   const [activeTab, setActiveTab] = useState<"all" | "faculty" | "student">("all");
@@ -18,7 +18,6 @@ export default function Coordinators() {
 
   const renderCard = (coord: Coordinator, type: "faculty" | "student") => {
     const isCopied = copiedPhone === coord.phone || copiedPhone === coord.formattedPhone;
-    const cleanDigits = coord.phone.replace(/\D/g, "");
 
     return (
       <div

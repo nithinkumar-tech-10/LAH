@@ -1,16 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { HACKATHON_DATA, TimelineItem } from "@/lib/data";
+import { HACKATHON_DATA } from "@/lib/data";
 import {
   Calendar,
   Clock,
-  Coffee,
   Utensils,
-  Lightbulb,
   Code2,
   Trophy,
-  Award,
   Sparkles,
   ClipboardCheck,
   Search,

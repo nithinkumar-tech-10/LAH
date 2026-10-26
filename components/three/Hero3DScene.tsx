@@ -12,7 +12,6 @@ function AgriDrone() {
   const prop2 = useRef<THREE.Mesh>(null);
   const prop3 = useRef<THREE.Mesh>(null);
   const prop4 = useRef<THREE.Mesh>(null);
-  const scanSpotlight = useRef<THREE.SpotLight>(null);
 
   useFrame((state, delta) => {
     const t = state.clock.getElapsedTime();
@@ -274,16 +273,21 @@ function FarmIsland() {
 function PollenParticles({ count = 180 }) {
   const pointsRef = useRef<THREE.Points>(null);
 
-  const [positions, scales] = useMemo(() => {
+  const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
-    const sca = new Float32Array(count);
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 12;
-      pos[i * 3 + 1] = Math.random() * 7 - 2;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 10;
-      sca[i] = Math.random() * 0.04 + 0.02;
+      const s1 = Math.sin(i * 12.9898 + 78.233);
+      const r1 = s1 - Math.floor(s1);
+      const s2 = Math.sin(i * 39.346 + 11.135);
+      const r2 = s2 - Math.floor(s2);
+      const s3 = Math.sin(i * 73.156 + 54.512);
+      const r3 = s3 - Math.floor(s3);
+
+      pos[i * 3] = (r1 - 0.5) * 12;
+      pos[i * 3 + 1] = r2 * 7 - 2;
+      pos[i * 3 + 2] = (r3 - 0.5) * 10;
     }
-    return [pos, sca];
+    return pos;
   }, [count]);
 
   useFrame((state, delta) => {

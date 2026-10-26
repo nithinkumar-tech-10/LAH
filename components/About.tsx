@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { HACKATHON_DATA } from "@/lib/data";
 import {
   Trophy,
@@ -16,28 +15,8 @@ import {
 } from "lucide-react";
 
 export default function About() {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.15 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section id="about" ref={sectionRef} className="py-24 relative overflow-hidden">
+    <section id="about" className="py-24 relative overflow-hidden">
       {/* Glow Backdrops */}
       <div className="absolute left-1/4 top-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute right-10 bottom-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />

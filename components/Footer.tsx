@@ -1,9 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { HACKATHON_DATA } from "@/lib/data";
-import { ArrowUp, Phone, MapPin, ExternalLink, Heart } from "lucide-react";
+import { ArrowUp, Phone } from "lucide-react";
 
 export default function Footer() {
   const scrollToTop = () => {
