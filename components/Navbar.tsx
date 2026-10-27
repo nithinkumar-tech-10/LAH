@@ -40,13 +40,13 @@ export default function Navbar() {
           {/* Logo & Brand Identity */}
           <Link
             href="#"
-            className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-emerald-400 rounded-lg p-1"
+            className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus:ring-2 focus:ring-emerald-400 rounded-lg p-1"
           >
-            <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-white border border-emerald-500/30 flex items-center justify-center p-1 shadow-sm group-hover:border-emerald-400 transition-colors shrink-0">
+            <div className="relative h-10 w-14 rounded-xl overflow-hidden bg-slate-950/80 border border-emerald-500/30 flex items-center justify-center p-0.5 shadow-sm group-hover:border-emerald-400 transition-colors shrink-0">
               <Image
-                src={HACKATHON_DATA.logos.college}
-                alt="G. Madegowda Institute of Technology"
-                width={40}
+                src={HACKATHON_DATA.logos.hackathon}
+                alt="LEAP Agritech Hackathon 2026 logo"
+                width={56}
                 height={40}
                 className="object-contain w-full h-full"
                 priority
@@ -60,7 +60,7 @@ export default function Navbar() {
                 </span>
               </span>
               <span className="text-[10px] text-slate-400 font-mono tracking-wider">
-                24H NATIONAL HACKATHON
+                24H AGRITECH HACKATHON
               </span>
             </div>
           </Link>

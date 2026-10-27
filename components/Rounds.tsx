@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { HACKATHON_DATA } from "@/lib/data";
-import { Lightbulb, Wrench, Trophy, CheckCircle2, ChevronRight, Clock } from "lucide-react";
+import { Lightbulb, Wrench, Trophy, CheckCircle2, ChevronRight, Clock, Download } from "lucide-react";
 
 export default function Rounds() {
   const [activeRound, setActiveRound] = useState(1);
@@ -106,6 +106,21 @@ export default function Rounds() {
                       </div>
                     ))}
                   </div>
+
+                  {/* Prominent Download PPT Template Button for Round 1 */}
+                  {round.number === 1 && (
+                    <div className="mb-6">
+                      <a
+                        href="/downloads/LEAP_Agritech_Hackathon_2026_Round1_PPT_Template.pptx"
+                        download="LEAP_Agritech_Hackathon_2026_Round1_PPT_Template.pptx"
+                        onClick={(e) => e.stopPropagation()}
+                        className="w-full py-3 px-4 rounded-xl font-display font-bold text-xs sm:text-sm bg-gradient-to-r from-emerald-500 via-lime-400 to-emerald-400 text-slate-950 hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 group/btn"
+                      >
+                        <Download className="w-4 h-4 text-slate-950 group-hover/btn:translate-y-0.5 transition-transform" />
+                        <span>Download PPT Template</span>
+                      </a>
+                    </div>
+                  )}
                 </div>
 
                 {/* Footer Time window */}

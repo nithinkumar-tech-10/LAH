@@ -18,6 +18,15 @@ export default function Footer() {
           {/* Col 1: Brand & Official Logos (5 cols) */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
+              <div className="relative h-12 w-16 rounded-xl overflow-hidden bg-slate-950 border border-emerald-500/30 p-1 flex items-center justify-center shadow-sm shrink-0">
+                <Image
+                  src={HACKATHON_DATA.logos.hackathon}
+                  alt="LEAP Agritech Hackathon 2026 logo"
+                  width={64}
+                  height={48}
+                  className="object-contain w-full h-full"
+                />
+              </div>
               <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-white border border-emerald-500/30 p-1 flex items-center justify-center shadow-sm shrink-0">
                 <Image
                   src={HACKATHON_DATA.logos.college}
@@ -52,7 +61,7 @@ export default function Footer() {
                 LEAP AGRITECH 2026
               </span>
               <span className="text-[11px] font-mono text-emerald-400">
-                GMIT MANDYA • 24H NATIONAL HACKATHON
+                GMIT MANDYA • 24H AGRITECH HACKATHON
               </span>
             </div>
 

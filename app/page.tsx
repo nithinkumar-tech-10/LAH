@@ -4,6 +4,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import ForParticipants from "@/components/ForParticipants";
 import OrganizingCommittee from "@/components/OrganizingCommittee";
 import Coordinators from "@/components/Coordinators";
 import Rounds from "@/components/Rounds";
@@ -28,6 +29,9 @@ export default function Home() {
 
         {/* 3. About and Theme */}
         <About />
+
+        {/* 4. For Participants */}
+        <ForParticipants />
 
         {/* 5. Organizing Committee */}
         <OrganizingCommittee />

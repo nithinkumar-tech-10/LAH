@@ -56,9 +56,16 @@ export const HACKATHON_DATA = {
 
   // Official Logos
   logos: {
+    hackathon: "/logos/logo.png",
     college: "/logos/WhatsApp Image 2026-10-23 at 19.53.23.jpeg",
     ktech: "/logos/WhatsApp Image 2026-10-23 at 20.49.34 (1).jpeg",
     itbt: "/logos/WhatsApp Image 2026-10-23 at 20.49.34.jpeg",
+  },
+
+  // PPT Template File
+  pptTemplate: {
+    url: "/downloads/LEAP_Agritech_Hackathon_2026_Round1_PPT_Template.pptx",
+    filename: "LEAP_Agritech_Hackathon_2026_Round1_PPT_Template.pptx",
   },
 
   // College & Partner details
@@ -92,27 +99,40 @@ export const HACKATHON_DATA = {
     theme: "Agriculture & Smart Farming Technology",
     themeHeading: "Smart Farming Meets Technology",
     paragraphs: [
-      "The 24 Hours LEAP Agritech Hackathon 2026 brings together the brightest young engineering minds, developers, and agricultural enthusiasts to architect real-world technological solutions for our nation's farming backbone.",
+      "The 24 Hours LEAP Agritech Hackathon 2026 brings together the brightest young engineering minds, developers, and agricultural enthusiasts to architect real-world technological solutions for the farming backbone.",
       "Get ready to turn your innovative ideas into practical solutions and contribute to the future of smart and sustainable agriculture! Join us at the 24 Hours LEAP Agritech Hackathon 2026 to innovate, collaborate, develop impactful solutions, and shape the future of agriculture through technology."
     ],
-    focusAreas: [
+  },
+
+  // For Participants (BYOP - Bring Your Own Problem Statement & Idea)
+  forParticipants: {
+    badge: "For Participants",
+    heading: "Bring Your Own Problem Statement and Idea",
+    intro: "There are no pre-defined problem statements. Every team chooses its own real-world problem in agriculture and comes with its own idea to solve it.",
+    cards: [
       {
-        title: "Precision Farming & IoT",
-        desc: "Soil nutrient sensors, smart automated irrigation, micro-climate monitoring, and telemetry.",
+        step: "01",
+        title: "Pick Your Problem",
+        desc: "Identify a real problem faced by farmers or the agriculture sector.",
       },
       {
-        title: "Agri-Drones & Robotics",
-        desc: "Autonomous aerial crop scouting, targeted pesticide spraying, and automated weeding rovers.",
+        step: "02",
+        title: "Bring Your Idea",
+        desc: "Come with a clear, innovative solution idea for that problem.",
       },
       {
-        title: "AI & Computer Vision",
-        desc: "Crop disease detection, yield estimation, pest prediction models, and satellite imagery analysis.",
-      },
-      {
-        title: "Post-Harvest & Supply Chain",
-        desc: "Farm-to-fork traceability, cold chain monitoring, fair-price mandi analytics, and warehouse logistics.",
+        step: "03",
+        title: "Build in 24 Hours",
+        desc: "Turn your idea into a working prototype during the hackathon.",
       },
     ],
+    note: "Only the idea is presented in Round 1. The prototype must be developed during the hackathon. Pre-built projects are not allowed.",
+    pptNotice: {
+      mandatory: "Mandatory for Round 1: All teams must use the official LEAP Agritech Hackathon PPT template for the idea presentation. Presentations in any other format will not be accepted.",
+      slides: "7 slides: Title, Problem Statement, Existing Solutions, Our Solution, Technical Approach, Impact and Benefits, Thank You",
+      downloadUrl: "/downloads/LEAP_Agritech_Hackathon_2026_Round1_PPT_Template.pptx",
+      filename: "LEAP_Agritech_Hackathon_2026_Round1_PPT_Template.pptx",
+    },
   },
 
   // Organizing Committee
@@ -212,7 +232,7 @@ export const HACKATHON_DATA = {
       date: "2 November 2026",
       dayName: "Day 1",
       schedule: [
-        { time: "8:00 AM – 9:15 AM", title: "Participant Registration", description: "Verification of ID cards, kit distribution & team desk allocation.", type: "registration" },
+        { time: "8:00 AM – 9:15 AM", title: "Participant Registration", description: "Verification of ID cards & team desk allocation.", type: "registration" },
         { time: "9:30 AM – 10:00 AM", title: "Inauguration Ceremony", description: "Dignitary welcome, lighting of the lamp & keynote addresses by KITS & GMIT leadership.", type: "ceremony" },
         { time: "10:00 AM – 1:30 PM", title: "Round 1: Idea Presentation", description: "All teams pitch their agricultural concept and proposed architecture to the jury.", type: "round" },
         { time: "1:30 PM – 2:30 PM", title: "Lunch Break", description: "Buffet lunch served for all participants & faculty coordinators.", type: "break" },
@@ -278,6 +298,13 @@ export const HACKATHON_DATA = {
       tag: "Power & Cables",
       severity: "high",
     },
+    {
+      id: 7,
+      title: "PPT Template",
+      description: "Round 1 presentations must be made using the official PPT template provided on this website.",
+      tag: "Round 1",
+      severity: "mandatory",
+    },
   ],
 
   // Important Accommodation Notice
@@ -306,6 +333,7 @@ export const HACKATHON_DATA = {
   // Navigation Links
   navLinks: [
     { label: "About", href: "#about" },
+    { label: "For Participants", href: "#participants" },
     { label: "Committee", href: "#committee" },
     { label: "Coordinators", href: "#coordinators" },
     { label: "Rounds", href: "#rounds" },

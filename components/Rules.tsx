@@ -8,6 +8,7 @@ import {
   Laptop,
   Cpu,
   Zap,
+  Presentation,
   AlertTriangle,
 } from "lucide-react";
 
@@ -26,6 +27,8 @@ export default function Rules() {
         return <Cpu className="w-6 h-6 text-purple-400" />;
       case 6:
         return <Zap className="w-6 h-6 text-amber-400" />;
+      case 7:
+        return <Presentation className="w-6 h-6 text-emerald-400" />;
       default:
         return <AlertTriangle className="w-6 h-6 text-emerald-400" />;
     }

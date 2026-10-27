@@ -50,10 +50,10 @@ export const metadata: Metadata = {
     siteName: HACKATHON_DATA.title,
     images: [
       {
-        url: HACKATHON_DATA.logos.college,
-        width: 342,
-        height: 256,
-        alt: `${HACKATHON_DATA.title} - GMIT Mandya`,
+        url: HACKATHON_DATA.logos.hackathon,
+        width: 1536,
+        height: 1024,
+        alt: "LEAP Agritech Hackathon 2026 logo",
       },
     ],
   },
@@ -61,12 +61,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: HACKATHON_DATA.title,
     description: HACKATHON_DATA.tagline,
-    images: [HACKATHON_DATA.logos.college],
+    images: [HACKATHON_DATA.logos.hackathon],
   },
   icons: {
-    icon: HACKATHON_DATA.logos.college,
-    shortcut: HACKATHON_DATA.logos.college,
-    apple: HACKATHON_DATA.logos.college,
+    icon: HACKATHON_DATA.logos.hackathon,
+    shortcut: HACKATHON_DATA.logos.hackathon,
+    apple: HACKATHON_DATA.logos.hackathon,
   },
 };
 

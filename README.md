@@ -64,6 +64,7 @@ ALL textual content, dates, phone numbers, prizes, rounds, and rules are central
 
 ### 2. How to Replace Official Logos & Photos
 All institutional logos are configured in `lib/data.ts` and stored in `public/logos/`:
+- **Hackathon Logo**: `public/logos/logo.png`
 - **College Logo (GMIT)**: `public/logos/WhatsApp Image 2026-10-23 at 19.53.23.jpeg`
 - **K-tech Logo (KITS)**: `public/logos/WhatsApp Image 2026-10-23 at 20.49.34 (1).jpeg`
 - **IT&BT Logo (Govt of Karnataka)**: `public/logos/WhatsApp Image 2026-10-23 at 20.49.34.jpeg`

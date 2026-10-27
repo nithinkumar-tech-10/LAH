@@ -8,10 +8,6 @@ import {
   Target,
   Layers,
   Sprout,
-  Cpu,
-  Plane,
-  Eye,
-  TrendingUp,
 } from "lucide-react";
 
 export default function About() {
@@ -106,41 +102,6 @@ export default function About() {
           </div>
         </div>
 
-        {/* 4 Smart Farming Innovation Pillars */}
-        <div className="mb-14">
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="text-xl sm:text-2xl font-display font-bold text-white flex items-center gap-2">
-              <Cpu className="w-5 h-5 text-emerald-400" />
-              Key Agritech Focus Sectors
-            </h3>
-            <span className="text-xs font-mono text-slate-400">
-              Hardware • IoT • AI • Software
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {HACKATHON_DATA.about.focusAreas.map((area, idx) => {
-              const icons = [Cpu, Plane, Eye, TrendingUp];
-              const IconComp = icons[idx % icons.length];
-              return (
-                <div
-                  key={area.title}
-                  className="glass-card p-6 rounded-2xl border-emerald-500/15 relative overflow-hidden group hover:border-emerald-400/40 transition-all"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-emerald-950/60 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-colors">
-                    <IconComp className="w-5 h-5" />
-                  </div>
-                  <h4 className="text-base font-display font-bold text-white mb-2">
-                    {area.title}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                    {area.desc}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
 
         {/* Official Closing Callout Card (Exact wording requested) */}
         <div className="relative rounded-3xl p-8 sm:p-12 overflow-hidden bg-gradient-to-r from-emerald-950/60 via-slate-900 to-cyan-950/60 border border-emerald-500/30 shadow-2xl shadow-emerald-950/50">

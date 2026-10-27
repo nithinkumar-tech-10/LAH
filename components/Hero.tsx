@@ -181,9 +181,23 @@ export default function Hero() {
 
         {/* Main Hero Typography (Centered) */}
         <div className="max-w-4xl mx-auto text-center mb-10">
+          {/* Prominent Hackathon Logo */}
+          <div className="flex justify-center mb-6">
+            <div className="relative w-48 h-28 sm:w-60 sm:h-36 md:w-72 md:h-44 rounded-2xl overflow-hidden bg-slate-950/80 border border-emerald-500/30 shadow-[0_0_40px_rgba(16,185,129,0.25)] flex items-center justify-center p-2 group hover:border-emerald-400/50 transition-all">
+              <Image
+                src={HACKATHON_DATA.logos.hackathon}
+                alt="LEAP Agritech Hackathon 2026 logo"
+                width={288}
+                height={176}
+                className="object-contain w-full h-full drop-shadow-md"
+                priority
+              />
+            </div>
+          </div>
+
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-semibold tracking-wider text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 uppercase mb-4">
             <Sprout className="w-3.5 h-3.5" />
-            24H National Innovation Sprint
+            24H Agritech Innovation Sprint
           </div>
 
           <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.08] text-white mb-6">
