@@ -88,13 +88,13 @@ export const HACKATHON_DATA = {
   chairmen: {
     left: {
       name: "Sri G. Madegowda",
-      title: "Founder",
-      image: "/photos/sri-g-madegowda.jpg",
+      title: "Chairman",
+      image: "/photos/Sri G.Madegowda.jpg",
     },
     right: {
       name: "Sri Madhu G Madegowda",
       title: "Chairman, BET",
-      image: "/photos/sri-madhu-g-madegowda.jpg",
+      image: "/photos/Sri Madhu G Madegowda.jpg",
     },
   },
 
@@ -104,7 +104,7 @@ export const HACKATHON_DATA = {
     { label: "Hackathon Duration", value: "24 Hours", sub: "Non-stop innovation sprint" },
     { label: "Entry Fee", value: "Free", sub: "Open to all eligible students" },
     { label: "Team Size", value: "1–3", sub: "Collaborative squads" },
-    { label: "Tracks", value: "6", sub: "AIML, IoT, Drones & more" },
+    { label: "Tracks", value: "6", sub: "AI/ML, IoT, Drones & more" },
     { label: "Shortlisted", value: "4 / Track", sub: "Top teams per track advance" },
   ],
 
@@ -122,7 +122,7 @@ export const HACKATHON_DATA = {
   forParticipants: {
     badge: "For Participants",
     heading: "Choose Your Track & Problem Statement",
-    intro: "Teams choose ONE problem statement from ONE track only. Problem statements are released by the organisers in PDF form. Browse the tracks below to find your challenge.",
+    intro: "Choose one track and one problem statement from it. Prepare your idea. Present your idea in Round 1. The top 4 teams from each track are shortlisted.",
     cards: [
       {
         step: "01",

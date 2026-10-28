@@ -1,0 +1,112 @@
+[
+  {
+    "slug": "aiml",
+    "name": "Artificial Intelligence and Machine Learning (AI/ML)",
+    "shortName": "AI/ML",
+    "icon": "🤖",
+    "intro": "This track invites participants to apply data-driven intelligence to decision-making in agriculture. Solutions should be practical for smallholder and commercial farmers, should explain their outputs in plain language, and should acknowledge the uncertainty that is inherent in any prediction.",
+    "filename": "Track_1_Artificial_Intelligence_and_Machine_Learning.pdf",
+    "viewUrl": "/problem-statements/aiml/Track_1_Artificial_Intelligence_and_Machine_Learning.pdf",
+    "downloadUrl": "/problem-statements/aiml/Track_1_Artificial_Intelligence_and_Machine_Learning.pdf",
+    "problemTitles": [
+      "Problem Title 1: AI-Powered Farmer Assistant",
+      "Problem Title 2: AI-Based Crop Disease and Pest Prediction",
+      "Problem Title 3: AI-Powered Farmer-to-Market Connectivity",
+      "Problem Title 4: AI-Based Crop Yield Prediction",
+      "Problem Title 5: AI-Based Livestock Disease Prediction and Early Warning",
+      "Problem Title 6: AI-Powered Weather and Climate Risk Prediction"
+    ],
+    "hasPdf": true
+  },
+  {
+    "slug": "iot",
+    "name": "Internet of Things (IoT)",
+    "shortName": "IoT",
+    "icon": "📡",
+    "intro": "This track focuses on low-cost sensing, communication, and control systems that bring real-time information and automation to farms and post-harvest operations. Solutions should be rugged, energy-conscious, and simple enough for farmers to install and maintain.",
+    "filename": "Track_2_Internet_of_Things.pdf",
+    "viewUrl": "/problem-statements/iot/Track_2_Internet_of_Things.pdf",
+    "downloadUrl": "/problem-statements/iot/Track_2_Internet_of_Things.pdf",
+    "problemTitles": [
+      "Problem Title 1: Smart Irrigation and Water Management",
+      "Problem Title 2: Smart Agricultural Leaf Drying System",
+      "Problem Title 3: Smart Agricultural Storage and Spoilage Prevention",
+      "Problem Title 4: Smart Coconut Farming and Plantation Monitoring",
+      "Problem Title 5: Development of a Low-Cost, Lightweight Milk Chilling Can for Small-Scale Dairy Farmers",
+      "Problem Title 6: Smart Farm Security and Crop Protection"
+    ],
+    "hasPdf": true
+  },
+  {
+    "slug": "drones",
+    "name": "Drones and Unmanned Aerial Vehicle (UAV) Technology",
+    "shortName": "Drones",
+    "icon": "🛸",
+    "intro": "This track explores the use of unmanned aerial vehicles for observing, mapping, and treating farmland. Participants should consider regulatory requirements, flight safety, and the practical limits of aerial observation, and should present aerial findings as indications that support, not replace, ground verification.",
+    "filename": "Track_3_Drones_and_UAV_Technology.pdf",
+    "viewUrl": "/problem-statements/drones/Track_3_Drones_and_UAV_Technology.pdf",
+    "downloadUrl": "/problem-statements/drones/Track_3_Drones_and_UAV_Technology.pdf",
+    "problemTitles": [
+      "Problem Title 1: Drone-Based Crop Health Monitoring",
+      "Problem Title 2: Precision Spraying and Agricultural Chemical Optimization",
+      "Problem Title 3: Drone-Based Agricultural Mapping and Land Surveying",
+      "Problem Title 4: UAV-Based Pest Infestation Hotspot Detection"
+    ],
+    "hasPdf": true
+  },
+  {
+    "slug": "renewable-energy",
+    "name": "Renewable Energy and Green Technology",
+    "shortName": "Renewable Energy",
+    "icon": "⚡",
+    "intro": "This track addresses the energy needs of farms and agricultural enterprises through renewable and sustainable technologies. Participants should consider energy availability, cost, storage, and the environmental benefits of their proposals, and should state their assumptions about energy supply and demand.",
+    "filename": "Track_4_Renewable_Energy_and_Green_Technology.pdf",
+    "viewUrl": "/problem-statements/renewable-energy/Track_4_Renewable_Energy_and_Green_Technology.pdf",
+    "downloadUrl": "/problem-statements/renewable-energy/Track_4_Renewable_Energy_and_Green_Technology.pdf",
+    "problemTitles": [
+      "Problem Title 1: Renewable Energy-Based Smart Agricultural Drying System",
+      "Problem Title 2: Solar-Powered Smart Irrigation and Water Pumping System",
+      "Problem Title 3: Renewable Energy-Based Agricultural Cold Storage",
+      "Problem Title 4: Solar-Powered Agricultural Waste-to- Energy System",
+      "Problem Title 5: Renewable Energy-Powered Agricultural Processing System"
+    ],
+    "hasPdf": true
+  },
+  {
+    "slug": "robotics-automation",
+    "name": "Robotics and Automation",
+    "shortName": "Robotics and Automation",
+    "icon": "🦾",
+    "intro": "This track encourages the design of machines that reduce repetitive, physically demanding, or hazardous agricultural work. Solutions must cope with uneven terrain, unstructured environments, and limited budgets, and should aim for reliability and safety around people.",
+    "filename": "Track_5_Robotics_and_Automation.pdf",
+    "viewUrl": "/problem-statements/robotics-automation/Track_5_Robotics_and_Automation.pdf",
+    "downloadUrl": "/problem-statements/robotics-automation/Track_5_Robotics_and_Automation.pdf",
+    "problemTitles": [
+      "Problem Title 1: Autonomous Agricultural Weeding Robot",
+      "Problem Title 2: Automated Fruit and Vegetable Harvesting Robot",
+      "Problem Title 3: Smart Seed Sowing and Precision Planting Robot",
+      "Problem Title 4: Autonomous Agricultural Material Transport Robot",
+      "Problem Title 5: Automated Fertilizer and Manure Application Robot",
+      "Problem Title 6: Automated Agricultural Sorting and Grading Robot"
+    ],
+    "hasPdf": true
+  },
+  {
+    "slug": "open-innovation",
+    "name": "Open Innovation – Agriculture & Rural Development",
+    "shortName": "Open Innovation",
+    "icon": "💡",
+    "intro": "This track provides an open platform to develop simple, low-cost engineering aids, smart tools, or software applications that address practical challenges faced by farmers and rural communities.",
+    "filename": "Track_6_Open_Innovation.pdf",
+    "viewUrl": "/problem-statements/open-innovation/Track_6_Open_Innovation.pdf",
+    "downloadUrl": "/problem-statements/open-innovation/Track_6_Open_Innovation.pdf",
+    "problemTitles": [
+      "Problem Title 1: Low-Cost Sugarcane Sett Cutting and Planting Aid",
+      "Problem Title 2: Low-Cost Paddy Field Levelling and Water-Depth Measurement Tool",
+      "Problem Title 3: Integrated Agricultural Government Schemes and Crop Insurance Assistance Platform",
+      "Problem Title 4: Banana Cultivation Cost and Harvest Planning Management System",
+      "Problem Title 5: Paddy Procurement Transparency and Digital Transaction Record System"
+    ],
+    "hasPdf": true
+  }
+]

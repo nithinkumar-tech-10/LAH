@@ -113,12 +113,11 @@ export default function Hero() {
 
       <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Organiser & Association Section */}
-        <div className="glass-panel p-5 sm:p-6 rounded-2xl border border-emerald-500/30 backdrop-blur-md mb-10 max-w-4xl mx-auto shadow-xl shadow-black/40">
-          {/* Chairman photos + College Logo */}
-          <div className="flex items-start justify-center gap-2.5 sm:gap-8 md:gap-12 mb-6">
-            {/* Left Chairman */}
-            <div className="flex flex-col items-center text-center shrink-0 w-24 sm:w-32">
-              <div className="relative w-16 h-16 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-emerald-500/40 shadow-lg shadow-emerald-950/40 mb-2">
+        <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-emerald-500/30 backdrop-blur-md mb-10 max-w-5xl mx-auto shadow-xl shadow-black/40">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+            {/* LEFT CORNER: Sri G. Madegowda (Stacked at top on mobile) */}
+            <div className="order-1 flex flex-col items-center text-center shrink-0 w-36 sm:w-40">
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-emerald-500/40 shadow-lg shadow-emerald-950/40 mb-2.5">
                 <Image
                   src={HACKATHON_DATA.chairmen.left.image}
                   alt={HACKATHON_DATA.chairmen.left.name}
@@ -128,27 +127,88 @@ export default function Hero() {
                   priority
                 />
               </div>
-              <span className="font-display font-bold text-xs sm:text-sm text-white leading-tight">{HACKATHON_DATA.chairmen.left.name}</span>
-              <span className="text-[10px] sm:text-xs text-emerald-400 font-mono mt-0.5">{HACKATHON_DATA.chairmen.left.title}</span>
+              <span className="font-display font-bold text-sm sm:text-base text-white leading-tight">
+                {HACKATHON_DATA.chairmen.left.name}
+              </span>
+              <span className="text-xs text-emerald-400 font-mono mt-0.5">
+                {HACKATHON_DATA.chairmen.left.title}
+              </span>
             </div>
 
-            {/* College Logo */}
-            <div className="flex flex-col items-center justify-center pt-2 sm:pt-3 shrink-0">
-              <div className="relative w-14 h-14 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-white border border-emerald-500/30 flex items-center justify-center p-1.5 shadow-md">
-                <Image
-                  src={HACKATHON_DATA.logos.college}
-                  alt="G. Madegowda Institute of Technology"
-                  width={80}
-                  height={80}
-                  className="object-contain w-full h-full"
-                  priority
-                />
+            {/* Mobile Divider 1 */}
+            <div className="order-2 w-full h-px bg-slate-800 md:hidden" />
+
+            {/* CENTRE: College Logo + Name, In Association With, KITS/IT&BT/GoK with logos */}
+            <div className="order-3 md:order-2 flex-1 flex flex-col items-center text-center max-w-2xl px-2">
+              {/* 1. College logo & text (no "Organized by GMIT", no location) */}
+              <div className="flex flex-col items-center justify-center mb-4">
+                <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden bg-white border border-emerald-500/30 flex items-center justify-center p-1.5 shadow-md mb-2 shrink-0">
+                  <Image
+                    src={HACKATHON_DATA.logos.college}
+                    alt={HACKATHON_DATA.college.name}
+                    width={64}
+                    height={64}
+                    className="object-contain w-full h-full"
+                    priority
+                  />
+                </div>
+                <h3 className="font-display font-extrabold text-base sm:text-lg md:text-xl text-white tracking-wide text-center">
+                  {HACKATHON_DATA.college.name}
+                </h3>
+              </div>
+
+              {/* 2. "In Association With" */}
+              <span className="text-[11px] sm:text-xs md:text-sm font-mono uppercase tracking-widest text-cyan-400 font-bold mb-2.5">
+                In Association With
+              </span>
+
+              {/* 3, 4, 5. KITS, Dept of IT&BT, GoK with K-tech & GoK logos beside them */}
+              <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5 w-full">
+                {/* K-tech Logo */}
+                <div className="relative w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl overflow-hidden bg-white border border-cyan-500/30 flex items-center justify-center p-1 sm:p-1.5 shadow-md shrink-0">
+                  <Image
+                    src={HACKATHON_DATA.logos.ktech}
+                    alt="Karnataka Innovation and Technology Society"
+                    width={64}
+                    height={64}
+                    className="object-contain w-full h-full"
+                    priority
+                  />
+                </div>
+
+                {/* Association Text Block (Noticeably enlarged ~1.5x) */}
+                <div className="flex flex-col items-center text-center px-1">
+                  <span className="font-display font-black text-sm sm:text-lg md:text-xl text-white tracking-tight leading-snug">
+                    Karnataka Innovation and Technology Society (KITS)
+                  </span>
+                  <span className="font-display font-bold text-xs sm:text-sm md:text-base text-slate-200 leading-snug mt-0.5">
+                    Department of Electronics, IT &amp; BT
+                  </span>
+                  <span className="font-display font-bold text-xs sm:text-sm md:text-base text-slate-200 leading-snug mt-0.5">
+                    Government of Karnataka
+                  </span>
+                </div>
+
+                {/* GoK Logo */}
+                <div className="relative w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl overflow-hidden bg-white border border-yellow-500/30 flex items-center justify-center p-1 sm:p-1.5 shadow-md shrink-0">
+                  <Image
+                    src={HACKATHON_DATA.logos.itbt}
+                    alt="Government of Karnataka"
+                    width={64}
+                    height={64}
+                    className="object-contain w-full h-full"
+                    priority
+                  />
+                </div>
               </div>
             </div>
 
-            {/* Right Chairman */}
-            <div className="flex flex-col items-center text-center shrink-0 w-24 sm:w-32">
-              <div className="relative w-16 h-16 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-cyan-500/40 shadow-lg shadow-cyan-950/40 mb-2">
+            {/* Mobile Divider 2 */}
+            <div className="order-4 w-full h-px bg-slate-800 md:hidden" />
+
+            {/* RIGHT CORNER: Sri Madhu G Madegowda (Stacked at bottom on mobile) */}
+            <div className="order-5 md:order-3 flex flex-col items-center text-center shrink-0 w-36 sm:w-40">
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-cyan-500/40 shadow-lg shadow-cyan-950/40 mb-2.5">
                 <Image
                   src={HACKATHON_DATA.chairmen.right.image}
                   alt={HACKATHON_DATA.chairmen.right.name}
@@ -158,53 +218,12 @@ export default function Hero() {
                   priority
                 />
               </div>
-              <span className="font-display font-bold text-xs sm:text-sm text-white leading-tight">{HACKATHON_DATA.chairmen.right.name}</span>
-              <span className="text-[10px] sm:text-xs text-cyan-400 font-mono mt-0.5">{HACKATHON_DATA.chairmen.right.title}</span>
-            </div>
-          </div>
-
-          {/* Separator */}
-          <div className="w-full h-px bg-slate-800 mb-5" />
-
-          {/* Centred Association Block */}
-          <div className="flex flex-col items-center text-center">
-            <div className="flex items-center justify-center gap-2.5 sm:gap-5 max-w-full">
-              <div className="relative w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl overflow-hidden bg-white border border-cyan-500/30 flex items-center justify-center p-1 sm:p-1.5 shadow-md shrink-0">
-                <Image
-                  src={HACKATHON_DATA.logos.ktech}
-                  alt="Karnataka Innovation and Technology Society"
-                  width={64}
-                  height={64}
-                  className="object-contain w-full h-full"
-                  priority
-                />
-              </div>
-
-              <div className="flex flex-col items-center text-center px-1 sm:px-3">
-                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-cyan-400 font-bold mb-1">
-                  In Association With
-                </span>
-                <span className="font-display font-black text-sm sm:text-lg md:text-xl text-white tracking-tight leading-snug">
-                  Karnataka Innovation and Technology Society (KITS)
-                </span>
-                <span className="font-display font-bold text-xs sm:text-base md:text-lg text-slate-200 leading-snug">
-                  Department of Electronics, IT &amp; BT
-                </span>
-                <span className="font-display font-bold text-xs sm:text-base md:text-lg text-slate-200 leading-snug">
-                  Government of Karnataka
-                </span>
-              </div>
-
-              <div className="relative w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl overflow-hidden bg-white border border-yellow-500/30 flex items-center justify-center p-1 sm:p-1.5 shadow-md shrink-0">
-                <Image
-                  src={HACKATHON_DATA.logos.itbt}
-                  alt="Government of Karnataka"
-                  width={64}
-                  height={64}
-                  className="object-contain w-full h-full"
-                  priority
-                />
-              </div>
+              <span className="font-display font-bold text-sm sm:text-base text-white leading-tight">
+                {HACKATHON_DATA.chairmen.right.name}
+              </span>
+              <span className="text-xs text-cyan-400 font-mono mt-0.5">
+                {HACKATHON_DATA.chairmen.right.title}
+              </span>
             </div>
           </div>
         </div>

@@ -13,8 +13,7 @@ import {
   Presentation,
   FileText,
   Eye,
-  ArrowRight,
-  ChevronDown,
+  Check,
   Target,
 } from "lucide-react";
 
@@ -64,7 +63,7 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
         </div>
 
         {/* 3 Step Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
           {forParticipants.cards.map((card, idx) => {
             const IconComp = cardIcons[idx % cardIcons.length];
             return (
@@ -100,144 +99,195 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
           })}
         </div>
 
-        {/* ===== TRACKS SECTION ===== */}
-        <div className="mb-12">
+        {/* ===== TRACKS SYSTEM SECTION ===== */}
+        <div className="mb-14">
           <div className="text-center mb-8">
             <span className="px-3.5 py-1 rounded-full text-xs font-mono font-semibold tracking-wider text-cyan-400 bg-cyan-950/40 border border-cyan-500/30 uppercase">
-              6 Tracks
+              6 Hackathon Tracks
             </span>
             <h3 className="mt-3 text-2xl sm:text-4xl font-display font-black text-white tracking-tight">
               Problem Statements by Track
             </h3>
             <p className="mt-2 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
-              Teams choose ONE problem statement from ONE track only. Click a track to view its problem statements.
+              Teams choose ONE problem statement from ONE track only. Browse the 6 tracks below to explore all official challenges.
             </p>
           </div>
 
-          {/* Track Tabs */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 mb-8">
-            {tracks.map((track) => (
-              <button
-                key={track.slug}
-                type="button"
-                onClick={() => setActiveTrack(track.slug)}
-                className={`p-3 sm:p-4 rounded-xl text-center transition-all cursor-pointer border ${
-                  activeTrack === track.slug
-                    ? "bg-emerald-950/60 border-emerald-400/60 shadow-lg shadow-emerald-950/40"
-                    : "glass-card border-slate-800 hover:border-emerald-500/30"
-                }`}
-              >
-                <span className="text-2xl block mb-1">{track.icon}</span>
-                <span className={`text-xs sm:text-sm font-display font-bold block leading-tight ${
-                  activeTrack === track.slug ? "text-emerald-300" : "text-slate-200"
-                }`}>
-                  {track.shortName}
-                </span>
-                <span className="text-[10px] text-slate-400 font-mono block mt-0.5">
-                  {track.problemStatements.length} PDF{track.problemStatements.length !== 1 ? "s" : ""}
-                </span>
-              </button>
-            ))}
+          {/* Track Navigation Buttons / Tabs */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 mb-6">
+            {tracks.map((track) => {
+              const isSelected = activeTrack === track.slug;
+              return (
+                <button
+                  key={track.slug}
+                  type="button"
+                  onClick={() => setActiveTrack(track.slug)}
+                  className={`p-3.5 sm:p-4 rounded-xl text-center transition-all cursor-pointer border flex flex-col items-center justify-center min-h-[95px] sm:min-h-[110px] ${
+                    isSelected
+                      ? "bg-emerald-950/70 border-emerald-400/80 shadow-lg shadow-emerald-950/50 scale-[1.02]"
+                      : "glass-card border-slate-800/90 hover:border-emerald-500/40 hover:bg-slate-900/60"
+                  }`}
+                >
+                  <span className="text-2xl sm:text-3xl block mb-1.5">{track.icon}</span>
+                  <span
+                    className={`text-xs sm:text-sm font-display font-bold block leading-tight ${
+                      isSelected ? "text-emerald-300" : "text-slate-200"
+                    }`}
+                  >
+                    {track.shortName}
+                  </span>
+                  <span className="text-[10px] text-slate-400 font-mono block mt-1">
+                    {track.hasPdf && track.problemTitles.length > 0
+                      ? `${track.problemTitles.length} Problems`
+                      : "Soon"}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Active Track Content */}
+          {/* Active Track Card */}
           {activeTrackData && (
-            <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-emerald-500/30">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">{activeTrackData.icon}</span>
-                <div>
-                  <h4 className="text-lg sm:text-xl font-display font-extrabold text-white">
-                    {activeTrackData.name}
-                  </h4>
-                  <span className="text-xs font-mono text-emerald-400">
-                    {activeTrackData.problemStatements.length} problem statement{activeTrackData.problemStatements.length !== 1 ? "s" : ""} available
+            <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-emerald-500/30 shadow-2xl shadow-black/50">
+              {/* Track Header & Actions */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-6 border-b border-slate-800/80">
+                <div className="flex items-start sm:items-center gap-3.5">
+                  <span className="text-3xl sm:text-4xl p-2.5 rounded-xl bg-slate-900/80 border border-emerald-500/20 shrink-0">
+                    {activeTrackData.icon}
                   </span>
+                  <div>
+                    <h4 className="text-xl sm:text-2xl font-display font-extrabold text-white">
+                      {activeTrackData.name}
+                    </h4>
+                    <p className="mt-1 text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
+                      {activeTrackData.intro}
+                    </p>
+                  </div>
                 </div>
-                <ChevronDown className="w-5 h-5 text-emerald-400 ml-auto" />
+
+                {/* PDF Action Buttons */}
+                {activeTrackData.hasPdf && activeTrackData.viewUrl && activeTrackData.downloadUrl && (
+                  <div className="flex items-center gap-2.5 shrink-0 w-full md:w-auto pt-2 md:pt-0">
+                    <a
+                      href={activeTrackData.viewUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 md:flex-none py-2.5 px-4 rounded-xl text-xs sm:text-sm font-mono font-bold text-cyan-300 bg-cyan-950/50 border border-cyan-500/40 hover:bg-cyan-900/50 hover:border-cyan-400 transition-all flex items-center justify-center gap-2 shadow-sm"
+                    >
+                      <Eye className="w-4 h-4" />
+                      View PDF
+                    </a>
+                    <a
+                      href={activeTrackData.downloadUrl}
+                      download={activeTrackData.filename}
+                      className="flex-1 md:flex-none py-2.5 px-4 rounded-xl text-xs sm:text-sm font-mono font-bold text-emerald-300 bg-emerald-950/50 border border-emerald-500/40 hover:bg-emerald-900/50 hover:border-emerald-400 transition-all flex items-center justify-center gap-2 shadow-sm"
+                    >
+                      <Download className="w-4 h-4" />
+                      Download PDF
+                    </a>
+                  </div>
+                )}
               </div>
 
-              {activeTrackData.problemStatements.length === 0 ? (
-                <div className="p-6 rounded-xl bg-slate-950/60 border border-slate-800 text-center">
-                  <FileText className="w-10 h-10 text-slate-600 mx-auto mb-3" />
-                  <p className="text-sm text-slate-400 font-medium">
-                    Problem statements will be released soon.
-                  </p>
+              {/* Problem Titles List */}
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold flex items-center gap-1.5">
+                    <FileText className="w-3.5 h-3.5" />
+                    Problem Statements in this Track
+                  </span>
+                  {activeTrackData.problemTitles.length > 0 && (
+                    <span className="text-xs font-mono text-slate-400">
+                      {activeTrackData.problemTitles.length} challenge{activeTrackData.problemTitles.length !== 1 ? "s" : ""}
+                    </span>
+                  )}
                 </div>
-              ) : (
-                <div className="space-y-3">
-                  {activeTrackData.problemStatements.map((ps, idx) => (
-                    <div
-                      key={ps.filename}
-                      className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-emerald-500/30 transition-all group"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-emerald-950/60 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
-                          <FileText className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <span className="text-[10px] font-mono text-emerald-400/70 block">
-                            PS-{String(idx + 1).padStart(2, "0")}
-                          </span>
-                          <span className="text-sm font-display font-semibold text-white group-hover:text-emerald-300 transition-colors">
-                            {ps.title}
-                          </span>
-                        </div>
-                      </div>
 
-                      <div className="flex items-center gap-2 sm:gap-3 shrink-0 w-full sm:w-auto">
-                        <a
-                          href={ps.viewUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 sm:flex-none py-2 px-4 rounded-lg text-xs font-mono font-semibold text-cyan-300 bg-cyan-950/40 border border-cyan-500/30 hover:bg-cyan-900/40 transition-colors flex items-center justify-center gap-1.5"
-                        >
-                          <Eye className="w-3.5 h-3.5" />
-                          View PDF
-                        </a>
-                        <a
-                          href={ps.downloadUrl}
-                          download={ps.filename}
-                          className="flex-1 sm:flex-none py-2 px-4 rounded-lg text-xs font-mono font-semibold text-emerald-300 bg-emerald-950/40 border border-emerald-500/30 hover:bg-emerald-900/40 transition-colors flex items-center justify-center gap-1.5"
-                        >
-                          <Download className="w-3.5 h-3.5" />
-                          Download
-                        </a>
+                {!activeTrackData.hasPdf || activeTrackData.problemTitles.length === 0 ? (
+                  <div className="p-8 rounded-xl bg-slate-950/60 border border-slate-800 text-center">
+                    <FileText className="w-10 h-10 text-slate-600 mx-auto mb-3" />
+                    <p className="text-base text-slate-300 font-medium">
+                      Problem statements will be released soon.
+                    </p>
+                    <span className="text-xs text-slate-500 mt-1 block">
+                      The official problem statements PDF for this track will appear here upon release.
+                    </span>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 gap-3">
+                    {activeTrackData.problemTitles.map((title, idx) => (
+                      <div
+                        key={`${activeTrackData.slug}-${idx}`}
+                        className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-xl bg-slate-950/70 border border-slate-800/90 hover:border-emerald-500/40 hover:bg-slate-900/40 transition-all group"
+                      >
+                        <div className="flex items-start sm:items-center gap-3">
+                          <span className="w-8 h-8 rounded-lg bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-xs font-mono font-bold text-emerald-400 shrink-0 mt-0.5 sm:mt-0">
+                            {idx + 1}
+                          </span>
+                          <div>
+                            <span className="text-sm sm:text-base font-display font-semibold text-white group-hover:text-emerald-300 transition-colors">
+                              {title}
+                            </span>
+                          </div>
+                        </div>
+
+                        {activeTrackData.viewUrl && (
+                          <a
+                            href={activeTrackData.viewUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hidden sm:inline-flex text-xs font-mono text-cyan-400 hover:text-cyan-300 items-center gap-1 shrink-0 ml-auto transition-colors"
+                          >
+                            Read Details <Eye className="w-3 h-3" />
+                          </a>
+                        )}
                       </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
 
-        {/* How It Works */}
-        <div className="glass-card p-6 sm:p-8 rounded-2xl border-emerald-500/20 mb-12">
-          <h3 className="text-lg sm:text-xl font-display font-extrabold text-white mb-4 flex items-center gap-2">
-            <ArrowRight className="w-5 h-5 text-emerald-400" />
-            How It Works
-          </h3>
+        {/* ===== "HOW IT WORKS" BLOCK (under the tracks) ===== */}
+        <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-emerald-500/30 mb-14 shadow-xl shadow-black/40">
+          <div className="text-center mb-6">
+            <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold block mb-1">
+              Process
+            </span>
+            <h3 className="text-xl sm:text-2xl font-display font-black text-white tracking-tight">
+              How It Works
+            </h3>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { step: "1", text: "Pick one track from the 6 available tracks." },
-              { step: "2", text: "Pick one problem statement from that track." },
-              { step: "3", text: "Prepare your idea and present it in Round 1." },
-              { step: "4", text: "Top 4 teams from each track move forward to build." },
-            ].map((item) => (
-              <div key={item.step} className="flex items-start gap-3 p-4 rounded-xl bg-slate-950/50 border border-slate-800">
-                <span className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-display font-bold text-sm shrink-0">
-                  {item.step}
-                </span>
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  {item.text}
+              { num: "1", text: "Pick one track." },
+              { num: "2", text: "Choose one problem statement from that track only." },
+              { num: "3", text: "Prepare your idea for it." },
+              {
+                num: "4",
+                text: "Present your idea in Round 1. The top 4 teams from each track move forward.",
+              },
+            ].map((step) => (
+              <div
+                key={step.num}
+                className="flex flex-col items-center text-center p-5 rounded-xl bg-slate-950/60 border border-slate-800/90 hover:border-emerald-500/30 transition-all"
+              >
+                <div className="w-10 h-10 rounded-full bg-emerald-950/80 border-2 border-emerald-500/40 flex items-center justify-center text-emerald-400 font-display font-black text-base mb-3 shadow-md">
+                  {step.num}
+                </div>
+                <p className="text-sm text-slate-200 font-medium leading-relaxed">
+                  {step.text}
                 </p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Important Rule Note Card */}
-        <div className="glass-panel p-5 sm:p-6 rounded-2xl border border-amber-500/30 bg-amber-950/15 mb-12 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        {/* Important Participation Note Card */}
+        <div className="glass-panel p-5 sm:p-6 rounded-2xl border border-amber-500/30 bg-amber-950/15 mb-14 flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
             <AlertTriangle className="w-5 h-5" />
           </div>
@@ -251,62 +301,54 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
           </div>
         </div>
 
-        {/* Highlighted Info Card: Mandatory Round 1 PPT Template */}
-        <div className="relative rounded-3xl p-6 sm:p-10 overflow-hidden bg-gradient-to-r from-emerald-950/70 via-slate-900/90 to-cyan-950/70 border-2 border-emerald-500/40 shadow-2xl shadow-emerald-950/60">
-          <div className="absolute -right-16 -bottom-16 w-64 h-64 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -left-16 -top-16 w-64 h-64 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative z-10">
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-slate-800">
-              <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider text-yellow-300 bg-yellow-950/60 border border-yellow-500/40 uppercase mb-3">
-                  <Presentation className="w-3.5 h-3.5 text-yellow-400" />
-                  Mandatory for Round 1
-                </div>
-                <h3 className="text-xl sm:text-2xl font-display font-black text-white tracking-tight">
-                  Official Round 1 Idea Presentation Template
-                </h3>
-                <p className="mt-2 text-sm sm:text-base text-slate-200 leading-relaxed font-medium">
-                  {forParticipants.pptNotice.mandatory}
-                </p>
+        {/* Mandatory PPT Template Section */}
+        <div className="glass-panel p-8 sm:p-10 rounded-3xl border border-emerald-500/30 relative overflow-hidden">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold tracking-wider text-amber-400 bg-amber-950/50 border border-amber-500/30 uppercase mb-4">
+                <Presentation className="w-3.5 h-3.5" />
+                Mandatory for Round 1
               </div>
 
-              {/* Download PPT Template Button */}
-              <div className="w-full lg:w-auto shrink-0">
-                <a
-                  href={forParticipants.pptNotice.downloadUrl}
-                  download={forParticipants.pptNotice.filename}
-                  className="w-full lg:w-auto py-3.5 px-6 sm:px-8 rounded-xl font-display font-bold text-sm sm:text-base bg-gradient-to-r from-emerald-500 via-lime-400 to-emerald-400 text-slate-950 hover:brightness-110 active:scale-[0.98] transition-all shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-2.5 group"
-                >
-                  <Download className="w-5 h-5 text-slate-950 group-hover:translate-y-0.5 transition-transform" />
-                  <span>Download PPT Template</span>
-                </a>
+              <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-white mb-3">
+                Official PPT Template
+              </h3>
+
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                {forParticipants.pptNotice.mandatory}
+              </p>
+
+              {/* Slide list summary */}
+              <div className="mb-6">
+                <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold block mb-3">
+                  Slide Structure (7 Slides Total):
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-300">
+                  {slideTitles.map((slide, idx) => (
+                    <div key={slide} className="flex items-center gap-2">
+                      <span className="w-5 h-5 rounded bg-emerald-950/60 border border-emerald-500/30 flex items-center justify-center text-[10px] font-mono text-emerald-400 shrink-0">
+                        {idx + 1}
+                      </span>
+                      <span className={idx === 1 ? "text-emerald-300 font-semibold" : ""}>{slide}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* 7 Slides Structure */}
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-emerald-400">
-                  {forParticipants.pptNotice.slides}
-                </span>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5">
-                {slideTitles.map((slide, idx) => (
-                  <div
-                    key={slide}
-                    className="p-3 rounded-xl bg-slate-950/70 border border-emerald-500/20 text-center"
-                  >
-                    <span className="text-[10px] font-mono text-emerald-400 block mb-0.5">
-                      Slide 0{idx + 1}
-                    </span>
-                    <span className="text-xs font-semibold text-slate-200 block truncate" title={slide}>
-                      {slide}
-                    </span>
-                  </div>
-                ))}
-              </div>
+            <div className="shrink-0 flex flex-col items-center">
+              <a
+                href={forParticipants.pptNotice.downloadUrl}
+                download={forParticipants.pptNotice.filename}
+                className="btn-primary py-4 px-8 rounded-xl font-display font-bold text-base flex items-center gap-3 shadow-lg shadow-emerald-950/50 group"
+              >
+                <Download className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
+                Download Official PPT Template (.pptx)
+              </a>
+              <span className="text-[11px] font-mono text-slate-400 mt-2 flex items-center gap-1.5">
+                <Check className="w-3 h-3 text-emerald-400" />
+                Microsoft PowerPoint Format (.pptx)
+              </span>
             </div>
           </div>
         </div>

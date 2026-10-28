@@ -17,8 +17,8 @@ import Footer from "@/components/Footer";
 import FloatingCallButton from "@/components/FloatingCallButton";
 import { getProblemStatements } from "@/lib/problemStatements";
 
-export default function Home() {
-  const tracks = getProblemStatements();
+export default async function Home() {
+  const tracks = await getProblemStatements();
 
   return (
     <SmoothScroll>
