@@ -15,8 +15,11 @@ import Venue from "@/components/Venue";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import FloatingCallButton from "@/components/FloatingCallButton";
+import { getProblemStatements } from "@/lib/problemStatements";
 
 export default function Home() {
+  const tracks = getProblemStatements();
+
   return (
     <SmoothScroll>
       <LoadingScreen />
@@ -31,7 +34,7 @@ export default function Home() {
         <About />
 
         {/* 4. For Participants */}
-        <ForParticipants />
+        <ForParticipants tracks={tracks} />
 
         {/* 5. Organizing Committee */}
         <OrganizingCommittee />

@@ -84,14 +84,28 @@ export const HACKATHON_DATA = {
     karnatakaLogo: "/logos/WhatsApp Image 2026-10-23 at 20.49.34.jpeg",
   },
 
+  // Chairman photos
+  chairmen: {
+    left: {
+      name: "Sri G. Madegowda",
+      title: "Founder",
+      image: "/photos/sri-g-madegowda.jpg",
+    },
+    right: {
+      name: "Sri Madhu G Madegowda",
+      title: "Chairman, BET",
+      image: "/photos/sri-madhu-g-madegowda.jpg",
+    },
+  },
+
   // Quick stats
   quickStats: [
     { label: "Prize Pool", value: "₹25,000", sub: "Cash rewards & certificates" },
     { label: "Hackathon Duration", value: "24 Hours", sub: "Non-stop innovation sprint" },
     { label: "Entry Fee", value: "Free", sub: "Open to all eligible students" },
     { label: "Team Size", value: "1–3", sub: "Collaborative squads" },
-    { label: "Rounds", value: "3 Stages", sub: "Idea → Prototype → Pitch" },
-    { label: "Top 25 Teams", value: "Advance", sub: "Shortlisted to Round 2" },
+    { label: "Tracks", value: "6", sub: "AIML, IoT, Drones & more" },
+    { label: "Shortlisted", value: "4 / Track", sub: "Top teams per track advance" },
   ],
 
   // About Hackathon & Theme
@@ -104,32 +118,32 @@ export const HACKATHON_DATA = {
     ],
   },
 
-  // For Participants (BYOP - Bring Your Own Problem Statement & Idea)
+  // For Participants (Tracks-based system)
   forParticipants: {
     badge: "For Participants",
-    heading: "Bring Your Own Problem Statement and Idea",
-    intro: "There are no pre-defined problem statements. Every team chooses its own real-world problem in agriculture and comes with its own idea to solve it.",
+    heading: "Choose Your Track & Problem Statement",
+    intro: "Teams choose ONE problem statement from ONE track only. Problem statements are released by the organisers in PDF form. Browse the tracks below to find your challenge.",
     cards: [
       {
         step: "01",
-        title: "Pick Your Problem",
-        desc: "Identify a real problem faced by farmers or the agriculture sector.",
+        title: "Choose Your Track",
+        desc: "Pick one of the 6 tracks: AIML, IoT, Drones, Renewable Energy, Robotics & Automation, or Open Innovation.",
       },
       {
         step: "02",
-        title: "Bring Your Idea",
-        desc: "Come with a clear, innovative solution idea for that problem.",
+        title: "Select a Problem Statement",
+        desc: "Choose one problem statement from your selected track and prepare your idea around it.",
       },
       {
         step: "03",
-        title: "Build in 24 Hours",
-        desc: "Turn your idea into a working prototype during the hackathon.",
+        title: "Present & Build",
+        desc: "Present your idea in Round 1. Top 4 teams from each track are shortlisted to build their prototype.",
       },
     ],
     note: "Only the idea is presented in Round 1. The prototype must be developed during the hackathon. Pre-built projects are not allowed.",
     pptNotice: {
       mandatory: "Mandatory for Round 1: All teams must use the official LEAP Agritech Hackathon PPT template for the idea presentation. Presentations in any other format will not be accepted.",
-      slides: "7 slides: Title, Problem Statement, Existing Solutions, Our Solution, Technical Approach, Impact and Benefits, Thank You",
+      slides: "7 slides: Title, Chosen Problem Statement (track and title), Existing Solutions, Our Solution, Technical Approach, Impact and Benefits, Thank You",
       downloadUrl: "/downloads/LEAP_Agritech_Hackathon_2026_Round1_PPT_Template.pptx",
       filename: "LEAP_Agritech_Hackathon_2026_Round1_PPT_Template.pptx",
     },
@@ -189,20 +203,20 @@ export const HACKATHON_DATA = {
       number: 1,
       title: "Idea Presentation",
       badge: "Stage 01 • All Teams",
-      description: "All participating teams present their innovative ideas to the evaluation panel. Only the idea needs to be presented; a prototype is not required.",
+      description: "All participating teams present their innovative ideas for their chosen problem statement to the evaluation panel. Only the idea needs to be presented; a prototype is not required.",
       highlights: [
-        "Focus on problem definition, agricultural relevance & feasibility",
+        "Present your idea for the chosen problem statement from your track",
         "Slide deck / presentation to academic & industry jurors",
         "No prototype required for Round 1",
-        "Top 25 teams will be shortlisted for Round 2"
+        "Top 4 teams from each track will be shortlisted for Round 2"
       ],
       duration: "Day 1: 10:00 AM – 1:30 PM",
     },
     {
       number: 2,
       title: "Project Development",
-      badge: "Stage 02 • Top 25 Teams",
-      description: "Based on idea presentations, the top 25 teams are shortlisted. Selected teams develop their projects and build working prototypes during the hackathon.",
+      badge: "Stage 02 • Shortlisted Teams",
+      description: "Based on idea presentations, the top 4 teams from each track are shortlisted. Selected teams develop their projects and build working prototypes during the hackathon.",
       highlights: [
         "24-Hour intensive sprint begins inside GMIT innovation labs",
         "Build functional code, models, or hardware setups",
@@ -236,7 +250,7 @@ export const HACKATHON_DATA = {
         { time: "9:30 AM – 10:00 AM", title: "Inauguration Ceremony", description: "Dignitary welcome, lighting of the lamp & keynote addresses by KITS & GMIT leadership.", type: "ceremony" },
         { time: "10:00 AM – 1:30 PM", title: "Round 1: Idea Presentation", description: "All teams pitch their agricultural concept and proposed architecture to the jury.", type: "round" },
         { time: "1:30 PM – 2:30 PM", title: "Lunch Break", description: "Buffet lunch served for all participants & faculty coordinators.", type: "break" },
-        { time: "2:30 PM Onwards", title: "Round 2: Project Development", description: "Top 25 shortlisted teams begin hands-on sprint and prototype implementation.", type: "round" },
+        { time: "2:30 PM Onwards", title: "Round 2: Project Development", description: "Shortlisted teams (top 4 from each track) begin hands-on sprint and prototype implementation.", type: "round" },
         { time: "4:45 PM – 5:15 PM", title: "Tea & Snacks Break", description: "Refreshment break to recharge your innovative flow.", type: "break" },
         { time: "5:30 PM – 7:30 PM", title: "Project Review", description: "Mentors review sprint progress and provide architectural guidance.", type: "review" },
         { time: "7:30 PM – 8:30 PM", title: "Dinner", description: "Dinner break followed by uninterrupted overnight hackathon coding & prototyping.", type: "break" },

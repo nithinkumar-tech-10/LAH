@@ -1,31 +1,44 @@
 "use client";
 
+import { useState } from "react";
 import { HACKATHON_DATA } from "@/lib/data";
+import type { TrackData } from "@/lib/problemStatements";
 import {
   Sparkles,
-  Search,
   Lightbulb,
   Hammer,
   AlertTriangle,
   Download,
   CheckCircle2,
   Presentation,
+  FileText,
+  Eye,
+  ArrowRight,
+  ChevronDown,
+  Target,
 } from "lucide-react";
 
-export default function ForParticipants() {
-  const { forParticipants } = HACKATHON_DATA;
+interface ForParticipantsProps {
+  tracks: TrackData[];
+}
 
-  const cardIcons = [Search, Lightbulb, Hammer];
+export default function ForParticipants({ tracks }: ForParticipantsProps) {
+  const { forParticipants } = HACKATHON_DATA;
+  const [activeTrack, setActiveTrack] = useState<string>(tracks[0]?.slug ?? "aiml");
+
+  const cardIcons = [Target, Lightbulb, Hammer];
 
   const slideTitles = [
     "Title",
-    "Problem Statement",
+    "Chosen Problem Statement (track and title)",
     "Existing Solutions",
     "Our Solution",
     "Technical Approach",
     "Impact and Benefits",
     "Thank You",
   ];
+
+  const activeTrackData = tracks.find((t) => t.slug === activeTrack);
 
   return (
     <section id="participants" className="py-24 relative overflow-hidden bg-slate-950/40">
@@ -80,11 +93,147 @@ export default function ForParticipants() {
 
                 <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center gap-2 text-xs font-mono text-emerald-400/80">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Stage {card.step} Milestone</span>
+                  <span>Step {card.step}</span>
                 </div>
               </div>
             );
           })}
+        </div>
+
+        {/* ===== TRACKS SECTION ===== */}
+        <div className="mb-12">
+          <div className="text-center mb-8">
+            <span className="px-3.5 py-1 rounded-full text-xs font-mono font-semibold tracking-wider text-cyan-400 bg-cyan-950/40 border border-cyan-500/30 uppercase">
+              6 Tracks
+            </span>
+            <h3 className="mt-3 text-2xl sm:text-4xl font-display font-black text-white tracking-tight">
+              Problem Statements by Track
+            </h3>
+            <p className="mt-2 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
+              Teams choose ONE problem statement from ONE track only. Click a track to view its problem statements.
+            </p>
+          </div>
+
+          {/* Track Tabs */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 mb-8">
+            {tracks.map((track) => (
+              <button
+                key={track.slug}
+                type="button"
+                onClick={() => setActiveTrack(track.slug)}
+                className={`p-3 sm:p-4 rounded-xl text-center transition-all cursor-pointer border ${
+                  activeTrack === track.slug
+                    ? "bg-emerald-950/60 border-emerald-400/60 shadow-lg shadow-emerald-950/40"
+                    : "glass-card border-slate-800 hover:border-emerald-500/30"
+                }`}
+              >
+                <span className="text-2xl block mb-1">{track.icon}</span>
+                <span className={`text-xs sm:text-sm font-display font-bold block leading-tight ${
+                  activeTrack === track.slug ? "text-emerald-300" : "text-slate-200"
+                }`}>
+                  {track.shortName}
+                </span>
+                <span className="text-[10px] text-slate-400 font-mono block mt-0.5">
+                  {track.problemStatements.length} PDF{track.problemStatements.length !== 1 ? "s" : ""}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Active Track Content */}
+          {activeTrackData && (
+            <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-emerald-500/30">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-3xl">{activeTrackData.icon}</span>
+                <div>
+                  <h4 className="text-lg sm:text-xl font-display font-extrabold text-white">
+                    {activeTrackData.name}
+                  </h4>
+                  <span className="text-xs font-mono text-emerald-400">
+                    {activeTrackData.problemStatements.length} problem statement{activeTrackData.problemStatements.length !== 1 ? "s" : ""} available
+                  </span>
+                </div>
+                <ChevronDown className="w-5 h-5 text-emerald-400 ml-auto" />
+              </div>
+
+              {activeTrackData.problemStatements.length === 0 ? (
+                <div className="p-6 rounded-xl bg-slate-950/60 border border-slate-800 text-center">
+                  <FileText className="w-10 h-10 text-slate-600 mx-auto mb-3" />
+                  <p className="text-sm text-slate-400 font-medium">
+                    Problem statements will be released soon.
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {activeTrackData.problemStatements.map((ps, idx) => (
+                    <div
+                      key={ps.filename}
+                      className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-emerald-500/30 transition-all group"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-emerald-950/60 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
+                          <FileText className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <span className="text-[10px] font-mono text-emerald-400/70 block">
+                            PS-{String(idx + 1).padStart(2, "0")}
+                          </span>
+                          <span className="text-sm font-display font-semibold text-white group-hover:text-emerald-300 transition-colors">
+                            {ps.title}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2 sm:gap-3 shrink-0 w-full sm:w-auto">
+                        <a
+                          href={ps.viewUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 sm:flex-none py-2 px-4 rounded-lg text-xs font-mono font-semibold text-cyan-300 bg-cyan-950/40 border border-cyan-500/30 hover:bg-cyan-900/40 transition-colors flex items-center justify-center gap-1.5"
+                        >
+                          <Eye className="w-3.5 h-3.5" />
+                          View PDF
+                        </a>
+                        <a
+                          href={ps.downloadUrl}
+                          download={ps.filename}
+                          className="flex-1 sm:flex-none py-2 px-4 rounded-lg text-xs font-mono font-semibold text-emerald-300 bg-emerald-950/40 border border-emerald-500/30 hover:bg-emerald-900/40 transition-colors flex items-center justify-center gap-1.5"
+                        >
+                          <Download className="w-3.5 h-3.5" />
+                          Download
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* How It Works */}
+        <div className="glass-card p-6 sm:p-8 rounded-2xl border-emerald-500/20 mb-12">
+          <h3 className="text-lg sm:text-xl font-display font-extrabold text-white mb-4 flex items-center gap-2">
+            <ArrowRight className="w-5 h-5 text-emerald-400" />
+            How It Works
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { step: "1", text: "Pick one track from the 6 available tracks." },
+              { step: "2", text: "Pick one problem statement from that track." },
+              { step: "3", text: "Prepare your idea and present it in Round 1." },
+              { step: "4", text: "Top 4 teams from each track move forward to build." },
+            ].map((item) => (
+              <div key={item.step} className="flex items-start gap-3 p-4 rounded-xl bg-slate-950/50 border border-slate-800">
+                <span className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-display font-bold text-sm shrink-0">
+                  {item.step}
+                </span>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  {item.text}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Important Rule Note Card */}

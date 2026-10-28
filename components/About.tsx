@@ -62,16 +62,16 @@ export default function About() {
             </span>
           </div>
 
-          {/* Stat 3: Top 25 Teams Advance to Round 2 */}
+          {/* Stat 3: Top 4 Teams Per Track Advance to Round 2 */}
           <div className="glass-card p-6 rounded-2xl text-center border-emerald-500/20 group hover:border-emerald-400/40 transition-all">
             <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
               <Target className="w-6 h-6" />
             </div>
             <span className="block font-display font-black text-3xl sm:text-4xl text-white">
-              Top 25
+              4 / Track
             </span>
             <span className="text-xs font-mono uppercase tracking-wider text-slate-400 mt-1 block">
-              Teams to Round 2
+              Shortlisted to Round 2
             </span>
           </div>
 
