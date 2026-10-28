@@ -15,10 +15,10 @@ import Venue from "@/components/Venue";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import FloatingCallButton from "@/components/FloatingCallButton";
-import { getProblemStatements } from "@/lib/problemStatements";
+import { getTrackGroups } from "@/lib/problemStatements";
 
-export default async function Home() {
-  const tracks = await getProblemStatements();
+export default function Home() {
+  const tracks = getTrackGroups();
 
   return (
     <SmoothScroll>

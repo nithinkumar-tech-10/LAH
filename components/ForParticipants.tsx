@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { HACKATHON_DATA } from "@/lib/data";
-import type { TrackData } from "@/lib/problemStatements";
+import type { TrackGroup, ProblemItem } from "@/lib/problemStatements";
 import {
   Sparkles,
   Lightbulb,
@@ -11,19 +11,29 @@ import {
   Download,
   CheckCircle2,
   Presentation,
-  FileText,
-  Eye,
   Check,
   Target,
+  ArrowRight,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  BookOpen,
 } from "lucide-react";
 
 interface ForParticipantsProps {
-  tracks: TrackData[];
+  tracks: TrackGroup[];
 }
 
 export default function ForParticipants({ tracks }: ForParticipantsProps) {
   const { forParticipants } = HACKATHON_DATA;
   const [activeTrack, setActiveTrack] = useState<string>(tracks[0]?.slug ?? "aiml");
+  const [selectedProblem, setSelectedProblem] = useState<ProblemItem | null>(null);
+
+  // Focus management
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const modalContentRef = useRef<HTMLDivElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const modalScrollRef = useRef<HTMLDivElement | null>(null);
 
   const cardIcons = [Target, Lightbulb, Hammer];
 
@@ -37,7 +47,91 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
     "Thank You",
   ];
 
-  const activeTrackData = tracks.find((t) => t.slug === activeTrack);
+  const activeTrackData = tracks.find((t) => t.slug === activeTrack) || tracks[0];
+
+  const openDetails = (prob: ProblemItem, triggerEl: HTMLButtonElement) => {
+    triggerRef.current = triggerEl;
+    setSelectedProblem(prob);
+  };
+
+  const closeDetails = useCallback(() => {
+    setSelectedProblem(null);
+    setTimeout(() => {
+      triggerRef.current?.focus();
+    }, 50);
+  }, []);
+
+  // Handle Escape key and focus trap
+  useEffect(() => {
+    if (!selectedProblem) return;
+
+    // Lock body scrolling
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    // Focus close button on open
+    setTimeout(() => {
+      closeButtonRef.current?.focus();
+    }, 50);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeDetails();
+        return;
+      }
+
+      // Trap focus
+      if (e.key === "Tab" && modalContentRef.current) {
+        const focusableElements = modalContentRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement?.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement?.focus();
+          }
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedProblem, closeDetails]);
+
+  // Previous & Next navigation inside the same track
+  const currentTrackProblems = activeTrackData?.problems || [];
+  const currentProblemIndex = selectedProblem
+    ? currentTrackProblems.findIndex((p) => p.id === selectedProblem.id)
+    : -1;
+
+  const hasPrev = currentProblemIndex > 0;
+  const hasNext = currentProblemIndex >= 0 && currentProblemIndex < currentTrackProblems.length - 1;
+
+  const goToPrev = () => {
+    if (hasPrev) {
+      setSelectedProblem(currentTrackProblems[currentProblemIndex - 1]);
+      modalScrollRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const goToNext = () => {
+    if (hasNext) {
+      setSelectedProblem(currentTrackProblems[currentProblemIndex + 1]);
+      modalScrollRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   return (
     <section id="participants" className="py-24 relative overflow-hidden bg-slate-950/40">
@@ -99,7 +193,7 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
           })}
         </div>
 
-        {/* ===== TRACKS SYSTEM SECTION ===== */}
+        {/* ===== TRACKS & PROBLEM STATEMENTS SECTION ===== */}
         <div className="mb-14">
           <div className="text-center mb-8">
             <span className="px-3.5 py-1 rounded-full text-xs font-mono font-semibold tracking-wider text-cyan-400 bg-cyan-950/40 border border-cyan-500/30 uppercase">
@@ -109,7 +203,7 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
               Problem Statements by Track
             </h3>
             <p className="mt-2 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
-              Teams choose ONE problem statement from ONE track only. Browse the 6 tracks below to explore all official challenges.
+              Teams choose ONE problem statement from ONE track only. Click &quot;Read Details&quot; to review the complete description and challenges.
             </p>
           </div>
 
@@ -137,9 +231,7 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
                     {track.shortName}
                   </span>
                   <span className="text-[10px] text-slate-400 font-mono block mt-1">
-                    {track.hasPdf && track.problemTitles.length > 0
-                      ? `${track.problemTitles.length} Problems`
-                      : "Soon"}
+                    {track.problems.length > 0 ? `${track.problems.length} Problems` : "Soon"}
                   </span>
                 </button>
               );
@@ -149,98 +241,64 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
           {/* Active Track Card */}
           {activeTrackData && (
             <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-emerald-500/30 shadow-2xl shadow-black/50">
-              {/* Track Header & Actions */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-6 border-b border-slate-800/80">
-                <div className="flex items-start sm:items-center gap-3.5">
-                  <span className="text-3xl sm:text-4xl p-2.5 rounded-xl bg-slate-900/80 border border-emerald-500/20 shrink-0">
-                    {activeTrackData.icon}
-                  </span>
-                  <div>
-                    <h4 className="text-xl sm:text-2xl font-display font-extrabold text-white">
-                      {activeTrackData.name}
-                    </h4>
-                    <p className="mt-1 text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
-                      {activeTrackData.intro}
-                    </p>
-                  </div>
+              {/* Track Header */}
+              <div className="flex items-start sm:items-center gap-3.5 pb-6 mb-6 border-b border-slate-800/80">
+                <span className="text-3xl sm:text-4xl p-2.5 rounded-xl bg-slate-900/80 border border-emerald-500/20 shrink-0">
+                  {activeTrackData.icon}
+                </span>
+                <div>
+                  <h4 className="text-xl sm:text-2xl font-display font-extrabold text-white">
+                    {activeTrackData.name}
+                  </h4>
+                  <p className="mt-1 text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
+                    {activeTrackData.intro}
+                  </p>
                 </div>
-
-                {/* PDF Action Buttons */}
-                {activeTrackData.hasPdf && activeTrackData.viewUrl && activeTrackData.downloadUrl && (
-                  <div className="flex items-center gap-2.5 shrink-0 w-full md:w-auto pt-2 md:pt-0">
-                    <a
-                      href={activeTrackData.viewUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 md:flex-none py-2.5 px-4 rounded-xl text-xs sm:text-sm font-mono font-bold text-cyan-300 bg-cyan-950/50 border border-cyan-500/40 hover:bg-cyan-900/50 hover:border-cyan-400 transition-all flex items-center justify-center gap-2 shadow-sm"
-                    >
-                      <Eye className="w-4 h-4" />
-                      View PDF
-                    </a>
-                    <a
-                      href={activeTrackData.downloadUrl}
-                      download={activeTrackData.filename}
-                      className="flex-1 md:flex-none py-2.5 px-4 rounded-xl text-xs sm:text-sm font-mono font-bold text-emerald-300 bg-emerald-950/50 border border-emerald-500/40 hover:bg-emerald-900/50 hover:border-emerald-400 transition-all flex items-center justify-center gap-2 shadow-sm"
-                    >
-                      <Download className="w-4 h-4" />
-                      Download PDF
-                    </a>
-                  </div>
-                )}
               </div>
 
               {/* Problem Titles List */}
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold flex items-center gap-1.5">
-                    <FileText className="w-3.5 h-3.5" />
-                    Problem Statements in this Track
+                    <BookOpen className="w-3.5 h-3.5" />
+                    Problem Statements ({activeTrackData.problems.length})
                   </span>
-                  {activeTrackData.problemTitles.length > 0 && (
-                    <span className="text-xs font-mono text-slate-400">
-                      {activeTrackData.problemTitles.length} challenge{activeTrackData.problemTitles.length !== 1 ? "s" : ""}
-                    </span>
-                  )}
+                  <span className="text-xs text-slate-400 font-mono">
+                    Select a challenge to view details
+                  </span>
                 </div>
 
-                {!activeTrackData.hasPdf || activeTrackData.problemTitles.length === 0 ? (
+                {activeTrackData.problems.length === 0 ? (
                   <div className="p-8 rounded-xl bg-slate-950/60 border border-slate-800 text-center">
-                    <FileText className="w-10 h-10 text-slate-600 mx-auto mb-3" />
+                    <BookOpen className="w-10 h-10 text-slate-600 mx-auto mb-3" />
                     <p className="text-base text-slate-300 font-medium">
                       Problem statements will be released soon.
                     </p>
-                    <span className="text-xs text-slate-500 mt-1 block">
-                      The official problem statements PDF for this track will appear here upon release.
-                    </span>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 gap-3">
-                    {activeTrackData.problemTitles.map((title, idx) => (
+                    {activeTrackData.problems.map((prob) => (
                       <div
-                        key={`${activeTrackData.slug}-${idx}`}
-                        className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-xl bg-slate-950/70 border border-slate-800/90 hover:border-emerald-500/40 hover:bg-slate-900/40 transition-all group"
+                        key={prob.id}
+                        className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3.5 p-4 sm:p-5 rounded-xl bg-slate-950/70 border border-slate-800/90 hover:border-emerald-500/40 hover:bg-slate-900/50 transition-all group"
                       >
-                        <div className="flex items-start sm:items-center gap-3">
+                        <div className="flex items-start sm:items-center gap-3 flex-1 min-w-0">
                           <span className="w-8 h-8 rounded-lg bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-xs font-mono font-bold text-emerald-400 shrink-0 mt-0.5 sm:mt-0">
-                            {idx + 1}
+                            {String(prob.number).padStart(2, "0")}
                           </span>
-                          <div>
-                            <span className="text-sm sm:text-base font-display font-semibold text-white group-hover:text-emerald-300 transition-colors">
-                              {title}
-                            </span>
-                          </div>
+                          <span className="text-sm sm:text-base font-display font-semibold text-white group-hover:text-emerald-300 transition-colors leading-snug">
+                            {prob.title}
+                          </span>
                         </div>
 
-                        {activeTrackData.viewUrl && (
-                          <a
-                            href={activeTrackData.viewUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hidden sm:inline-flex text-xs font-mono text-cyan-400 hover:text-cyan-300 items-center gap-1 shrink-0 ml-auto transition-colors"
-                          >
-                            Read Details <Eye className="w-3 h-3" />
-                          </a>
-                        )}
+                        <button
+                          type="button"
+                          onClick={(e) => openDetails(prob, e.currentTarget)}
+                          className="w-full sm:w-auto px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-500 hover:text-slate-950 transition-all flex items-center justify-center gap-1.5 cursor-pointer shrink-0 shadow-sm"
+                        >
+                          Read Details
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
                       </div>
                     ))}
                   </div>
@@ -353,6 +411,125 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
           </div>
         </div>
       </div>
+
+      {/* ===== PROBLEM DETAILS MODAL / DIALOG ===== */}
+      {selectedProblem && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="problem-modal-title"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-black/80 backdrop-blur-md transition-opacity duration-200 animate-in fade-in"
+          onClick={closeDetails}
+        >
+          <div
+            ref={modalContentRef}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-3xl max-h-[90vh] bg-slate-950 border border-emerald-500/40 rounded-2xl sm:rounded-3xl shadow-2xl shadow-black/80 flex flex-col overflow-hidden text-left animate-in zoom-in-95 duration-200"
+          >
+            {/* Modal Header */}
+            <div className="flex items-start justify-between gap-4 p-5 sm:p-7 border-b border-slate-800/90 bg-slate-900/60 shrink-0">
+              <div className="flex-1 pr-2">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 uppercase mb-2">
+                  {selectedProblem.track} • Problem {selectedProblem.number}
+                </span>
+                <h3
+                  id="problem-modal-title"
+                  className="text-xl sm:text-2xl md:text-3xl font-display font-black text-white leading-tight"
+                >
+                  {selectedProblem.title}
+                </h3>
+              </div>
+
+              <button
+                ref={closeButtonRef}
+                type="button"
+                onClick={closeDetails}
+                aria-label="Close dialog"
+                className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700/80 text-slate-400 hover:text-white hover:border-emerald-400/60 hover:bg-emerald-950/40 transition-all flex items-center justify-center shrink-0 cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Scrollable Body */}
+            <div
+              ref={modalScrollRef}
+              className="p-5 sm:p-8 overflow-y-auto overflow-x-hidden flex-1 space-y-7"
+            >
+              {/* Problem Description */}
+              <div>
+                <h4 className="text-sm font-mono uppercase tracking-wider text-emerald-400 font-bold mb-3 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                  Problem Description
+                </h4>
+                <div className="space-y-3.5 text-base text-slate-200 leading-relaxed font-normal">
+                  {selectedProblem.description.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
+              </div>
+
+              {/* Challenges */}
+              <div>
+                <h4 className="text-sm font-mono uppercase tracking-wider text-cyan-400 font-bold mb-3 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                  Challenges
+                </h4>
+                <ol className="space-y-3">
+                  {selectedProblem.challenges.map((challenge, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 text-base text-slate-200 leading-relaxed"
+                    >
+                      <span className="w-7 h-7 rounded-lg bg-cyan-950/80 border border-cyan-500/40 flex items-center justify-center text-xs font-mono font-bold text-cyan-300 shrink-0 mt-0.5">
+                        {idx + 1}
+                      </span>
+                      <span className="flex-1">{challenge}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+
+            {/* Modal Footer with Previous / Next navigation */}
+            <div className="flex items-center justify-between p-4 sm:p-5 border-t border-slate-800/90 bg-slate-900/60 shrink-0">
+              <button
+                type="button"
+                onClick={goToPrev}
+                disabled={!hasPrev}
+                className={`py-2 px-3 sm:px-4 rounded-xl text-xs sm:text-sm font-mono font-bold flex items-center gap-1.5 transition-all ${
+                  hasPrev
+                    ? "bg-slate-900 border border-slate-700 text-slate-200 hover:border-emerald-400 hover:text-emerald-300 cursor-pointer"
+                    : "opacity-40 cursor-not-allowed text-slate-500 border border-slate-800"
+                }`}
+              >
+                <ChevronLeft className="w-4 h-4" />
+                Previous
+              </button>
+
+              <span className="text-xs font-mono text-slate-400">
+                {currentProblemIndex >= 0
+                  ? `Problem ${currentProblemIndex + 1} of ${currentTrackProblems.length}`
+                  : ""}
+              </span>
+
+              <button
+                type="button"
+                onClick={goToNext}
+                disabled={!hasNext}
+                className={`py-2 px-3 sm:px-4 rounded-xl text-xs sm:text-sm font-mono font-bold flex items-center gap-1.5 transition-all ${
+                  hasNext
+                    ? "bg-slate-900 border border-slate-700 text-slate-200 hover:border-emerald-400 hover:text-emerald-300 cursor-pointer"
+                    : "opacity-40 cursor-not-allowed text-slate-500 border border-slate-800"
+                }`}
+              >
+                Next
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

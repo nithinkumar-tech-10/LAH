@@ -1,0 +1,577 @@
+[
+  {
+    "id": "aiml-1",
+    "track": "AI/ML",
+    "trackSlug": "aiml",
+    "number": 1,
+    "title": "AI-Powered Farmer Assistant",
+    "description": [
+      "Farmers routinely make decisions about sowing time, irrigation, fertilizer doses, and pest control with limited access to timely expert advice. Extension officers serve large numbers of villages, and printed or online advisories are often generic, written in a language the farmer does not use daily, or unavailable when a question arises in the field. As a result, a farmer growing paddy or coconut may depend on neighbours, input dealers, or past habit, which can lead to avoidable crop losses and excess input costs. A digital assistant that answers questions in a familiar language and tailors guidance to the crop and local context could narrow this gap."
+    ],
+    "challenges": [
+      "Obtaining reliable, verified agricultural knowledge for the assistant and keeping it current across crops, seasons, and regions.",
+      "Supporting regional languages, dialects, and colloquial farming terms in text and, where feasible, voice input.",
+      "Preventing incorrect or unsafe advice, such as wrong pesticide doses, through grounding, validation, and clear limits on what the assistant answers.",
+      "Operating in areas with low bandwidth or intermittent connectivity and on low-cost smartphones.",
+      "Designing an interface suitable for users with limited digital or functional literacy."
+    ]
+  },
+  {
+    "id": "aiml-2",
+    "track": "AI/ML",
+    "trackSlug": "aiml",
+    "number": 2,
+    "title": "AI-Based Crop Disease and Pest Prediction",
+    "description": [
+      "Crop diseases and pests often spread quickly, and by the time symptoms are obvious the damage may already be widespread. Diseases such as blast in paddy or leaf spots in vegetables also depend on weather conditions such as humidity and temperature, which can signal risk before visible symptoms appear.",
+      "Farmers frequently find it difficult to tell similar-looking symptoms apart, and laboratory diagnosis is slow or distant. An early-warning tool combining leaf images with weather and field data could help farmers decide when to inspect and act."
+    ],
+    "challenges": [
+      "Collecting labelled image datasets that reflect real field conditions rather than laboratory backgrounds.",
+      "Handling variation in lighting, camera quality, growth stage, and overlapping symptoms or nutrient deficiencies that resemble disease.",
+      "Combining image-based findings with weather and historical outbreak data in a meaningful way.",
+      "Communicating confidence levels honestly and avoiding overconfident or false alerts that erode trust.",
+      "Delivering results on low-end devices and with limited connectivity."
+    ]
+  },
+  {
+    "id": "aiml-3",
+    "track": "AI/ML",
+    "trackSlug": "aiml",
+    "number": 3,
+    "title": "AI-Powered Farmer-to-Market Connectivity",
+    "description": [
+      "Many farmers sell through a few local intermediaries and have limited knowledge of prices in other markets or of buyers who may offer better terms. Prices vary by location, quality, and season, and perishable produce must be sold quickly, which weakens the farmer's bargaining position.",
+      "A platform that gathers price information, matches produce with interested buyers, and compares options after accounting for transport and timing could support more informed selling decisions."
+    ],
+    "challenges": [
+      "Sourcing reliable, current price data from markets and public portals, which may be incomplete or inconsistently formatted.",
+      "Accounting for quality grades, transport cost, perishability, and quantity when comparing markets.",
+      "Building trust between farmers and buyers, including verification of buyers and clarity on payment terms.",
+      "Making the platform usable for farmers with limited literacy and in regional languages.",
+      "Remaining affordable and workable where internet access is intermittent."
+    ]
+  },
+  {
+    "id": "aiml-4",
+    "track": "AI/ML",
+    "trackSlug": "aiml",
+    "number": 4,
+    "title": "AI-Based Crop Yield Prediction",
+    "description": [
+      "Yield varies widely with season, variety, soil, and management. Without a reasonable estimate in advance, farmers and local aggregators find it hard to arrange labour, storage space, transport, and buyers, and surpluses or shortfalls cause avoidable losses.",
+      "A data-driven estimate, even an approximate one with a stated range, can support planning for harvest and marketing."
+    ],
+    "challenges": [
+      "Limited availability of reliable, farm-level historical yield records, especially for smallholdings.",
+      "Combining heterogeneous data, such as weather, soil, and management practices, collected at different scales and frequencies.",
+      "Avoiding overfitting when data is scarce and ensuring the model generalises across regions and seasons.",
+      "Accounting for unpredictable events such as extreme weather or disease outbreaks.",
+      "Presenting predictions as ranges in a form that farmers and planners can use."
+    ]
+  },
+  {
+    "id": "aiml-5",
+    "track": "AI/ML",
+    "trackSlug": "aiml",
+    "number": 5,
+    "title": "AI-Based Livestock Disease Prediction and Early Warning",
+    "description": [
+      "Livestock diseases can cause significant economic losses for farmers by reducing milk production, affecting animal health, and increasing veterinary expenses. In many rural areas, farmers may not recognize early symptoms of diseases, resulting in delayed treatment and the spread of infections among animals.",
+      "Develop an AI/ML-based system that helps farmers identify potential livestock health problems at an early stage. The system should analyze available information, such as animal health records, symptoms, body temperature, feeding patterns, activity levels, and milk production changes, to identify possible disease risks. It should provide early warnings and recommendations to help farmers seek timely veterinary assistance."
+    ],
+    "challenges": [
+      "Identifying meaningful patterns in livestock health and behavioural data.",
+      "Predicting potential disease risks using incomplete or limited datasets.",
+      "Distinguishing normal variations in animal behaviour from possible disease symptoms.",
+      "Providing reliable early warnings while minimizing false alarms.",
+      "Designing a simple, user-friendly system for farmers with limited technical knowledge.",
+      "Supporting different livestock types and varying farm conditions."
+    ]
+  },
+  {
+    "id": "aiml-6",
+    "track": "AI/ML",
+    "trackSlug": "aiml",
+    "number": 6,
+    "title": "AI-Powered Weather and Climate Risk Prediction",
+    "description": [
+      "Weather extremes such as prolonged dry spells, intense rainfall, or heat waves can damage crops at sensitive growth stages. General forecasts rarely indicate what a given condition means for a particular crop or stage, so farmers may not know what action to take or when. A system that translates weather data into crop-specific risk indications and preparedness suggestions can help farmers protect crops and plan field operations."
+    ],
+    "challenges": [
+      "Obtaining forecasts and historical data at a resolution that is relevant to individual farms.",
+      "Defining crop- and stage-specific risk thresholds that are scientifically sound.",
+      "Managing forecast uncertainty and avoiding frequent false alarms that cause alert fatigue.",
+      "Delivering alerts reliably through channels farmers use, such as SMS or voice messages.",
+      "Providing recommendations that are practical and affordable for small farmers."
+    ]
+  },
+  {
+    "id": "iot-1",
+    "track": "IoT",
+    "trackSlug": "iot",
+    "number": 1,
+    "title": "Smart Irrigation and Water Management",
+    "description": [
+      "Many farms irrigate on fixed schedules or by visual judgement, which can result in over-irrigation, waterlogging, wasted energy, or crop stress during dry periods. Water scarcity makes efficient use increasingly important, particularly where groundwater is limited. Sensors that measure soil moisture and local conditions, combined with automated valve or pump control, can supply water when and where the crop needs it."
+    ],
+    "challenges": [
+      "Sensor accuracy, calibration, and drift in different soil types and over a growing season.",
+      "Durability of electronics and sensors against moisture, dust, heat, and rodents.",
+      "Reliable wireless communication across large or obstructed fields.",
+      "Power supply for remote nodes and pumps, including low-power design.",
+      "Keeping the system affordable and easy for farmers to configure and override manually."
+    ]
+  },
+  {
+    "id": "iot-2",
+    "track": "IoT",
+    "trackSlug": "iot",
+    "number": 2,
+    "title": "Smart Agricultural Leaf Drying System",
+    "description": [
+      "Leaves such as tobacco and tea must be dried under controlled conditions to reach the required moisture level while retaining colour, aroma, and quality. Traditional sun or manual drying is affected by weather and depends on operator experience, causing uneven drying, mould growth, and quality loss.",
+      "A monitored and regulated drying chamber can keep conditions within suitable ranges and reduce the need for constant supervision."
+    ],
+    "challenges": [
+      "Different leaf types require different temperature, humidity, and duration profiles.",
+      "Achieving uniform airflow and temperature across the drying chamber.",
+      "Estimating moisture content or drying progress without destructive testing.",
+      "Controlling energy consumption and heating cost.",
+      "Ensuring safe operation with appropriate limits and fail-safes for heating elements."
+    ]
+  },
+  {
+    "id": "iot-3",
+    "track": "IoT",
+    "trackSlug": "iot",
+    "number": 3,
+    "title": "Smart Agricultural Storage and Spoilage Prevention",
+    "description": [
+      "Post-harvest losses occur when grains, pulses, fruits, and vegetables are stored under unsuitable temperature and humidity. Moisture promotes fungal growth, while heat accelerates ripening and decay. In many small godowns and farm stores, conditions are checked only occasionally, if at all.",
+      "Continuous monitoring with timely alerts can help owners act before losses become severe."
+    ],
+    "challenges": [
+      "Sensor placement and representativeness within large or stacked storage spaces.",
+      "Defining suitable thresholds for different commodities.",
+      "Maintaining connectivity in remote or poorly connected storage sites.",
+      "Power backup and low-power operation during outages.",
+      "Preventing false alerts and ensuring alerts reach responsible persons promptly."
+    ]
+  },
+  {
+    "id": "iot-4",
+    "track": "IoT",
+    "trackSlug": "iot",
+    "number": 4,
+    "title": "Smart Coconut Farming and Plantation Monitoring",
+    "description": [
+      "Coconut plantations are often large, spread across uneven terrain, and require regular irrigation, particularly in dry months. Owners may have limited visibility of conditions in distant parts of the plantation and of water sources such as wells and tanks.",
+      "Distributed sensing can show which areas are dry, whether water sources are adequate, and when attention is needed."
+    ],
+    "challenges": [
+      "Deploying sensors over large, tree-covered areas with dependable communication coverage.",
+      "Placing soil sensors appropriately around tall palms with deep root zones.",
+      "Protecting equipment from heat, rain, insects, and animals.",
+      "Powering remote nodes for long periods at low cost.",
+      "Presenting data in a simple form that supports irrigation decisions."
+    ]
+  },
+  {
+    "id": "iot-5",
+    "track": "IoT",
+    "trackSlug": "iot",
+    "number": 5,
+    "title": "Development of a Low-Cost, Lightweight Milk Chilling Can for Small-Scale Dairy Farmers",
+    "description": [
+      "Milk is highly perishable and can deteriorate quickly when stored at unsuitable temperatures. Small-scale dairy farmers in rural and remote areas often lack access to reliable milk-cooling facilities and electricity. During milk collection and transportation, exposure to high temperatures can reduce milk quality and cause financial losses.",
+      "Develop a low-cost, lightweight, and portable milk-chilling can that helps small-scale dairy farmers maintain milk at an appropriate temperature for several hours. The design should use effective insulation and an affordable cooling approach, such as reusable ice packs or phase-change materials, to reduce dependence on continuous electricity. The system may also include temperature monitoring and alerts to help farmers track storage conditions and identify when the milk temperature rises beyond the defined safe range.",
+      "The solution should prioritize food safety, portability, durability, ease of cleaning, and affordability for rural dairy farmers."
+    ],
+    "challenges": [
+      "Maintaining an appropriate milk temperature for several hours under changing environmental conditions.",
+      "Designing effective insulation and an affordable cooling mechanism.",
+      "Monitoring milk temperature accurately and providing timely alerts.",
+      "Reducing energy requirements and supporting use in areas with unreliable electricity.",
+      "Ensuring food-safe materials, leak prevention, and hygienic cleaning.",
+      "Keeping the can lightweight, durable, easy to transport, and affordable for small-scale farmers."
+    ]
+  },
+  {
+    "id": "iot-6",
+    "track": "IoT",
+    "trackSlug": "iot",
+    "number": 6,
+    "title": "Smart Farm Security and Crop Protection",
+    "description": [
+      "Farms suffer from theft of produce and equipment, trespassing, and crop damage by animals. Constant manual watching is tiring and often impractical, especially at night and on remote plots.",
+      "A sensor-based alert system can notify farmers of suspicious activity, allowing a timely and proportionate response, while non-lethal deterrents protect crops without harming wildlife."
+    ],
+    "challenges": [
+      "Distinguishing real threats from false triggers caused by wind, small animals, or vegetation.",
+      "Covering wide, open areas at reasonable cost.",
+      "Operating at night and in rain, heat, and dust.",
+      "Maintaining power and connectivity in remote locations.",
+      "Using deterrents that are humane, legal, and safe for people and wildlife."
+    ]
+  },
+  {
+    "id": "drones-1",
+    "track": "Drones",
+    "trackSlug": "drones",
+    "number": 1,
+    "title": "Drone-Based Crop Health Monitoring",
+    "description": [
+      "Walking across large fields to inspect crops is slow, and problems in the middle of a field may go unnoticed until they spread. Crop stress caused by water shortage, nutrient deficiency, or disease may appear as changes in colour or canopy density that are easier to see from above. Aerial imagery can cover large areas quickly and highlight zones that deserve closer inspection."
+    ],
+    "challenges": [
+      "Variation in lighting, shadows, and weather during image capture.",
+      "Limited flight time, payload, and coverage per battery charge.",
+      "Interpreting visible changes correctly, since several causes can produce similar symptoms.",
+      "Processing large image sets efficiently and presenting results simply.",
+      "Complying with applicable drone regulations and operating safely."
+    ]
+  },
+  {
+    "id": "drones-2",
+    "track": "Drones",
+    "trackSlug": "drones",
+    "number": 2,
+    "title": "Precision Spraying and Agricultural Chemical Optimization",
+    "description": [
+      "Blanket spraying across an entire field can waste chemicals, raise costs, and expose workers and the environment to unnecessary risk. Manual spraying is also physically demanding and hazardous to the operator. Drone-assisted spraying directed at selected zones can reduce chemical use and operator exposure when carried out with proper planning and safeguards."
+    ],
+    "challenges": [
+      "Controlling droplet size, spray pattern, and drift under changing wind conditions.",
+      "Limited payload and battery capacity, which restrict area covered per flight.",
+      "Accurate navigation and spray control over uneven terrain and near obstacles.",
+      "Determining suitable application rates and ensuring compliance with safety and regulatory guidelines.",
+      "Safe handling of chemicals and cleaning of equipment."
+    ]
+  },
+  {
+    "id": "drones-3",
+    "track": "Drones",
+    "trackSlug": "drones",
+    "number": 3,
+    "title": "Drone-Based Agricultural Mapping and Land Surveying",
+    "description": [
+      "Many farmers lack up-to-date maps of their land showing boundaries, drainage paths, slopes, and uneven areas. Traditional surveying is time- consuming and costly, and the absence of accurate maps complicates irrigation planning, drainage design, and land-use decisions. Drone imagery can be stitched into orthomosaic maps and elevation models that provide a consistent spatial reference."
+    ],
+    "challenges": [
+      "Planning flight paths with adequate image overlap for reliable stitching.",
+      "Achieving positional accuracy without costly ground-control equipment.",
+      "Processing large datasets within limited computing resources.",
+      "Handling tree cover and crop canopy that obscure ground features.",
+      "Presenting maps in formats that non-specialists can read and use."
+    ]
+  },
+  {
+    "id": "drones-4",
+    "track": "Drones",
+    "trackSlug": "drones",
+    "number": 4,
+    "title": "UAV-Based Pest Infestation Hotspot Detection",
+    "description": [
+      "Pest outbreaks often begin in small patches before spreading across a field. Scouting entire fields on foot is slow, so early patches may be missed. Aerial images can reveal patterns of damage, such as thinning canopy or discoloured patches, that suggest where to look. It is important to note that such patterns are only indicators. Aerial observation may point to possible infestation zones but cannot independently confirm the exact pest species, which requires ground inspection."
+    ],
+    "challenges": [
+      "Separating pest damage from similar patterns caused by drought, nutrient deficiency, or disease.",
+      "Detecting early, small-scale damage at practical flight altitudes and image resolutions.",
+      "Obtaining labelled data that links aerial patterns to confirmed ground findings.",
+      "Managing false positives and false negatives and communicating uncertainty.",
+      "Integrating hotspot maps into a simple scouting workflow."
+    ]
+  },
+  {
+    "id": "renewable-energy-1",
+    "track": "Renewable Energy",
+    "trackSlug": "renewable-energy",
+    "number": 1,
+    "title": "Renewable Energy-Based Smart Agricultural Drying System",
+    "description": [
+      "Drying is energy-intensive and critical for quality and safe storage. Open-air drying depends on the weather and exposes produce to dust, rain, and pests, while electric or fuel-based dryers raise operating costs.",
+      "Many farmers would benefit from a dryer that uses solar or other renewable heat.",
+      "Different products require different drying conditions and moisture targets. For example, spices, coffee, and grains each have preferred temperature ranges and final moisture levels, so a useful system must allow product-specific settings."
+    ],
+    "challenges": [
+      "Variability of solar energy with weather and time of day, and the need for backup or heat storage.",
+      "Meeting product-specific temperature, humidity, and moisture targets.",
+      "Ensuring uniform drying and airflow across the batch.",
+      "Balancing capital cost against energy savings for small farmers.",
+      "Monitoring moisture content reliably and protecting quality from overheating."
+    ]
+  },
+  {
+    "id": "renewable-energy-2",
+    "track": "Renewable Energy",
+    "trackSlug": "renewable-energy",
+    "number": 2,
+    "title": "Solar-Powered Smart Irrigation and Water Pumping System",
+    "description": [
+      "Irrigation pumps often depend on grid electricity, which may be unreliable or available only at fixed hours, or on diesel, which is costly.",
+      "Solar pumping can reduce running costs, but pumps may run when water is not needed, or fail to deliver enough water on cloudy days. Pairing solar pumping with intelligent control can match water delivery to crop needs and to the available sunlight and water source."
+    ],
+    "challenges": [
+      "Matching pump capacity to variable solar power and to head and flow requirements.",
+      "Managing intermittent energy supply, with or without battery storage.",
+      "Protecting pumps against dry running and low water levels.",
+      "Cost and maintenance of panels, controllers, and pumps for small farms.",
+      "Integrating soil or crop information for efficient scheduling."
+    ]
+  },
+  {
+    "id": "renewable-energy-3",
+    "track": "Renewable Energy",
+    "trackSlug": "renewable-energy",
+    "number": 3,
+    "title": "Renewable Energy-Based Agricultural Cold Storage",
+    "description": [
+      "Fruits, vegetables, and flowers deteriorate quickly after harvest, and many farms lack access to affordable cold storage, particularly in areas with unreliable electricity. Conventional refrigeration consumes considerable energy and can be uneconomical for small producers. A cold store powered by solar or other renewable energy, with good insulation and thermal storage, can extend the shelf life of produce while limiting operating costs."
+    ],
+    "challenges": [
+      "Meeting cooling demand with variable renewable supply and limited battery capacity.",
+      "Reducing heat loss through insulation and efficient design.",
+      "Maintaining both temperature and humidity within suitable ranges for different produce.",
+      "Cost of equipment relative to the value of stored produce.",
+      "Reliable monitoring and alerting during power fluctuations."
+    ]
+  },
+  {
+    "id": "renewable-energy-4",
+    "track": "Renewable Energy",
+    "trackSlug": "renewable-energy",
+    "number": 4,
+    "title": "Solar-Powered Agricultural Waste-to- Energy System",
+    "description": [
+      "Crop residues, husks, and animal and organic waste are often burned in the open or left to decompose, causing air pollution and wasting a potential energy resource. Properly managed, such waste can produce biogas, fuel, or heat and leave useful by-products such as digestate or compost.",
+      "Solar power can supply monitoring and control functions, helping operate such systems reliably in rural settings."
+    ],
+    "challenges": [
+      "Variability in feedstock type, quantity, and moisture content.",
+      "Maintaining suitable conditions such as temperature, pH, and gas pressure in the process.",
+      "Safe handling and storage of biogas or other fuels.",
+      "Size, cost, and maintenance of equipment for small farms.",
+      "Handling residues and by-products responsibly."
+    ]
+  },
+  {
+    "id": "renewable-energy-5",
+    "track": "Renewable Energy",
+    "trackSlug": "renewable-energy",
+    "number": 5,
+    "title": "Renewable Energy-Powered Agricultural Processing System",
+    "description": [
+      "Small processing units rely on grid power or diesel generators, both of which are costly and may be unreliable. Motors starting under load create high power peaks, and interruptions can disrupt work and damage equipment.",
+      "Renewable power, supported by suitable energy management, can reduce operating cost and improve reliability for local processing."
+    ],
+    "challenges": [
+      "Handling high starting currents and variable loads with solar or other limited sources.",
+      "Sizing generation and storage appropriately for expected workloads.",
+      "Selecting efficient motors and drives for the chosen process.",
+      "Ensuring safety, dust control, and reliability in rural environments.",
+      "Demonstrating cost-effectiveness for small enterprises."
+    ]
+  },
+  {
+    "id": "robotics-automation-1",
+    "track": "Robotics and Automation",
+    "trackSlug": "robotics-automation",
+    "number": 1,
+    "title": "Autonomous Agricultural Weeding Robot",
+    "description": [
+      "Weeds compete with crops for water, nutrients, and light, and weeding is among the most labour-intensive tasks on many farms. Manual weeding is slow and costly, and indiscriminate herbicide use raises cost and environmental concerns.",
+      "A robot that moves along crop rows, recognises weeds, and removes or treats them selectively could lower labour needs and chemical use."
+    ],
+    "challenges": [
+      "Distinguishing weeds from crop plants under varying light, growth stage, and soil conditions.",
+      "Navigating uneven, muddy, or crowded rows reliably.",
+      "Designing a weeding mechanism that is effective yet gentle on crops.",
+      "Battery life, weight, and soil compaction.",
+      "Keeping cost low and the machine easy to maintain."
+    ]
+  },
+  {
+    "id": "robotics-automation-2",
+    "track": "Robotics and Automation",
+    "trackSlug": "robotics-automation",
+    "number": 2,
+    "title": "Automated Fruit and Vegetable Harvesting Robot",
+    "description": [
+      "Harvesting requires labour at specific times, and shortages of workers can lead to delayed harvest and losses. Produce must be picked at the right maturity and handled gently to avoid bruising.",
+      "A robotic picker that identifies ripe produce and picks it carefully could reduce dependence on scarce labour."
+    ],
+    "challenges": [
+      "Detecting fruit that is hidden by leaves, overlapping, or in variable light.",
+      "Assessing maturity reliably from colour, size, or other features.",
+      "Positioning the arm accurately and planning motion around plants.",
+      "Designing grippers that hold produce securely without damage.",
+      "Achieving acceptable speed and cost compared with manual picking."
+    ]
+  },
+  {
+    "id": "robotics-automation-3",
+    "track": "Robotics and Automation",
+    "trackSlug": "robotics-automation",
+    "number": 3,
+    "title": "Smart Seed Sowing and Precision Planting Robot",
+    "description": [
+      "Uneven seed spacing and depth lead to patchy germination, competition between plants, and wasted seed. Manual sowing is slow, and simple mechanical seeders may not adjust to different seeds or soil conditions.",
+      "A precise planting robot can place seeds consistently and record where they were sown."
+    ],
+    "challenges": [
+      "Metering different seed sizes and shapes accurately without clogging or damage.",
+      "Controlling depth on uneven or hard soil.",
+      "Maintaining straight, accurate travel and spacing.",
+      "Detecting missed or doubled seeds.",
+      "Adapting to different crops and keeping the cost low."
+    ]
+  },
+  {
+    "id": "robotics-automation-4",
+    "track": "Robotics and Automation",
+    "trackSlug": "robotics-automation",
+    "number": 4,
+    "title": "Autonomous Agricultural Material Transport Robot",
+    "description": [
+      "Carrying harvested produce, inputs, and tools across fields and plantations is strenuous and repetitive, particularly on slopes and in wet conditions. This work takes labour from tasks needing greater skill.",
+      "A load-carrying robot that follows a worker or a defined route can reduce physical strain and save time."
+    ],
+    "challenges": [
+      "Traction and stability on slopes, mud, and uneven ground.",
+      "Safe navigation among people, animals, and obstacles.",
+      "Load capacity relative to battery life and cost.",
+      "Localisation without reliable GPS under tree cover.",
+      "Rugged, weather-resistant construction."
+    ]
+  },
+  {
+    "id": "robotics-automation-5",
+    "track": "Robotics and Automation",
+    "trackSlug": "robotics-automation",
+    "number": 5,
+    "title": "Automated Fertilizer and Manure Application Robot",
+    "description": [
+      "Manual spreading of fertilizer and manure is tiring, and application is often uneven, with some plants receiving too much and others too little. Over-application wastes money and can harm soil and water, while handling manure is unpleasant and unhealthy.",
+      "A robot that delivers measured quantities close to plants can improve consistency and reduce manual handling."
+    ],
+    "challenges": [
+      "Accurate metering of materials with different forms, such as granules, powders, and moist manure.",
+      "Preventing clogging and corrosion in dispensing mechanisms.",
+      "Determining application quantities from crop and soil information.",
+      "Navigating rows accurately and positioning the dispenser near plants.",
+      "Handling payload weight, spills, and operator safety."
+    ]
+  },
+  {
+    "id": "robotics-automation-6",
+    "track": "Robotics and Automation",
+    "trackSlug": "robotics-automation",
+    "number": 6,
+    "title": "Automated Agricultural Sorting and Grading Robot",
+    "description": [
+      "Manual sorting is slow and subjective, and grading differs between workers and over a working day. Inconsistent grading affects the price farmers receive and the quality that buyers expect.",
+      "An automated system that measures size, colour, shape, or visible defects can grade produce more consistently and speed up processing."
+    ],
+    "challenges": [
+      "Defining clear, measurable grading criteria that match market standards.",
+      "Obtaining images of defects and grades for training and testing.",
+      "Maintaining consistent lighting and handling items individually at useful speed.",
+      "Designing reliable mechanisms to divert items into grades without damage.",
+      "Calibrating and maintaining the system at low cost."
+    ]
+  },
+  {
+    "id": "open-innovation-1",
+    "track": "Open Innovation",
+    "trackSlug": "open-innovation",
+    "number": 1,
+    "title": "Low-Cost Sugarcane Sett Cutting and Planting Aid",
+    "description": [
+      "Sugarcane cultivation requires farmers to prepare and plant stem cuttings, commonly called setts. Manual cutting and planting can be time-consuming and physically demanding, particularly for small-scale farmers. Improper cutting lengths and inconsistent planting arrangements can also lead to wastage of planting material and additional labour.",
+      "Design an affordable, manually operated tool that helps farmers cut sugarcane setts to suitable lengths and prepare them for planting. The tool should prioritize operator safety, ease of maintenance, portability, and compatibility with commonly used sugarcane varieties. The design must not depend on robotic automation."
+    ],
+    "challenges": [
+      "Designing a tool that produces reasonably consistent sett lengths.",
+      "Reducing manual effort and preparation time.",
+      "Preventing injuries during cutting and handling.",
+      "Keeping the design affordable for small-scale farmers.",
+      "Making the tool durable and easy to maintain using locally available materials."
+    ]
+  },
+  {
+    "id": "open-innovation-2",
+    "track": "Open Innovation",
+    "trackSlug": "open-innovation",
+    "number": 2,
+    "title": "Low-Cost Paddy Field Levelling and Water-Depth Measurement Tool",
+    "description": [
+      "Uneven paddy fields can result in inconsistent water distribution, uneven crop establishment, and difficulties during field operations. Farmers may lack affordable tools to assess field-level variations and measure water depth at different locations before and during cultivation.",
+      "Design a simple, low-cost, manually operated tool that helps farmers assess field-level differences and measure standing-water depth at selected points in a paddy field. The tool should help farmers identify uneven areas and make better-informed decisions about field preparation and water management without requiring electronic sensors, automated control, or robotic equipment."
+    ],
+    "challenges": [
+      "Developing a practical method for identifying uneven field areas.",
+      "Measuring water depth consistently at different locations.",
+      "Making the tool easy to use in wet and muddy field conditions.",
+      "Keeping the device lightweight, durable, and affordable.",
+      "Designing the tool for different field sizes and soil conditions."
+    ]
+  },
+  {
+    "id": "open-innovation-3",
+    "track": "Open Innovation",
+    "trackSlug": "open-innovation",
+    "number": 3,
+    "title": "Integrated Agricultural Government Schemes and Crop Insurance Assistance Platform",
+    "description": [
+      "Farmers may struggle to identify suitable government agricultural schemes and understand crop insurance eligibility, required documents, application procedures, premium details, claim requirements, and deadlines. Information is often distributed across different official sources, making it difficult for farmers to understand the assistance available to them or complete the necessary procedures.",
+      "Develop a user-friendly digital platform that brings together verified information about agricultural government schemes and crop insurance. The platform should help farmers identify potentially relevant schemes, understand eligibility requirements, prepare document checklists, learn how to apply, and understand the steps involved in submitting insurance claims. It should provide regional- language support and direct users to official application channels."
+    ],
+    "challenges": [
+      "Maintaining accurate and updated information about schemes and insurance policies.",
+      "Explaining eligibility requirements in simple language.",
+      "Helping farmers understand the documentation required for applications and claims.",
+      "Supporting regional languages and users with limited digital literacy.",
+      "Providing clear information about deadlines, exclusions, and claim procedures.",
+      "Protecting farmers’ personal information and avoiding misleading assurances of eligibility or claim approval."
+    ]
+  },
+  {
+    "id": "open-innovation-4",
+    "track": "Open Innovation",
+    "trackSlug": "open-innovation",
+    "number": 4,
+    "title": "Banana Cultivation Cost and Harvest Planning Management System",
+    "description": [
+      "Banana farmers must manage cultivation expenses, plantation maintenance, harvesting schedules, labour requirements, and sales planning. Without organized records, farmers may find it difficult to estimate production costs, compare expenditure across growing cycles, and plan harvesting and sales effectively.",
+      "Develop a digital application specifically for banana farmers to maintain plantation-wise records of cultivation expenses, planting dates, maintenance activities, expected harvest periods, labour requirements, and sales. The system should provide simple summaries of recorded costs and help farmers organize their cultivation and harvest plans."
+    ],
+    "challenges": [
+      "Maintaining separate records for different banana plots and planting cycles.",
+      "Recording expenses and farm activities with minimal effort.",
+      "Organizing expected harvest dates and labour requirements.",
+      "Helping farmers compare actual cultivation costs with sales revenue.",
+      "Supporting local languages and offline data entry.",
+      "Keeping the application simple and affordable for small-scale banana farmers."
+    ]
+  },
+  {
+    "id": "open-innovation-5",
+    "track": "Open Innovation",
+    "trackSlug": "open-innovation",
+    "number": 5,
+    "title": "Paddy Procurement Transparency and Digital Transaction Record System",
+    "description": [
+      "Paddy farmers may face difficulties maintaining accurate records of the quantities sold, moisture-related quality assessments, weighing results, price deductions, and payments received from procurement centres or traders. Incomplete records can make it difficult to verify transactions, understand deductions, and resolve disagreements.",
+      "Develop a digital recordkeeping system that helps paddy farmers document their sales and procurement transactions. The application should allow farmers to record the quantity delivered, reported quality measurements, applicable prices, deductions, receipts, and payment status. It should generate easy-to-understand transaction summaries that farmers can retain for their records."
+    ],
+    "challenges": [
+      "Recording procurement transactions accurately and consistently.",
+      "Making price calculations and deductions easy to understand.",
+      "Maintaining digital copies of receipts and transaction details.",
+      "Supporting regional languages and farmers with limited digital literacy.",
+      "Protecting records and preventing accidental data loss.",
+      "Designing the application to work with limited internet connectivity."
+    ]
+  }
+]

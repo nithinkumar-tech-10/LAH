@@ -1,17 +1,23 @@
 import fs from "fs";
 import path from "path";
 
-export interface TrackData {
+export interface ProblemItem {
+  id: string;
+  track: string;
+  trackSlug: string;
+  number: number;
+  title: string;
+  description: string[];
+  challenges: string[];
+}
+
+export interface TrackGroup {
   slug: string;
   name: string;
   shortName: string;
   icon: string;
   intro: string;
-  filename?: string;
-  viewUrl?: string;
-  downloadUrl?: string;
-  problemTitles: string[];
-  hasPdf: boolean;
+  problems: ProblemItem[];
 }
 
 export const TRACK_CONFIGS: {
@@ -19,14 +25,14 @@ export const TRACK_CONFIGS: {
   name: string;
   shortName: string;
   icon: string;
-  defaultIntro: string;
+  intro: string;
 }[] = [
   {
     slug: "aiml",
     name: "Artificial Intelligence and Machine Learning (AI/ML)",
     shortName: "AI/ML",
     icon: "🤖",
-    defaultIntro:
+    intro:
       "This track invites participants to apply data-driven intelligence to decision-making in agriculture. Solutions should be practical for smallholder and commercial farmers, should explain their outputs in plain language, and should acknowledge the uncertainty that is inherent in any prediction.",
   },
   {
@@ -34,7 +40,7 @@ export const TRACK_CONFIGS: {
     name: "Internet of Things (IoT)",
     shortName: "IoT",
     icon: "📡",
-    defaultIntro:
+    intro:
       "This track focuses on low-cost sensing, communication, and control systems that bring real-time information and automation to farms and post-harvest operations. Solutions should be rugged, energy-conscious, and simple enough for farmers to install and maintain.",
   },
   {
@@ -42,7 +48,7 @@ export const TRACK_CONFIGS: {
     name: "Drones and Unmanned Aerial Vehicle (UAV) Technology",
     shortName: "Drones",
     icon: "🛸",
-    defaultIntro:
+    intro:
       "This track explores the use of unmanned aerial vehicles for observing, mapping, and treating farmland. Participants should consider regulatory requirements, flight safety, and the practical limits of aerial observation, and should present aerial findings as indications that support, not replace, ground verification.",
   },
   {
@@ -50,7 +56,7 @@ export const TRACK_CONFIGS: {
     name: "Renewable Energy and Green Technology",
     shortName: "Renewable Energy",
     icon: "⚡",
-    defaultIntro:
+    intro:
       "This track addresses the energy needs of farms and agricultural enterprises through renewable and sustainable technologies. Participants should consider energy availability, cost, storage, and the environmental benefits of their proposals, and should state their assumptions about energy supply and demand.",
   },
   {
@@ -58,7 +64,7 @@ export const TRACK_CONFIGS: {
     name: "Robotics and Automation",
     shortName: "Robotics and Automation",
     icon: "🦾",
-    defaultIntro:
+    intro:
       "This track encourages the design of machines that reduce repetitive, physically demanding, or hazardous agricultural work. Solutions must cope with uneven terrain, unstructured environments, and limited budgets, and should aim for reliability and safety around people.",
   },
   {
@@ -66,98 +72,36 @@ export const TRACK_CONFIGS: {
     name: "Open Innovation – Agriculture & Rural Development",
     shortName: "Open Innovation",
     icon: "💡",
-    defaultIntro:
+    intro:
       "This track provides an open platform to develop simple, low-cost engineering aids, smart tools, or software applications that address practical challenges faced by farmers and rural communities.",
   },
 ];
 
-function cleanFilename(filename: string): string {
-  const name = filename.replace(/\.pdf$/i, "");
-  const spaced = name.replace(/[_-]+/g, " ").trim();
-  const acronyms: Record<string, string> = {
-    leap: "LEAP",
-    ai: "AI",
-    aiml: "AIML",
-    iot: "IoT",
-    ml: "ML",
-    pdf: "PDF",
-    ps: "PS",
-  };
-  return spaced
-    .split(/\s+/)
-    .map((word) => {
-      const lower = word.toLowerCase();
-      if (acronyms[lower]) return acronyms[lower];
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    })
-    .join(" ");
-}
-
 /**
- * Reads problem statement data from the file system at build time.
- * Syncs with public/problem-statements/<track-slug>/ and manifest.json.
- * If a new PDF is dropped into any track folder and the project is rebuilt, it automatically updates.
+ * Loads problems from lib/problems.json and groups them by track in the canonical order.
  */
-export async function getProblemStatements(): Promise<TrackData[]> {
-  const baseDir = path.join(process.cwd(), "public", "problem-statements");
-  const manifestPath = path.join(baseDir, "manifest.json");
+export function getTrackGroups(): TrackGroup[] {
+  const jsonPath = path.join(process.cwd(), "lib", "problems.json");
 
-  let manifestMap: Record<string, TrackData> = {};
-  if (fs.existsSync(manifestPath)) {
+  let allProblems: ProblemItem[] = [];
+  if (fs.existsSync(jsonPath)) {
     try {
-      const raw = fs.readFileSync(manifestPath, "utf8");
-      const list: TrackData[] = JSON.parse(raw);
-      manifestMap = Object.fromEntries(list.map((item) => [item.slug, item]));
+      const raw = fs.readFileSync(jsonPath, "utf8");
+      allProblems = JSON.parse(raw);
     } catch (e) {
-      console.warn("Could not read problem-statements manifest:", e);
+      console.error("Failed to parse lib/problems.json:", e);
     }
   }
 
-  const results: TrackData[] = [];
-
-  for (const track of TRACK_CONFIGS) {
-    const trackDir = path.join(baseDir, track.slug);
-    let pdfFile: string | null = null;
-
-    if (fs.existsSync(trackDir)) {
-      const files = fs
-        .readdirSync(trackDir)
-        .filter((f) => f.toLowerCase().endsWith(".pdf"));
-
-      if (files.length > 0) {
-        pdfFile = files[0];
-      }
-    }
-
-    const hasPdf = Boolean(pdfFile);
-    const cached = manifestMap[track.slug];
-
-    let problemTitles: string[] = [];
-    if (hasPdf) {
-      if (cached && cached.filename === pdfFile && cached.problemTitles?.length > 0) {
-        problemTitles = cached.problemTitles;
-      } else if (pdfFile) {
-        problemTitles = [`Problem Statement: ${cleanFilename(pdfFile)}`];
-      }
-    }
-
-    results.push({
-      slug: track.slug,
-      name: track.name,
-      shortName: track.shortName,
-      icon: track.icon,
-      intro: track.defaultIntro,
-      filename: pdfFile || undefined,
-      viewUrl: pdfFile
-        ? `/problem-statements/${track.slug}/${encodeURIComponent(pdfFile)}`
-        : undefined,
-      downloadUrl: pdfFile
-        ? `/problem-statements/${track.slug}/${encodeURIComponent(pdfFile)}`
-        : undefined,
-      problemTitles,
-      hasPdf,
-    });
-  }
-
-  return results;
+  return TRACK_CONFIGS.map((config) => {
+    const trackProblems = allProblems.filter((p) => p.trackSlug === config.slug);
+    return {
+      slug: config.slug,
+      name: config.name,
+      shortName: config.shortName,
+      icon: config.icon,
+      intro: config.intro,
+      problems: trackProblems,
+    };
+  });
 }

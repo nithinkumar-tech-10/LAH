@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/sync-problem-statements.mjs",
+    "predev": "node scripts/extract-problems.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/sync-problem-statements.mjs",
+    "prebuild": "node scripts/extract-problems.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
