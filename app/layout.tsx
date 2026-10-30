@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit, Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
-import { HACKATHON_DATA } from "@/lib/data";
+import { HACKATHON_DATA, HACKATHON_LOGO, HACKATHON_OG_IMAGE } from "@/lib/data";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -50,9 +50,9 @@ export const metadata: Metadata = {
     siteName: HACKATHON_DATA.title,
     images: [
       {
-        url: HACKATHON_DATA.logos.hackathon,
-        width: 1536,
-        height: 1024,
+        url: HACKATHON_OG_IMAGE,
+        width: 1200,
+        height: 630,
         alt: "LEAP Agritech Hackathon 2026 logo",
       },
     ],
@@ -61,12 +61,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: HACKATHON_DATA.title,
     description: HACKATHON_DATA.tagline,
-    images: [HACKATHON_DATA.logos.hackathon],
+    images: [HACKATHON_OG_IMAGE],
   },
   icons: {
-    icon: HACKATHON_DATA.logos.hackathon,
-    shortcut: HACKATHON_DATA.logos.hackathon,
-    apple: HACKATHON_DATA.logos.hackathon,
+    icon: HACKATHON_LOGO,
+    shortcut: HACKATHON_LOGO,
+    apple: HACKATHON_LOGO,
   },
 };
 

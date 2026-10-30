@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { HACKATHON_DATA } from "@/lib/data";
+import { HACKATHON_DATA, HACKATHON_LOGO } from "@/lib/data";
 import { Menu, X, PhoneCall } from "lucide-react";
 
 export default function Navbar() {
@@ -42,9 +42,9 @@ export default function Navbar() {
             href="#"
             className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus:ring-2 focus:ring-emerald-400 rounded-lg p-1"
           >
-            <div className="relative h-10 w-14 rounded-xl overflow-hidden bg-slate-950/80 border border-emerald-500/30 flex items-center justify-center p-0.5 shadow-sm group-hover:border-emerald-400 transition-colors shrink-0">
+            <div className="relative h-10 w-14 rounded-xl overflow-hidden bg-white border border-emerald-500/30 flex items-center justify-center p-1 shadow-sm group-hover:border-emerald-400 transition-colors shrink-0">
               <Image
-                src={HACKATHON_DATA.logos.hackathon}
+                src={HACKATHON_LOGO}
                 alt="LEAP Agritech Hackathon 2026 logo"
                 width={56}
                 height={40}

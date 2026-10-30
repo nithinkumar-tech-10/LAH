@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { HACKATHON_DATA } from "@/lib/data";
+import { HACKATHON_DATA, HACKATHON_LOGO } from "@/lib/data";
 import {
   Calendar,
   MapPin,
@@ -237,9 +237,9 @@ export default function Hero() {
         <div className="max-w-4xl mx-auto text-center mb-10">
           {/* Prominent Hackathon Logo */}
           <div className="flex justify-center mb-6">
-            <div className="relative w-48 h-28 sm:w-60 sm:h-36 md:w-72 md:h-44 rounded-2xl overflow-hidden bg-slate-950/80 border border-emerald-500/30 shadow-[0_0_40px_rgba(16,185,129,0.25)] flex items-center justify-center p-2 group hover:border-emerald-400/50 transition-all">
+            <div className="relative w-48 h-28 sm:w-60 sm:h-36 md:w-72 md:h-44 rounded-2xl overflow-hidden bg-white border border-emerald-500/30 shadow-[0_0_40px_rgba(16,185,129,0.25)] flex items-center justify-center p-2.5 sm:p-3 group hover:border-emerald-400/50 transition-all">
               <Image
-                src={HACKATHON_DATA.logos.hackathon}
+                src={HACKATHON_LOGO}
                 alt="LEAP Agritech Hackathon 2026 logo"
                 width={288}
                 height={176}

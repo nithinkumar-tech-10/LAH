@@ -38,6 +38,9 @@ export interface RuleItem {
   severity: "high" | "mandatory" | "critical";
 }
 
+export const HACKATHON_LOGO = "/logos/leap-agritech-hackathon-logo.jpeg";
+export const HACKATHON_OG_IMAGE = "/logos/leap-agritech-hackathon-og.jpeg";
+
 export const HACKATHON_DATA = {
   // Global links & Event Dates
   title: "24 HOURS LEAP AGRITECH HACKATHON 2026",
@@ -57,7 +60,8 @@ export const HACKATHON_DATA = {
 
   // Official Logos
   logos: {
-    hackathon: "/logos/logo.png",
+    hackathon: HACKATHON_LOGO,
+    og: HACKATHON_OG_IMAGE,
     college: "/logos/WhatsApp Image 2026-10-23 at 19.53.23.jpeg",
     ktech: "/logos/WhatsApp Image 2026-10-23 at 20.49.34 (1).jpeg",
     itbt: "/logos/WhatsApp Image 2026-10-23 at 20.49.34.jpeg",
