@@ -50,8 +50,8 @@ export default function OrganizingCommittee() {
           </p>
         </div>
 
-        {/* 4 Cards Grid with Hierarchy */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        {/* 4 Cards Grid - equal row height and aligned top edge */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch auto-rows-fr">
           {HACKATHON_DATA.committee.map((member, idx) => (
             <div
               key={member.name}
@@ -59,58 +59,63 @@ export default function OrganizingCommittee() {
                 idx
               )}`}
             >
-              {/* Role Badge */}
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase mb-6 bg-slate-900/90 border border-slate-700/80 shadow-sm">
-                {getBadgeIcon(member.title)}
-                <span className="text-slate-200">{member.title}</span>
+              {/* 1. Role Badge - Fixed height container so cards line up */}
+              <div className="h-7 mb-6 flex items-center justify-center">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-slate-900/90 border border-slate-700/80 shadow-sm whitespace-nowrap">
+                  {getBadgeIcon(member.title)}
+                  <span className="text-slate-200">{member.title}</span>
+                </div>
               </div>
 
-              {/* Photo or Placeholder */}
-              {member.image ? (
-                <div className="relative w-24 h-24 mb-6 rounded-2xl overflow-hidden border-2 border-emerald-500/40 shadow-lg shadow-emerald-950/40 group-hover:scale-105 transition-transform shrink-0">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    width={96}
-                    height={96}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-              ) : (
-                <div
-                  className="relative w-24 h-24 mb-6 rounded-2xl overflow-hidden border-2 border-dashed border-slate-600/80 bg-slate-900/90 flex flex-col items-center justify-center text-center p-1.5 shadow-inner group-hover:border-slate-500 transition-all shrink-0"
-                  aria-label={`Photo placeholder for ${member.name}`}
-                >
-                  <div
-                    className={`w-11 h-11 rounded-full bg-gradient-to-tr ${getAvatarGradient(
-                      idx
-                    )} flex items-center justify-center font-display font-black text-sm tracking-wider text-slate-950 shadow-inner mb-1`}
-                  >
-                    {member.avatarText || member.name.slice(0, 2).toUpperCase()}
+              {/* 2. Photo or Initials Fallback - Identical 96x96 frame */}
+              <div className="w-24 h-24 mb-6 rounded-2xl overflow-hidden shrink-0 flex items-center justify-center">
+                {member.image ? (
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-emerald-500/40 shadow-lg shadow-emerald-950/40 group-hover:scale-105 transition-transform">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      width={96}
+                      height={96}
+                      className="object-cover w-full h-full"
+                    />
                   </div>
-                  <span className="text-[9px] font-mono uppercase font-bold tracking-wider text-slate-400">
-                    Placeholder
-                  </span>
-                </div>
-              )}
+                ) : (
+                  <div
+                    className="relative w-full h-full rounded-2xl overflow-hidden shadow-lg shadow-emerald-950/40 group-hover:scale-105 transition-transform"
+                    aria-label={`Photo placeholder for ${member.name}`}
+                  >
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-emerald-500/30 to-cyan-500/30 blur-md group-hover:blur-lg transition-all" />
+                    <div
+                      className={`relative w-full h-full rounded-2xl bg-gradient-to-tr ${getAvatarGradient(
+                        idx
+                      )} flex items-center justify-center font-display font-black text-2xl tracking-wider shadow-inner border-2 border-white/20`}
+                    >
+                      {member.avatarText || member.name.slice(0, 2).toUpperCase()}
+                    </div>
+                  </div>
+                )}
+              </div>
 
-              {/* Name & Designation */}
-              <h3 className="text-lg font-display font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
-                {member.name}
-              </h3>
+              {/* 3. Name - Fixed height container so baseline is aligned */}
+              <div className="h-7 mb-2 flex items-center justify-center">
+                <h3 className="text-lg font-display font-bold text-white group-hover:text-emerald-300 transition-colors whitespace-nowrap">
+                  {member.name}
+                </h3>
+              </div>
 
-              <div className="min-h-[2.75rem] flex flex-col items-center justify-start text-center">
+              {/* 4. Designation / Title Block - Aligned and balanced */}
+              <div className="flex-1 min-h-[3rem] flex flex-col items-center justify-start text-center">
                 {member.designationLines && member.designationLines.length > 0 ? (
                   member.designationLines.map((line, lIdx) => (
                     <span
                       key={lIdx}
-                      className="text-xs text-slate-400 leading-relaxed font-medium block"
+                      className="text-xs text-slate-400 leading-snug font-medium block"
                     >
                       {line}
                     </span>
                   ))
                 ) : (
-                  <span className="text-xs text-slate-400 leading-relaxed font-medium block">
+                  <span className="text-xs text-slate-400 leading-snug font-medium block">
                     {member.designation}
                   </span>
                 )}

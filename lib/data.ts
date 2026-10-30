@@ -95,7 +95,7 @@ export const HACKATHON_DATA = {
     right: {
       name: "Sri Madhu G Madegowda",
       title: "Chairman, BET",
-      image: "/photos/Sri Madhu G Madegowda.jpg",
+      image: "/images/committee/chief-patron.jpg",
     },
   },
 
@@ -158,7 +158,7 @@ export const HACKATHON_DATA = {
       designation: "Chairman, BET",
       designationLines: ["Chairman, BET"],
       avatarText: "MM",
-      image: "/photos/Sri Madhu G Madegowda.jpg",
+      image: "/images/committee/chief-patron.jpg",
     },
     {
       title: "Patron",
