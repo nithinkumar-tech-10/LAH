@@ -111,8 +111,8 @@ export default function Rounds() {
                   {round.number === 1 && (
                     <div className="mb-6">
                       <a
-                        href="/downloads/LEAP_Agritech_Hackathon_2026_Round1_PPT_Template.pptx"
-                        download="LEAP_Agritech_Hackathon_2026_Round1_PPT_Template.pptx"
+                        href={HACKATHON_DATA.pptTemplate.url}
+                        download={HACKATHON_DATA.pptTemplate.filename}
                         onClick={(e) => e.stopPropagation()}
                         className="w-full py-3 px-4 rounded-xl font-display font-bold text-xs sm:text-sm bg-gradient-to-r from-emerald-500 via-lime-400 to-emerald-400 text-slate-950 hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 group/btn"
                       >

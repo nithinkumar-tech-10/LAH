@@ -22,6 +22,8 @@ interface TimeLeft {
   isLive: boolean;
 }
 
+const associationLineClass = "font-display font-bold text-xs sm:text-sm md:text-base text-white tracking-tight leading-snug text-center";
+
 export default function Hero() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
@@ -158,14 +160,14 @@ export default function Hero() {
               </div>
 
               {/* 2. "In Association With" */}
-              <span className="text-[11px] sm:text-xs md:text-sm font-mono uppercase tracking-widest text-cyan-400 font-bold mb-2.5">
+              <span className="text-[11px] sm:text-xs md:text-sm font-mono uppercase tracking-widest text-cyan-400 font-bold mb-2.5 text-center">
                 In Association With
               </span>
 
               {/* 3, 4, 5. KITS, Dept of IT&BT, GoK with K-tech & GoK logos beside them */}
               <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5 w-full">
                 {/* K-tech Logo */}
-                <div className="relative w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl overflow-hidden bg-white border border-cyan-500/30 flex items-center justify-center p-1 sm:p-1.5 shadow-md shrink-0">
+                <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl overflow-hidden bg-white border border-cyan-500/30 flex items-center justify-center p-1 sm:p-1.5 shadow-md shrink-0">
                   <Image
                     src={HACKATHON_DATA.logos.ktech}
                     alt="Karnataka Innovation and Technology Society"
@@ -176,21 +178,21 @@ export default function Hero() {
                   />
                 </div>
 
-                {/* Association Text Block (Noticeably enlarged ~1.5x) */}
+                {/* Association Text Block */}
                 <div className="flex flex-col items-center text-center px-1">
-                  <span className="font-display font-black text-sm sm:text-lg md:text-xl text-white tracking-tight leading-snug">
+                  <span className={associationLineClass}>
                     Karnataka Innovation and Technology Society (KITS)
                   </span>
-                  <span className="font-display font-bold text-xs sm:text-sm md:text-base text-slate-200 leading-snug mt-0.5">
+                  <span className={associationLineClass}>
                     Department of Electronics, IT &amp; BT
                   </span>
-                  <span className="font-display font-bold text-xs sm:text-sm md:text-base text-slate-200 leading-snug mt-0.5">
+                  <span className={associationLineClass}>
                     Government of Karnataka
                   </span>
                 </div>
 
                 {/* GoK Logo */}
-                <div className="relative w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl overflow-hidden bg-white border border-yellow-500/30 flex items-center justify-center p-1 sm:p-1.5 shadow-md shrink-0">
+                <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl overflow-hidden bg-white border border-yellow-500/30 flex items-center justify-center p-1 sm:p-1.5 shadow-md shrink-0">
                   <Image
                     src={HACKATHON_DATA.logos.itbt}
                     alt="Government of Karnataka"

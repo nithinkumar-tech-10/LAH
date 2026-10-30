@@ -11,6 +11,7 @@ export interface CommitteeMember {
   title: string;
   avatarText?: string;
   image?: string;
+  designationLines?: string[];
 }
 
 export interface TimelineItem {
@@ -64,8 +65,8 @@ export const HACKATHON_DATA = {
 
   // PPT Template File
   pptTemplate: {
-    url: "/downloads/LEAP_Agritech_Hackathon_2026_Round1_PPT_Template.pptx",
-    filename: "LEAP_Agritech_Hackathon_2026_Round1_PPT_Template.pptx",
+    url: "/downloads/LEAP_Agritech_Hackathon_2026_Round1_PPT_Template_FrontLogos_v3.pptx",
+    filename: "LEAP_Agritech_Hackathon_2026_Round1_PPT_Template_FrontLogos_v3.pptx",
   },
 
   // College & Partner details
@@ -144,8 +145,8 @@ export const HACKATHON_DATA = {
     pptNotice: {
       mandatory: "Mandatory for Round 1: All teams must use the official LEAP Agritech Hackathon PPT template for the idea presentation. Presentations in any other format will not be accepted.",
       slides: "7 slides: Title, Chosen Problem Statement (track and title), Existing Solutions, Our Solution, Technical Approach, Impact and Benefits, Thank You",
-      downloadUrl: "/downloads/LEAP_Agritech_Hackathon_2026_Round1_PPT_Template.pptx",
-      filename: "LEAP_Agritech_Hackathon_2026_Round1_PPT_Template.pptx",
+      downloadUrl: "/downloads/LEAP_Agritech_Hackathon_2026_Round1_PPT_Template_FrontLogos_v3.pptx",
+      filename: "LEAP_Agritech_Hackathon_2026_Round1_PPT_Template_FrontLogos_v3.pptx",
     },
   },
 
@@ -154,28 +155,38 @@ export const HACKATHON_DATA = {
     {
       title: "Chief Patron",
       name: "Sri Madhu G Madegowda",
-      designation: "Chairman, Bharati Education Trust (BET)",
+      designation: "Chairman, BET",
+      designationLines: ["Chairman, BET"],
       avatarText: "MM",
-      image: "",
+      image: "/photos/Sri Madhu G Madegowda.jpg",
     },
     {
       title: "Patron",
       name: "Dr. Chandan B R",
       designation: "Principal, GMIT",
+      designationLines: ["Principal, GMIT"],
       avatarText: "CB",
       image: "",
     },
     {
       title: "Convenor",
       name: "Dr. Sumitha C",
-      designation: "Professor and Head, Coordinator, Agritech Innovation Lab",
+      designation: "Professor and Head,\nCoordinator, Agritech Innovation Lab",
+      designationLines: [
+        "Professor and Head,",
+        "Coordinator, Agritech Innovation Lab",
+      ],
       avatarText: "SC",
       image: "",
     },
     {
       title: "Co-Convenor",
       name: "Dr. Nuthan A C",
-      designation: "Professor and Head, Department of ECE",
+      designation: "Professor and Head,\nDepartment of ECE",
+      designationLines: [
+        "Professor and Head,",
+        "Department of ECE",
+      ],
       avatarText: "NA",
       image: "",
     },
