@@ -1,6 +1,5 @@
-import SmoothScroll from "@/components/SmoothScroll";
-import CursorGlow from "@/components/CursorGlow";
-import LoadingScreen from "@/components/LoadingScreen";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import ClientAnimations from "@/components/ClientAnimations";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -21,14 +20,15 @@ export default function Home() {
   const tracks = getTrackGroups();
 
   return (
-    <SmoothScroll>
-      <LoadingScreen />
-      <CursorGlow />
+    <ErrorBoundary fallback={<div className="bg-[#030712] min-h-screen text-white" />}>
+      <ClientAnimations />
       <Navbar />
 
       <main className="relative flex flex-col min-h-screen">
         {/* 2. Hero */}
-        <Hero />
+        <ErrorBoundary>
+          <Hero />
+        </ErrorBoundary>
 
         {/* 3. About and Theme */}
         <About />
@@ -54,18 +54,18 @@ export default function Home() {
         {/* 10. Important Accommodation Notice */}
         <AccommodationNotice />
 
-        {/* 11. Venue and Location */}
+        {/* 11. Venue and Transport */}
         <Venue />
 
-        {/* 12. Final CTA */}
+        {/* 12. Final Call to Action */}
         <FinalCTA />
       </main>
 
       {/* 13. Footer */}
       <Footer />
 
-      {/* Floating Call Button on Mobile */}
+      {/* 14. Floating Coordinator Call Button */}
       <FloatingCallButton />
-    </SmoothScroll>
+    </ErrorBoundary>
   );
 }
