@@ -166,7 +166,7 @@ export const HACKATHON_DATA = {
       designation: "Principal, GMIT",
       designationLines: ["Principal, GMIT"],
       avatarText: "CB",
-      image: "",
+      image: "/images/committee/patron.jpg",
     },
     {
       title: "Convenor",
@@ -177,7 +177,7 @@ export const HACKATHON_DATA = {
         "Coordinator, Agritech Innovation Lab",
       ],
       avatarText: "SC",
-      image: "",
+      image: "/images/committee/convenor.jpg",
     },
     {
       title: "Co-Convenor",
@@ -188,7 +188,7 @@ export const HACKATHON_DATA = {
         "Department of ECE",
       ],
       avatarText: "NA",
-      image: "",
+      image: "/images/committee/co-convenor.jpg",
     },
   ],
 
