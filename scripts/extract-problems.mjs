@@ -185,6 +185,16 @@ async function extractProblems() {
   const countsByTrack = {};
 
   for (const prob of problems) {
+    if (prob.trackSlug === "renewable-energy" && prob.number === 1) {
+      const prefix = "Examples include drying coffee beans, cumin seeds, pepper and other seeds.";
+      if (prob.description && prob.description.length > 0) {
+        if (!prob.description[0].startsWith(prefix)) {
+          prob.description[0] = `${prefix} ${prob.description[0]}`;
+        }
+      } else {
+        prob.description = [prefix];
+      }
+    }
     countsByTrack[prob.track] = (countsByTrack[prob.track] || 0) + 1;
 
     if (!prob.title || prob.title.length < 3) {

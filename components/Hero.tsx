@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { HACKATHON_DATA, HACKATHON_LOGO } from "@/lib/data";
+import { HACKATHON_DATA, HACKATHON_LOGO, GOOGLE_FORM_URL } from "@/lib/data";
 import {
   Calendar,
   MapPin,
@@ -12,6 +12,8 @@ import {
   Clock,
   ArrowDown,
   Sprout,
+  ExternalLink,
+  Download,
 } from "lucide-react";
 
 interface TimeLeft {
@@ -382,15 +384,72 @@ export default function Hero() {
           )}
         </div>
 
-        {/* Hero CTA - View Timeline (Centered) */}
-        <div className="flex justify-center max-w-xs mx-auto">
-          <a
-            href="#timeline"
-            className="w-full sm:w-auto py-4 px-10 rounded-xl font-display font-bold text-base bg-gradient-to-r from-emerald-500 via-lime-400 to-emerald-400 text-slate-950 hover:brightness-110 active:scale-[0.98] transition-all shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-2.5 text-center"
-          >
-            <span>View Timeline</span>
-            <ArrowDown className="w-4 h-4 text-slate-950" />
-          </a>
+        {/* Important Dates Mini-Bar in Hero */}
+        <div className="max-w-3xl mx-auto mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="glass-card p-3.5 rounded-xl border border-emerald-500/20 text-center">
+              <span className="text-[10px] font-mono uppercase text-cyan-400 block mb-0.5 font-bold">
+                31 October 2026
+              </span>
+              <p className="text-xs font-display font-bold text-white">
+                Problem Statements Released
+              </p>
+            </div>
+
+            <div className="glass-card p-3.5 rounded-xl border border-amber-500/40 bg-amber-950/20 text-center shadow-md shadow-amber-950/30">
+              <span className="text-[10px] font-mono uppercase text-amber-300 block mb-0.5 font-bold">
+                1 Nov 2026 • 5:00 PM IST
+              </span>
+              <p className="text-xs font-display font-bold text-amber-200">
+                PPT Submission (Compulsory)
+              </p>
+            </div>
+
+            <div className="glass-card p-3.5 rounded-xl border border-emerald-500/20 text-center">
+              <span className="text-[10px] font-mono uppercase text-emerald-400 block mb-0.5 font-bold">
+                2 Nov 2026 • 9:30 AM IST
+              </span>
+              <p className="text-xs font-display font-bold text-white">
+                Hackathon Sprint Begins
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Action Buttons: Submit PPT, Download Template & View Timeline */}
+        <div className="flex flex-col items-center justify-center max-w-2xl mx-auto mb-2">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
+            <a
+              href={GOOGLE_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto py-3.5 px-7 rounded-xl font-display font-bold text-sm bg-gradient-to-r from-emerald-500 via-lime-400 to-emerald-400 text-slate-950 hover:brightness-110 active:scale-[0.98] transition-all shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-2 group/btn text-center"
+            >
+              <span>Submit PPT</span>
+              <ExternalLink className="w-4 h-4 text-slate-950 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+            </a>
+
+            <a
+              href={HACKATHON_DATA.pptTemplate.url}
+              download={HACKATHON_DATA.pptTemplate.filename}
+              className="w-full sm:w-auto py-3.5 px-5 rounded-xl font-display font-bold text-xs sm:text-sm bg-slate-900 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-950/50 hover:text-white active:scale-[0.98] transition-all flex items-center justify-center gap-2 text-center"
+            >
+              <Download className="w-4 h-4 text-emerald-400" />
+              <span>Download PPT Template</span>
+            </a>
+
+            <a
+              href="#timeline"
+              className="w-full sm:w-auto py-3.5 px-5 rounded-xl font-display font-medium text-xs sm:text-sm text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all flex items-center justify-center gap-2 text-center"
+            >
+              <span>Timeline</span>
+              <ArrowDown className="w-3.5 h-3.5 text-slate-400" />
+            </a>
+          </div>
+
+          <p className="text-[11px] font-mono text-amber-300/90 text-center mt-3">
+            Deadline: 1 November 2026, 5:00 PM IST. Submission is compulsory for every team.
+          </p>
         </div>
       </div>
 

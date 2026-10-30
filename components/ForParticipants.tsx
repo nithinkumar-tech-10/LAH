@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { HACKATHON_DATA } from "@/lib/data";
+import { HACKATHON_DATA, GOOGLE_FORM_URL } from "@/lib/data";
 import type { TrackGroup, ProblemItem } from "@/lib/problemStatements";
 import {
   Sparkles,
@@ -11,13 +11,13 @@ import {
   Download,
   CheckCircle2,
   Presentation,
-  Check,
   Target,
   ArrowRight,
   X,
   ChevronLeft,
   ChevronRight,
   BookOpen,
+  ExternalLink,
 } from "lucide-react";
 
 interface ForParticipantsProps {
@@ -202,8 +202,8 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
             <h3 className="mt-3 text-2xl sm:text-4xl font-display font-black text-white tracking-tight">
               Problem Statements by Track
             </h3>
-            <p className="mt-2 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
-              Teams choose ONE problem statement from ONE track only. Click &quot;Read Details&quot; to review the complete description and challenges.
+            <p className="mt-2 text-sm sm:text-base text-slate-300 max-w-2xl mx-auto font-medium">
+              Problem statements are released on 31 October 2026. Choose ONE track and ONE problem statement.
             </p>
           </div>
 
@@ -321,12 +321,12 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { num: "1", text: "Pick one track." },
-              { num: "2", text: "Choose one problem statement from that track only." },
-              { num: "3", text: "Prepare your idea for it." },
+              { num: "1", text: "Choose ONE track from the six tracks." },
+              { num: "2", text: "Select ONE problem statement from that track only." },
+              { num: "3", text: "Pre-Round: Prepare solution and submit PPT before 1 Nov 2026, 5:00 PM IST." },
               {
                 num: "4",
-                text: "Present your idea in Round 1. The top 4 teams from each track move forward.",
+                text: "Present your idea in Round 1 (no prototype required). Top 4 teams build prototype in Round 2.",
               },
             ].map((step) => (
               <div
@@ -365,11 +365,11 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
             <div className="flex-1">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold tracking-wider text-amber-400 bg-amber-950/50 border border-amber-500/30 uppercase mb-4">
                 <Presentation className="w-3.5 h-3.5" />
-                Mandatory for Round 1
+                Pre-Round • Compulsory Submission
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-white mb-3">
-                Official PPT Template
+                Pre-Round PPT Submission &amp; Official Template
               </h3>
 
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
@@ -394,19 +394,29 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
               </div>
             </div>
 
-            <div className="shrink-0 flex flex-col items-center">
-              <a
-                href={forParticipants.pptNotice.downloadUrl}
-                download={forParticipants.pptNotice.filename}
-                className="btn-primary py-4 px-8 rounded-xl font-display font-bold text-base flex items-center gap-3 shadow-lg shadow-emerald-950/50 group"
-              >
-                <Download className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
-                Download Official PPT Template (.pptx)
-              </a>
-              <span className="text-[11px] font-mono text-slate-400 mt-2 flex items-center gap-1.5">
-                <Check className="w-3 h-3 text-emerald-400" />
-                Microsoft PowerPoint Format (.pptx)
-              </span>
+            <div className="shrink-0 flex flex-col items-center gap-3 w-full lg:w-auto">
+              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                <a
+                  href={GOOGLE_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary py-4 px-8 rounded-xl font-display font-bold text-base flex items-center justify-center gap-3 shadow-lg shadow-emerald-950/50 group text-center"
+                >
+                  <ExternalLink className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <span>Submit PPT</span>
+                </a>
+                <a
+                  href={forParticipants.pptNotice.downloadUrl}
+                  download={forParticipants.pptNotice.filename}
+                  className="py-4 px-7 rounded-xl font-display font-bold text-sm bg-slate-900 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-950/40 hover:text-white active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 text-center"
+                >
+                  <Download className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
+                  <span>Download PPT Template</span>
+                </a>
+              </div>
+              <p className="text-xs font-mono text-amber-300 text-center max-w-sm">
+                Deadline: 1 November 2026, 5:00 PM IST. Submission is compulsory for every team.
+              </p>
             </div>
           </div>
         </div>

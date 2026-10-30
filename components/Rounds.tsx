@@ -1,20 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import { HACKATHON_DATA } from "@/lib/data";
-import { Lightbulb, Wrench, Trophy, CheckCircle2, ChevronRight, Clock, Download } from "lucide-react";
+import { HACKATHON_DATA, GOOGLE_FORM_URL } from "@/lib/data";
+import {
+  FileText,
+  Lightbulb,
+  Wrench,
+  CheckCircle2,
+  ChevronRight,
+  Clock,
+  Download,
+  ExternalLink,
+} from "lucide-react";
 
 export default function Rounds() {
-  const [activeRound, setActiveRound] = useState(1);
+  const [activeRound, setActiveRound] = useState(0);
 
   const getRoundIcon = (num: number) => {
     switch (num) {
+      case 0:
+        return <FileText className="w-7 h-7 text-cyan-400" />;
       case 1:
         return <Lightbulb className="w-7 h-7 text-yellow-400" />;
       case 2:
         return <Wrench className="w-7 h-7 text-emerald-400" />;
-      case 3:
-        return <Trophy className="w-7 h-7 text-cyan-400" />;
       default:
         return <Lightbulb className="w-7 h-7 text-emerald-400" />;
     }
@@ -22,12 +31,12 @@ export default function Rounds() {
 
   const getBadgeStyle = (num: number) => {
     switch (num) {
+      case 0:
+        return "bg-cyan-950/60 text-cyan-300 border-cyan-500/30";
       case 1:
         return "bg-yellow-950/60 text-yellow-300 border-yellow-500/30";
       case 2:
         return "bg-emerald-950/60 text-emerald-300 border-emerald-500/30";
-      case 3:
-        return "bg-cyan-950/60 text-cyan-300 border-cyan-500/30";
       default:
         return "bg-slate-900 text-slate-300 border-slate-700";
     }
@@ -41,10 +50,10 @@ export default function Rounds() {
             Competition Structure
           </span>
           <h2 className="mt-3 text-3xl sm:text-5xl font-display font-black text-white tracking-tight">
-            Hackathon Rounds
+            Hackathon Stages &amp; Rounds
           </h2>
           <p className="mt-3 text-sm sm:text-base text-slate-400">
-            A three-tier evolutionary sprint designed to separate abstract concepts from battle-tested, practical agrarian solutions.
+            A three-tier evolutionary structure: compulsory Pre-Round PPT submission, Round 1 idea presentation, and Round 2 24-hour prototype build.
           </p>
         </div>
 
@@ -74,18 +83,18 @@ export default function Rounds() {
                       {round.badge}
                     </span>
 
-                    <span className="font-display font-black text-4xl text-slate-700 group-hover:text-slate-600 transition-colors">
-                      0{round.number}
+                    <span className="font-display font-black text-3xl sm:text-4xl text-slate-700 group-hover:text-slate-600 transition-colors">
+                      {round.stageNumber ?? `0${round.number}`}
                     </span>
                   </div>
 
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-14 h-14 rounded-2xl bg-slate-900 border border-slate-700 flex items-center justify-center group-hover:scale-105 transition-transform shadow-lg">
+                    <div className="w-14 h-14 rounded-2xl bg-slate-900 border border-slate-700 flex items-center justify-center group-hover:scale-105 transition-transform shadow-lg shrink-0">
                       {getRoundIcon(round.number)}
                     </div>
                     <div>
                       <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block">
-                        Round {round.number}
+                        {round.stageName ?? `Round ${round.number}`}
                       </span>
                       <h3 className="text-xl sm:text-2xl font-display font-extrabold text-white">
                         {round.title}
@@ -107,18 +116,33 @@ export default function Rounds() {
                     ))}
                   </div>
 
-                  {/* Prominent Download PPT Template Button for Round 1 */}
-                  {round.number === 1 && (
-                    <div className="mb-6">
-                      <a
-                        href={HACKATHON_DATA.pptTemplate.url}
-                        download={HACKATHON_DATA.pptTemplate.filename}
-                        onClick={(e) => e.stopPropagation()}
-                        className="w-full py-3 px-4 rounded-xl font-display font-bold text-xs sm:text-sm bg-gradient-to-r from-emerald-500 via-lime-400 to-emerald-400 text-slate-950 hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 group/btn"
-                      >
-                        <Download className="w-4 h-4 text-slate-950 group-hover/btn:translate-y-0.5 transition-transform" />
-                        <span>Download PPT Template</span>
-                      </a>
+                  {/* Pre-Round Action Buttons: Submit PPT & Download Template */}
+                  {round.isPreRound && (
+                    <div className="mb-6 space-y-2.5">
+                      <div className="flex flex-col sm:flex-row gap-2.5">
+                        <a
+                          href={GOOGLE_FORM_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="flex-1 py-3 px-4 rounded-xl font-display font-bold text-xs sm:text-sm bg-gradient-to-r from-emerald-500 via-lime-400 to-emerald-400 text-slate-950 hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 group/btn text-center"
+                        >
+                          <ExternalLink className="w-4 h-4 text-slate-950 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                          <span>Submit PPT</span>
+                        </a>
+                        <a
+                          href={HACKATHON_DATA.pptTemplate.url}
+                          download={HACKATHON_DATA.pptTemplate.filename}
+                          onClick={(e) => e.stopPropagation()}
+                          className="flex-1 py-3 px-3 rounded-xl font-display font-bold text-xs sm:text-sm bg-slate-900 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-950/40 hover:text-white active:scale-[0.98] transition-all flex items-center justify-center gap-2 group/btn text-center"
+                        >
+                          <Download className="w-4 h-4 text-emerald-400 group-hover/btn:translate-y-0.5 transition-transform" />
+                          <span>Download PPT Template</span>
+                        </a>
+                      </div>
+                      <p className="text-[11px] font-mono text-amber-300/90 leading-tight text-center">
+                        Deadline: 1 November 2026, 5:00 PM IST. Submission is compulsory for every team.
+                      </p>
                     </div>
                   )}
                 </div>

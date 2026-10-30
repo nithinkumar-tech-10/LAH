@@ -38,12 +38,40 @@ export interface RuleItem {
   severity: "high" | "mandatory" | "critical";
 }
 
+// paste Google Form link here
+export const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSek-LbVO6BLaAC1uTFma5buuQ-eOHWbA73FPnNUaWR_LSkuDg/viewform?usp=publish-editor";
+
 export const HACKATHON_LOGO = "/logos/leap-agritech-hackathon-logo.jpeg";
 export const HACKATHON_OG_IMAGE = "/logos/leap-agritech-hackathon-og.jpeg";
 
 export const HACKATHON_DATA = {
   // Global links & Event Dates
   title: "24 HOURS LEAP AGRITECH HACKATHON 2026",
+  googleFormUrl: GOOGLE_FORM_URL,
+  importantDates: [
+    {
+      date: "31 October 2026",
+      time: "Release",
+      title: "Six Tracks & Problem Statements Released",
+      description: "Six tracks and their respective problem statements are released. Each team must carefully review and select ONE problem statement.",
+      tag: "Track Release",
+    },
+    {
+      date: "1 November 2026",
+      time: "5:00 PM IST",
+      title: "PPT Submission Deadline (Pre-Round)",
+      description: "Last date to submit the PPT (Pre-Round) through the Google Form. Compulsory for every team. Only official PPT template permitted.",
+      tag: "Pre-Round (Compulsory)",
+      deadline: true,
+    },
+    {
+      date: "2 November 2026",
+      time: "9:30 AM IST",
+      title: "Hackathon Begins (24 Hours)",
+      description: "24-hour non-stop agritech hackathon begins at Kuvempu Sabhangana, GMIT Mandya. Idea presentation in Round 1, followed by prototype build in Round 2.",
+      tag: "24-Hour Sprint",
+    },
+  ],
   shortTitle: "LEAP Agritech Hackathon 2026",
   tagline: "Innovation Agriculture for a Smarter, Sustainable Future.",
   eventStartISO: "2026-11-02T09:30:00+05:30",
@@ -127,27 +155,27 @@ export const HACKATHON_DATA = {
   forParticipants: {
     badge: "For Participants",
     heading: "Choose Your Track & Problem Statement",
-    intro: "Choose one track and one problem statement from it. Prepare your idea. Present your idea in Round 1. The top 4 teams from each track are shortlisted.",
+    intro: "Choose ONE track and ONE problem statement from it, and prepare a solution for it. Submit your PPT in the Pre-Round. Present your idea in Round 1 (no prototype required). Top 4 teams from each track move forward to Round 2 to build their prototype.",
     cards: [
       {
         step: "01",
-        title: "Choose Your Track",
-        desc: "Pick one of the 6 tracks: AIML, IoT, Drones, Renewable Energy, Robotics & Automation, or Open Innovation.",
+        title: "Choose Track & Problem",
+        desc: "Pick ONE of the 6 tracks and choose ONE problem statement from that track to prepare a solution.",
       },
       {
         step: "02",
-        title: "Select a Problem Statement",
-        desc: "Choose one problem statement from your selected track and prepare your idea around it.",
+        title: "Pre-Round: Submit PPT",
+        desc: "Submit your presentation using the official PPT template via the Google Form before 5:00 PM IST on 1 November 2026. Compulsory for all teams.",
       },
       {
         step: "03",
-        title: "Present & Build",
-        desc: "Present your idea in Round 1. Top 4 teams from each track are shortlisted to build their prototype.",
+        title: "Present & 24-Hour Build",
+        desc: "Present your idea in Round 1 (a working prototype is NOT required for Round 1). Top 4 teams from each track build their prototype in Round 2.",
       },
     ],
-    note: "Only the idea is presented in Round 1. The prototype must be developed during the hackathon. Pre-built projects are not allowed.",
+    note: "Round 1 is strictly for idea presentation — a working prototype is NOT required for Round 1. The top 4 teams from each track move forward to Round 2 to build their prototype during the hackathon. Pre-built projects are strictly prohibited.",
     pptNotice: {
-      mandatory: "Mandatory for Round 1: All teams must use the official LEAP Agritech Hackathon PPT template for the idea presentation. Presentations in any other format will not be accepted.",
+      mandatory: "Pre-Round Submission: Teams submit their PPT through the Google Form before 5:00 PM IST on 1 November 2026. Submission is compulsory. Only the official LEAP Agritech Hackathon PPT template may be used. Presentations in any other format are not accepted.",
       slides: "7 slides: Title, Chosen Problem Statement (track and title), Existing Solutions, Our Solution, Technical Approach, Impact and Benefits, Thank You",
       downloadUrl: "/downloads/LEAP_Agritech_Hackathon_2026_Round1_PPT_Template_FrontLogos_v3.pptx",
       filename: "LEAP_Agritech_Hackathon_2026_Round1_PPT_Template_FrontLogos_v3.pptx",
@@ -212,46 +240,53 @@ export const HACKATHON_DATA = {
     ],
   },
 
-  // Hackathon 3 Rounds
+  // Hackathon Stages: Pre-Round, Round 1, Round 2
   rounds: [
     {
-      number: 1,
-      title: "Idea Presentation",
-      badge: "Stage 01 • All Teams",
-      description: "All participating teams present their innovative ideas for their chosen problem statement to the evaluation panel. Only the idea needs to be presented; a prototype is not required.",
+      number: 0,
+      stageNumber: "00",
+      stageName: "Pre-Round",
+      title: "PPT Submission",
+      badge: "Pre-Round • All Teams (Compulsory)",
+      description: "Teams submit their PPT through the Google Form before 5:00 PM IST on 1 November 2026. PPT submission is compulsory for every team.",
       highlights: [
-        "Present your idea for the chosen problem statement from your track",
-        "Slide deck / presentation to academic & industry jurors",
-        "No prototype required for Round 1",
-        "Top 4 teams from each track will be shortlisted for Round 2"
+        "Select ONE track and ONE problem statement from the released list",
+        "Strictly use the official LEAP Agritech Hackathon PPT template",
+        "Submit through the Google Form before 5:00 PM IST on 1 November 2026",
+        "PPT submission is compulsory for every participating team",
+      ],
+      duration: "Deadline: 1 Nov 2026, 5:00 PM IST",
+      isPreRound: true,
+    },
+    {
+      number: 1,
+      stageNumber: "01",
+      stageName: "Round 1",
+      title: "Idea Presentation",
+      badge: "Round 1 • All Teams",
+      description: "Teams present their idea (the solution they prepared) to the judges. A working prototype is NOT required for Round 1.",
+      highlights: [
+        "Present your idea and solution for the chosen problem statement",
+        "A working prototype is NOT required for Round 1",
+        "Evaluation on innovation, practicality, impact & technical approach",
+        "Top 4 teams from each track move forward to Round 2",
       ],
       duration: "Day 1: 10:00 AM – 1:30 PM",
     },
     {
       number: 2,
-      title: "Project Development",
-      badge: "Stage 02 • Shortlisted Teams",
-      description: "Based on idea presentations, the top 4 teams from each track are shortlisted. Selected teams develop their projects and build working prototypes during the hackathon.",
+      stageNumber: "02",
+      stageName: "Round 2",
+      title: "24-Hour Build",
+      badge: "Round 2 • Top 4 Teams per Track",
+      description: "The top 4 teams from each track build their prototype during the hackathon. 24 hours of non-stop building, coding, and mentoring.",
       highlights: [
+        "Top 4 teams from each track build their working prototype",
         "24-Hour intensive sprint begins inside GMIT innovation labs",
-        "Build functional code, models, or hardware setups",
-        "Continuous mentorship and technical guidance",
-        "Mid-sprint project review at 5:30 PM"
+        "Continuous mentorship and technical guidance from experts",
+        "Final prototype demo evaluation & ₹25,000 prize distribution",
       ],
-      duration: "Day 1: 2:30 PM Onwards into the Night",
-    },
-    {
-      number: 3,
-      title: "Final Evaluation",
-      badge: "Stage 03 • Grand Finale",
-      description: "The jury evaluates the projects and prototypes of shortlisted teams on innovation, functionality, practicality, and overall performance.",
-      highlights: [
-        "Live demonstration of working prototype to expert jury",
-        "Evaluation criteria: Innovation, Functionality, Practicality & Impact",
-        "Q&A session with KITS & GMIT evaluation panel",
-        "Winner declaration & ₹25,000 prize distribution ceremony"
-      ],
-      duration: "Day 2: 10:00 AM – 1:00 PM",
+      duration: "Day 1: 2:30 PM – Day 2: 1:00 PM",
     },
   ],
 
@@ -265,7 +300,7 @@ export const HACKATHON_DATA = {
         { time: "9:30 AM – 10:00 AM", title: "Inauguration Ceremony", description: "Dignitary welcome, lighting of the lamp & keynote addresses by KITS & GMIT leadership.", type: "ceremony" },
         { time: "10:00 AM – 1:30 PM", title: "Round 1: Idea Presentation", description: "All teams pitch their agricultural concept and proposed architecture to the jury.", type: "round" },
         { time: "1:30 PM – 2:30 PM", title: "Lunch Break", description: "Buffet lunch served for all participants & faculty coordinators.", type: "break" },
-        { time: "2:30 PM Onwards", title: "Round 2: Project Development", description: "Shortlisted teams (top 4 from each track) begin hands-on sprint and prototype implementation.", type: "round" },
+        { time: "2:30 PM Onwards", title: "Round 2: 24-Hour Build Begins", description: "Shortlisted teams (top 4 from each track) begin their 24-hour sprint to build working prototypes.", type: "round" },
         { time: "4:45 PM – 5:15 PM", title: "Tea & Snacks Break", description: "Refreshment break to recharge your innovative flow.", type: "break" },
         { time: "5:30 PM – 7:30 PM", title: "Project Review", description: "Mentors review sprint progress and provide architectural guidance.", type: "review" },
         { time: "7:30 PM – 8:30 PM", title: "Dinner", description: "Dinner break followed by uninterrupted overnight hackathon coding & prototyping.", type: "break" },
@@ -276,7 +311,7 @@ export const HACKATHON_DATA = {
       dayName: "Day 2",
       schedule: [
         { time: "7:30 AM – 8:30 AM", title: "Breakfast", description: "Energizing morning breakfast before the final sprint wrap-up.", type: "break" },
-        { time: "10:00 AM – 1:00 PM", title: "Round 3: Final Evaluation", description: "Grand jury evaluates working prototypes, code quality, and farmer practicality.", type: "round" },
+        { time: "10:00 AM – 1:00 PM", title: "Round 2: Prototype Evaluation & Demo", description: "Grand jury evaluates working prototypes, functionality, and practical agrarian impact.", type: "round" },
         { time: "1:00 PM – 2:00 PM", title: "Lunch Break", description: "Lunch break while the jury tallies final scores across categories.", type: "break" },
         { time: "2:00 PM – 2:30 PM", title: "Hackathon Conclusion & Prize Distribution", description: "Valedictory ceremony, felicitations & awarding ₹25,000 cash prizes & certificates.", type: "conclude" },
       ],
@@ -287,52 +322,94 @@ export const HACKATHON_DATA = {
   rules: [
     {
       id: 1,
-      title: "College ID Card",
-      description: "Every participant must bring their valid college ID card and present it during the event.",
-      tag: "Verification",
+      title: "One Track Selection",
+      description: "Each team chooses ONE track only from the six tracks.",
+      tag: "Rule 1",
       severity: "mandatory",
     },
     {
       id: 2,
-      title: "Campus Discipline",
-      description: "All participants must maintain discipline and follow the rules and regulations of the campus throughout the event.",
-      tag: "Conduct",
+      title: "One Problem Statement",
+      description: "Within that track, each team chooses ONE problem statement only.",
+      tag: "Rule 2",
       severity: "mandatory",
     },
     {
       id: 3,
-      title: "No Pre-Built Projects",
-      description: "Pre-built projects are strictly prohibited. All projects must be developed during the hackathon. Any team found using a pre-built project will be disqualified.",
-      tag: "Integrity",
-      severity: "critical",
+      title: "Prepare Solution",
+      description: "Prepare a solution for the chosen problem statement. Do not formulate an independent statement; only official track statements are permitted.",
+      tag: "Rule 3",
+      severity: "mandatory",
     },
     {
       id: 4,
-      title: "Bring Your Own Laptop",
-      description: "Every team must bring its own laptop for project development.",
-      tag: "Hardware",
+      title: "Official PPT Template",
+      description: "Only the official LEAP Agritech Hackathon PPT template may be used. Presentations in any other format are not accepted.",
+      tag: "Rule 4",
       severity: "mandatory",
     },
     {
       id: 5,
-      title: "Hardware Components",
-      description: "Teams working on hardware-based projects must arrange the necessary components required to develop their projects.",
-      tag: "IoT & Hardware",
-      severity: "high",
+      title: "Compulsory PPT Submission",
+      description: "PPT submission before 5:00 PM IST, 1 November 2026, through the Google Form. Compulsory for every team.",
+      tag: "Rule 5",
+      severity: "mandatory",
     },
     {
       id: 6,
-      title: "Junction Boxes",
-      description: "Participants must bring their own junction boxes, if required for their projects.",
-      tag: "Power & Cables",
-      severity: "high",
+      title: "No Prototype for Round 1",
+      description: "A working prototype is NOT required for Round 1.",
+      tag: "Rule 6",
+      severity: "mandatory",
     },
     {
       id: 7,
-      title: "PPT Template",
-      description: "Round 1 presentations must be made using the official PPT template provided on this website.",
-      tag: "Round 1",
+      title: "Round 2 Advancement",
+      description: "Top 4 teams from each track move forward to Round 2 (24-hour build).",
+      tag: "Rule 7",
       severity: "mandatory",
+    },
+    {
+      id: 8,
+      title: "College ID Card",
+      description: "Every participant must bring their valid college ID card and present it during the event.",
+      tag: "Rule 8",
+      severity: "mandatory",
+    },
+    {
+      id: 9,
+      title: "Campus Discipline",
+      description: "All participants must maintain discipline and follow the rules and regulations of the campus throughout the event.",
+      tag: "Rule 9",
+      severity: "mandatory",
+    },
+    {
+      id: 10,
+      title: "No Pre-Built Projects",
+      description: "Pre-built projects are strictly prohibited. All projects must be developed during the hackathon. Any team found using a pre-built project will be disqualified.",
+      tag: "Rule 10",
+      severity: "critical",
+    },
+    {
+      id: 11,
+      title: "Laptop Requirement",
+      description: "Every team must bring its laptop for project development.",
+      tag: "Rule 11",
+      severity: "mandatory",
+    },
+    {
+      id: 12,
+      title: "Hardware Components",
+      description: "Teams working on hardware-based projects must arrange the necessary components required to develop their projects.",
+      tag: "Rule 12",
+      severity: "high",
+    },
+    {
+      id: 13,
+      title: "Junction Boxes",
+      description: "Participants must bring junction boxes, if required for their projects.",
+      tag: "Rule 13",
+      severity: "high",
     },
   ],
 
