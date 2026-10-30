@@ -184,17 +184,150 @@ async function extractProblems() {
   let hasErrors = false;
   const countsByTrack = {};
 
+  // Post-processing & British Spelling Normalisation
+  const britishReplacements = [
+    [/\banalyze\b/g, "analyse"],
+    [/\banalyzes\b/g, "analyses"],
+    [/\banalyzed\b/g, "analysed"],
+    [/\banalyzing\b/g, "analysing"],
+    [/\brecognize\b/g, "recognise"],
+    [/\brecognizes\b/g, "recognises"],
+    [/\brecognized\b/g, "recognised"],
+    [/\brecognizing\b/g, "recognising"],
+    [/\bminimizing\b/g, "minimising"],
+    [/\bminimize\b/g, "minimise"],
+    [/\bminimizes\b/g, "minimises"],
+    [/\bminimized\b/g, "minimised"],
+    [/\bprioritize\b/g, "prioritise"],
+    [/\bprioritizes\b/g, "prioritises"],
+    [/\bprioritized\b/g, "prioritised"],
+    [/\bprioritizing\b/g, "prioritising"],
+    [/\bfertilizer\b/g, "fertiliser"],
+    [/\bfertilizers\b/g, "fertilisers"],
+    [/\bFertilizer\b/g, "Fertiliser"],
+    [/\bFertilizers\b/g, "Fertilisers"],
+    [/\borganize\b/g, "organise"],
+    [/\borganizes\b/g, "organises"],
+    [/\borganized\b/g, "organised"],
+    [/\borganizing\b/g, "organising"],
+    [/\bOrganizing\b/g, "Organising"],
+    [/\boptimization\b/g, "optimisation"],
+    [/\bOptimization\b/g, "Optimisation"],
+    [/\bbehavior\b/g, "behaviour"],
+    [/\bbehaviors\b/g, "behaviours"],
+    [/\bcolor\b/g, "colour"],
+    [/\bcolors\b/g, "colours"],
+    [/\blabor\b/g, "labour"],
+    [/\blocalization\b/g, "localisation"],
+    [/\bgeneralize\b/g, "generalise"],
+    [/\bgeneralizes\b/g, "generalises"],
+    [/\bgeneralizing\b/g, "generalising"],
+    [/\bgeneralized\b/g, "generalised"],
+  ];
+
+  function applySpelling(text) {
+    if (!text) return text;
+    let res = text;
+    for (const [pattern, repl] of britishReplacements) {
+      res = res.replace(pattern, repl);
+    }
+    return res;
+  }
+
   for (const prob of problems) {
-    if (prob.trackSlug === "renewable-energy" && prob.number === 1) {
-      const prefix = "Examples include drying coffee beans, cumin seeds, pepper and other seeds.";
-      if (prob.description && prob.description.length > 0) {
-        if (!prob.description[0].startsWith(prefix)) {
-          prob.description[0] = `${prefix} ${prob.description[0]}`;
-        }
-      } else {
-        prob.description = [prefix];
+    // 1. Overlap lines (Item 6)
+    if (prob.id === "iot-1") {
+      const line = "Focus: sensors that measure soil moisture and automatic control of valves or pumps.";
+      if (!prob.description[0].startsWith(line)) {
+        prob.description.unshift(line);
       }
     }
+    if (prob.id === "renewable-energy-2") {
+      const line = "Focus: powering the pump with solar energy.";
+      if (!prob.description[0].startsWith(line)) {
+        prob.description.unshift(line);
+      }
+    }
+    if (prob.id === "iot-2") {
+      const line = "Focus: a monitored and controlled drying chamber for leaves.";
+      if (!prob.description[0].startsWith(line)) {
+        prob.description.unshift(line);
+      }
+    }
+    if (prob.id === "renewable-energy-1") {
+      const line = "Focus: drying with solar or other renewable heat.";
+      if (!prob.description[0].startsWith(line)) {
+        prob.description.unshift(line);
+      }
+    }
+
+    // 2. Renewable Energy Problem 1 replacement in paragraph 3 (Item 3)
+    if (prob.id === "renewable-energy-1") {
+      for (let idx = 0; idx < prob.description.length; idx++) {
+        if (prob.description[idx].startsWith("Different products require different drying conditions")) {
+          prob.description[idx] = prob.description[idx].replace(
+            "For example, spices, coffee, and grains each have preferred temperature ranges and final moisture levels",
+            "For example, drying coffee beans, cumin seeds, pepper and other seeds each needs its own temperature range and final moisture level"
+          );
+        }
+      }
+    }
+
+    // 3. Sentence fixes (Item 4)
+    if (prob.id === "iot-5") {
+      for (let idx = 0; idx < prob.description.length; idx++) {
+        prob.description[idx] = prob.description[idx].replace(
+          "Develop a low-cost, lightweight, and portable milk-chilling can that helps",
+          "Develop a low-cost, lightweight, and portable milk-chilling container (can) that helps"
+        );
+      }
+    }
+    if (prob.id === "robotics-automation-4") {
+      for (let idx = 0; idx < prob.description.length; idx++) {
+        prob.description[idx] = prob.description[idx].replace(
+          "This work takes labour from tasks needing greater skill.",
+          "This also takes workers away from tasks that need more skill."
+        );
+      }
+      for (let idx = 0; idx < prob.challenges.length; idx++) {
+        prob.challenges[idx] = prob.challenges[idx].replace(
+          "Localisation without reliable GPS under tree cover.",
+          "Knowing the robot's position without reliable GPS under tree cover."
+        );
+      }
+    }
+
+    // 4. Plain language glosses (Item 5)
+    if (prob.id === "drones-3") {
+      for (let idx = 0; idx < prob.description.length; idx++) {
+        prob.description[idx] = prob.description[idx].replace(
+          "orthomosaic maps and elevation models",
+          "orthomosaic maps (accurate, map-like aerial images) and elevation models (height maps of the land)"
+        );
+      }
+    }
+    if (prob.id === "renewable-energy-5") {
+      for (let idx = 0; idx < prob.description.length; idx++) {
+        prob.description[idx] = prob.description[idx].replace(
+          "Motors starting under load create high power peaks",
+          "Motors starting under load draw a large surge of power (high power peaks)"
+        );
+      }
+    }
+    if (prob.id === "iot-1") {
+      for (let idx = 0; idx < prob.challenges.length; idx++) {
+        prob.challenges[idx] = prob.challenges[idx].replace(
+          "Sensor accuracy, calibration, and drift",
+          "Sensor accuracy, calibration (setting sensors so readings are correct), and drift (readings slowly moving away from correct values)"
+        );
+      }
+    }
+
+    // 5. British spelling across all fields (Item 2)
+    prob.title = applySpelling(prob.title);
+    prob.description = prob.description.map(applySpelling);
+    prob.challenges = prob.challenges.map(applySpelling);
+
     countsByTrack[prob.track] = (countsByTrack[prob.track] || 0) + 1;
 
     if (!prob.title || prob.title.length < 3) {

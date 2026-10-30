@@ -6,7 +6,7 @@
     "number": 1,
     "title": "AI-Powered Farmer Assistant",
     "description": [
-      "Farmers routinely make decisions about sowing time, irrigation, fertilizer doses, and pest control with limited access to timely expert advice. Extension officers serve large numbers of villages, and printed or online advisories are often generic, written in a language the farmer does not use daily, or unavailable when a question arises in the field. As a result, a farmer growing paddy or coconut may depend on neighbours, input dealers, or past habit, which can lead to avoidable crop losses and excess input costs. A digital assistant that answers questions in a familiar language and tailors guidance to the crop and local context could narrow this gap."
+      "Farmers routinely make decisions about sowing time, irrigation, fertiliser doses, and pest control with limited access to timely expert advice. Extension officers serve large numbers of villages, and printed or online advisories are often generic, written in a language the farmer does not use daily, or unavailable when a question arises in the field. As a result, a farmer growing paddy or coconut may depend on neighbours, input dealers, or past habit, which can lead to avoidable crop losses and excess input costs. A digital assistant that answers questions in a familiar language and tailors guidance to the crop and local context could narrow this gap."
     ],
     "challenges": [
       "Obtaining reliable, verified agricultural knowledge for the assistant and keeping it current across crops, seasons, and regions.",
@@ -77,14 +77,14 @@
     "number": 5,
     "title": "AI-Based Livestock Disease Prediction and Early Warning",
     "description": [
-      "Livestock diseases can cause significant economic losses for farmers by reducing milk production, affecting animal health, and increasing veterinary expenses. In many rural areas, farmers may not recognize early symptoms of diseases, resulting in delayed treatment and the spread of infections among animals.",
-      "Develop an AI/ML-based system that helps farmers identify potential livestock health problems at an early stage. The system should analyze available information, such as animal health records, symptoms, body temperature, feeding patterns, activity levels, and milk production changes, to identify possible disease risks. It should provide early warnings and recommendations to help farmers seek timely veterinary assistance."
+      "Livestock diseases can cause significant economic losses for farmers by reducing milk production, affecting animal health, and increasing veterinary expenses. In many rural areas, farmers may not recognise early symptoms of diseases, resulting in delayed treatment and the spread of infections among animals.",
+      "Develop an AI/ML-based system that helps farmers identify potential livestock health problems at an early stage. The system should analyse available information, such as animal health records, symptoms, body temperature, feeding patterns, activity levels, and milk production changes, to identify possible disease risks. It should provide early warnings and recommendations to help farmers seek timely veterinary assistance."
     ],
     "challenges": [
       "Identifying meaningful patterns in livestock health and behavioural data.",
       "Predicting potential disease risks using incomplete or limited datasets.",
       "Distinguishing normal variations in animal behaviour from possible disease symptoms.",
-      "Providing reliable early warnings while minimizing false alarms.",
+      "Providing reliable early warnings while minimising false alarms.",
       "Designing a simple, user-friendly system for farmers with limited technical knowledge.",
       "Supporting different livestock types and varying farm conditions."
     ]
@@ -113,10 +113,11 @@
     "number": 1,
     "title": "Smart Irrigation and Water Management",
     "description": [
+      "Focus: sensors that measure soil moisture and automatic control of valves or pumps.",
       "Many farms irrigate on fixed schedules or by visual judgement, which can result in over-irrigation, waterlogging, wasted energy, or crop stress during dry periods. Water scarcity makes efficient use increasingly important, particularly where groundwater is limited. Sensors that measure soil moisture and local conditions, combined with automated valve or pump control, can supply water when and where the crop needs it."
     ],
     "challenges": [
-      "Sensor accuracy, calibration, and drift in different soil types and over a growing season.",
+      "Sensor accuracy, calibration (setting sensors so readings are correct), and drift (readings slowly moving away from correct values) in different soil types and over a growing season.",
       "Durability of electronics and sensors against moisture, dust, heat, and rodents.",
       "Reliable wireless communication across large or obstructed fields.",
       "Power supply for remote nodes and pumps, including low-power design.",
@@ -130,6 +131,7 @@
     "number": 2,
     "title": "Smart Agricultural Leaf Drying System",
     "description": [
+      "Focus: a monitored and controlled drying chamber for leaves.",
       "Leaves such as tobacco and tea must be dried under controlled conditions to reach the required moisture level while retaining colour, aroma, and quality. Traditional sun or manual drying is affected by weather and depends on operator experience, causing uneven drying, mould growth, and quality loss.",
       "A monitored and regulated drying chamber can keep conditions within suitable ranges and reduce the need for constant supervision."
     ],
@@ -185,8 +187,8 @@
     "title": "Development of a Low-Cost, Lightweight Milk Chilling Can for Small-Scale Dairy Farmers",
     "description": [
       "Milk is highly perishable and can deteriorate quickly when stored at unsuitable temperatures. Small-scale dairy farmers in rural and remote areas often lack access to reliable milk-cooling facilities and electricity. During milk collection and transportation, exposure to high temperatures can reduce milk quality and cause financial losses.",
-      "Develop a low-cost, lightweight, and portable milk-chilling can that helps small-scale dairy farmers maintain milk at an appropriate temperature for several hours. The design should use effective insulation and an affordable cooling approach, such as reusable ice packs or phase-change materials, to reduce dependence on continuous electricity. The system may also include temperature monitoring and alerts to help farmers track storage conditions and identify when the milk temperature rises beyond the defined safe range.",
-      "The solution should prioritize food safety, portability, durability, ease of cleaning, and affordability for rural dairy farmers."
+      "Develop a low-cost, lightweight, and portable milk-chilling container (can) that helps small-scale dairy farmers maintain milk at an appropriate temperature for several hours. The design should use effective insulation and an affordable cooling approach, such as reusable ice packs or phase-change materials, to reduce dependence on continuous electricity. The system may also include temperature monitoring and alerts to help farmers track storage conditions and identify when the milk temperature rises beyond the defined safe range.",
+      "The solution should prioritise food safety, portability, durability, ease of cleaning, and affordability for rural dairy farmers."
     ],
     "challenges": [
       "Maintaining an appropriate milk temperature for several hours under changing environmental conditions.",
@@ -237,7 +239,7 @@
     "track": "Drones",
     "trackSlug": "drones",
     "number": 2,
-    "title": "Precision Spraying and Agricultural Chemical Optimization",
+    "title": "Precision Spraying and Agricultural Chemical Optimisation",
     "description": [
       "Blanket spraying across an entire field can waste chemicals, raise costs, and expose workers and the environment to unnecessary risk. Manual spraying is also physically demanding and hazardous to the operator. Drone-assisted spraying directed at selected zones can reduce chemical use and operator exposure when carried out with proper planning and safeguards."
     ],
@@ -256,7 +258,7 @@
     "number": 3,
     "title": "Drone-Based Agricultural Mapping and Land Surveying",
     "description": [
-      "Many farmers lack up-to-date maps of their land showing boundaries, drainage paths, slopes, and uneven areas. Traditional surveying is time- consuming and costly, and the absence of accurate maps complicates irrigation planning, drainage design, and land-use decisions. Drone imagery can be stitched into orthomosaic maps and elevation models that provide a consistent spatial reference."
+      "Many farmers lack up-to-date maps of their land showing boundaries, drainage paths, slopes, and uneven areas. Traditional surveying is time- consuming and costly, and the absence of accurate maps complicates irrigation planning, drainage design, and land-use decisions. Drone imagery can be stitched into orthomosaic maps (accurate, map-like aerial images) and elevation models (height maps of the land) that provide a consistent spatial reference."
     ],
     "challenges": [
       "Planning flight paths with adequate image overlap for reliable stitching.",
@@ -290,9 +292,10 @@
     "number": 1,
     "title": "Renewable Energy-Based Smart Agricultural Drying System",
     "description": [
-      "Examples include drying coffee beans, cumin seeds, pepper and other seeds. Drying is energy-intensive and critical for quality and safe storage. Open-air drying depends on the weather and exposes produce to dust, rain, and pests, while electric or fuel-based dryers raise operating costs.",
+      "Focus: drying with solar or other renewable heat.",
+      "Drying is energy-intensive and critical for quality and safe storage. Open-air drying depends on the weather and exposes produce to dust, rain, and pests, while electric or fuel-based dryers raise operating costs.",
       "Many farmers would benefit from a dryer that uses solar or other renewable heat.",
-      "Different products require different drying conditions and moisture targets. For example, spices, coffee, and grains each have preferred temperature ranges and final moisture levels, so a useful system must allow product-specific settings."
+      "Different products require different drying conditions and moisture targets. For example, drying coffee beans, cumin seeds, pepper and other seeds each needs its own temperature range and final moisture level, so a useful system must allow product-specific settings."
     ],
     "challenges": [
       "Variability of solar energy with weather and time of day, and the need for backup or heat storage.",
@@ -309,6 +312,7 @@
     "number": 2,
     "title": "Solar-Powered Smart Irrigation and Water Pumping System",
     "description": [
+      "Focus: powering the pump with solar energy.",
       "Irrigation pumps often depend on grid electricity, which may be unreliable or available only at fixed hours, or on diesel, which is costly.",
       "Solar pumping can reduce running costs, but pumps may run when water is not needed, or fail to deliver enough water on cloudy days. Pairing solar pumping with intelligent control can match water delivery to crop needs and to the available sunlight and water source."
     ],
@@ -362,7 +366,7 @@
     "number": 5,
     "title": "Renewable Energy-Powered Agricultural Processing System",
     "description": [
-      "Small processing units rely on grid power or diesel generators, both of which are costly and may be unreliable. Motors starting under load create high power peaks, and interruptions can disrupt work and damage equipment.",
+      "Small processing units rely on grid power or diesel generators, both of which are costly and may be unreliable. Motors starting under load draw a large surge of power (high power peaks), and interruptions can disrupt work and damage equipment.",
       "Renewable power, supported by suitable energy management, can reduce operating cost and improve reliability for local processing."
     ],
     "challenges": [
@@ -434,14 +438,14 @@
     "number": 4,
     "title": "Autonomous Agricultural Material Transport Robot",
     "description": [
-      "Carrying harvested produce, inputs, and tools across fields and plantations is strenuous and repetitive, particularly on slopes and in wet conditions. This work takes labour from tasks needing greater skill.",
+      "Carrying harvested produce, inputs, and tools across fields and plantations is strenuous and repetitive, particularly on slopes and in wet conditions. This also takes workers away from tasks that need more skill.",
       "A load-carrying robot that follows a worker or a defined route can reduce physical strain and save time."
     ],
     "challenges": [
       "Traction and stability on slopes, mud, and uneven ground.",
       "Safe navigation among people, animals, and obstacles.",
       "Load capacity relative to battery life and cost.",
-      "Localisation without reliable GPS under tree cover.",
+      "Knowing the robot's position without reliable GPS under tree cover.",
       "Rugged, weather-resistant construction."
     ]
   },
@@ -450,9 +454,9 @@
     "track": "Robotics and Automation",
     "trackSlug": "robotics-automation",
     "number": 5,
-    "title": "Automated Fertilizer and Manure Application Robot",
+    "title": "Automated Fertiliser and Manure Application Robot",
     "description": [
-      "Manual spreading of fertilizer and manure is tiring, and application is often uneven, with some plants receiving too much and others too little. Over-application wastes money and can harm soil and water, while handling manure is unpleasant and unhealthy.",
+      "Manual spreading of fertiliser and manure is tiring, and application is often uneven, with some plants receiving too much and others too little. Over-application wastes money and can harm soil and water, while handling manure is unpleasant and unhealthy.",
       "A robot that delivers measured quantities close to plants can improve consistency and reduce manual handling."
     ],
     "challenges": [
@@ -489,7 +493,7 @@
     "title": "Low-Cost Sugarcane Sett Cutting and Planting Aid",
     "description": [
       "Sugarcane cultivation requires farmers to prepare and plant stem cuttings, commonly called setts. Manual cutting and planting can be time-consuming and physically demanding, particularly for small-scale farmers. Improper cutting lengths and inconsistent planting arrangements can also lead to wastage of planting material and additional labour.",
-      "Design an affordable, manually operated tool that helps farmers cut sugarcane setts to suitable lengths and prepare them for planting. The tool should prioritize operator safety, ease of maintenance, portability, and compatibility with commonly used sugarcane varieties. The design must not depend on robotic automation."
+      "Design an affordable, manually operated tool that helps farmers cut sugarcane setts to suitable lengths and prepare them for planting. The tool should prioritise operator safety, ease of maintenance, portability, and compatibility with commonly used sugarcane varieties. The design must not depend on robotic automation."
     ],
     "challenges": [
       "Designing a tool that produces reasonably consistent sett lengths.",
@@ -543,13 +547,13 @@
     "number": 4,
     "title": "Banana Cultivation Cost and Harvest Planning Management System",
     "description": [
-      "Banana farmers must manage cultivation expenses, plantation maintenance, harvesting schedules, labour requirements, and sales planning. Without organized records, farmers may find it difficult to estimate production costs, compare expenditure across growing cycles, and plan harvesting and sales effectively.",
-      "Develop a digital application specifically for banana farmers to maintain plantation-wise records of cultivation expenses, planting dates, maintenance activities, expected harvest periods, labour requirements, and sales. The system should provide simple summaries of recorded costs and help farmers organize their cultivation and harvest plans."
+      "Banana farmers must manage cultivation expenses, plantation maintenance, harvesting schedules, labour requirements, and sales planning. Without organised records, farmers may find it difficult to estimate production costs, compare expenditure across growing cycles, and plan harvesting and sales effectively.",
+      "Develop a digital application specifically for banana farmers to maintain plantation-wise records of cultivation expenses, planting dates, maintenance activities, expected harvest periods, labour requirements, and sales. The system should provide simple summaries of recorded costs and help farmers organise their cultivation and harvest plans."
     ],
     "challenges": [
       "Maintaining separate records for different banana plots and planting cycles.",
       "Recording expenses and farm activities with minimal effort.",
-      "Organizing expected harvest dates and labour requirements.",
+      "Organising expected harvest dates and labour requirements.",
       "Helping farmers compare actual cultivation costs with sales revenue.",
       "Supporting local languages and offline data entry.",
       "Keeping the application simple and affordable for small-scale banana farmers."
