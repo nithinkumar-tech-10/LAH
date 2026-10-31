@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { PROBLEM_TYPES } from "./problemTypes";
 
 export interface ProblemItem {
   id: string;
@@ -88,6 +89,13 @@ export function getTrackGroups(): TrackGroup[] {
     try {
       const raw = fs.readFileSync(jsonPath, "utf8");
       allProblems = JSON.parse(raw);
+
+      // Verify all problem IDs exist in PROBLEM_TYPES mapping
+      allProblems.forEach((p) => {
+        if (!PROBLEM_TYPES[p.id]) {
+          console.warn(`[WARN] Problem ID "${p.id}" is missing from PROBLEM_TYPES mapping.`);
+        }
+      });
     } catch (e) {
       console.error("Failed to parse lib/problems.json:", e);
     }

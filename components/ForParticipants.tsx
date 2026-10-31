@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { HACKATHON_DATA, GOOGLE_FORM_URL } from "@/lib/data";
 import type { TrackGroup, ProblemItem } from "@/lib/problemStatements";
+import { PROBLEM_TYPES, type ProblemType } from "@/lib/problemTypes";
 import {
   Sparkles,
   Lightbulb,
@@ -18,16 +19,85 @@ import {
   ChevronRight,
   BookOpen,
   ExternalLink,
+  Code,
+  Cpu,
+  Layers,
 } from "lucide-react";
+
+function ProblemTypePill({
+  type,
+  className = "",
+}: {
+  type?: ProblemType;
+  className?: string;
+}) {
+  if (!type) return null;
+
+  if (type === "Software") {
+    return (
+      <span
+        className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold tracking-wide bg-blue-950/80 border border-blue-500/40 text-blue-300 shadow-sm shrink-0 whitespace-nowrap ${className}`}
+      >
+        <Code className="w-3 h-3 shrink-0 text-blue-400" aria-hidden="true" />
+        <span>Software</span>
+      </span>
+    );
+  }
+
+  if (type === "Hardware") {
+    return (
+      <span
+        className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold tracking-wide bg-amber-950/80 border border-amber-500/40 text-amber-300 shadow-sm shrink-0 whitespace-nowrap ${className}`}
+      >
+        <Cpu className="w-3 h-3 shrink-0 text-amber-400" aria-hidden="true" />
+        <span>Hardware</span>
+      </span>
+    );
+  }
+
+  if (type === "Hardware + Software") {
+    return (
+      <span
+        className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold tracking-wide bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 shadow-sm shrink-0 whitespace-nowrap ${className}`}
+      >
+        <Layers className="w-3 h-3 shrink-0 text-emerald-400" aria-hidden="true" />
+        <span>Hardware + Software</span>
+      </span>
+    );
+  }
+
+  return null;
+}
 
 interface ForParticipantsProps {
   tracks: TrackGroup[];
 }
 
+type FilterType = "All" | "Hardware" | "Software";
+
 export default function ForParticipants({ tracks }: ForParticipantsProps) {
   const { forParticipants } = HACKATHON_DATA;
   const [activeTrack, setActiveTrack] = useState<string>(tracks[0]?.slug ?? "aiml");
   const [selectedProblem, setSelectedProblem] = useState<ProblemItem | null>(null);
+  const [typeFilter, setTypeFilter] = useState<FilterType>("All");
+
+  const matchesFilter = useCallback((problemId: string, filter: FilterType): boolean => {
+    if (filter === "All") return true;
+    const pType = PROBLEM_TYPES[problemId];
+    if (!pType) {
+      if (typeof window === "undefined") {
+        console.warn(`[WARN] Missing problem type for problem ID "${problemId}"`);
+      }
+      return false;
+    }
+    if (filter === "Hardware") {
+      return pType === "Hardware" || pType === "Hardware + Software";
+    }
+    if (filter === "Software") {
+      return pType === "Software" || pType === "Hardware + Software";
+    }
+    return false;
+  }, []);
 
   // Focus management
   const triggerRef = useRef<HTMLButtonElement | null>(null);
@@ -48,6 +118,10 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
   ];
 
   const activeTrackData = tracks.find((t) => t.slug === activeTrack) || tracks[0];
+  const activeTrackProblems = activeTrackData?.problems || [];
+  const displayedProblems = activeTrackProblems.filter((p) =>
+    matchesFilter(p.id, typeFilter)
+  );
 
   const openDetails = (prob: ProblemItem, triggerEl: HTMLButtonElement) => {
     triggerRef.current = triggerEl;
@@ -110,8 +184,8 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
     };
   }, [selectedProblem, closeDetails]);
 
-  // Previous & Next navigation inside the same track
-  const currentTrackProblems = activeTrackData?.problems || [];
+  // Previous & Next navigation inside the displayed problems for the track
+  const currentTrackProblems = displayedProblems;
   const currentProblemIndex = selectedProblem
     ? currentTrackProblems.findIndex((p) => p.id === selectedProblem.id)
     : -1;
@@ -207,10 +281,46 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
             </p>
           </div>
 
+          {/* Type Filter Buttons */}
+          <div className="flex justify-center mb-3">
+            <div
+              role="group"
+              aria-label="Filter problems by type"
+              className="inline-flex items-center p-1 rounded-xl bg-slate-900/90 border border-slate-800 shadow-inner"
+            >
+              {(["All", "Hardware", "Software"] as const).map((filter) => {
+                const isSelected = typeFilter === filter;
+                return (
+                  <button
+                    key={filter}
+                    type="button"
+                    onClick={() => setTypeFilter(filter)}
+                    aria-pressed={isSelected}
+                    className={`px-4 sm:px-6 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-mono font-bold transition-all cursor-pointer ${
+                      isSelected
+                        ? "bg-emerald-500 text-slate-950 shadow-md shadow-emerald-950/40"
+                        : "text-slate-300 hover:text-white hover:bg-slate-800/60"
+                    }`}
+                  >
+                    {filter}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Legend */}
+          <p className="text-xs sm:text-sm text-slate-300 text-center max-w-3xl mx-auto leading-relaxed mb-6 px-4">
+            Software = app or AI system · Hardware = physical device or machine · Hardware + Software = device with software
+          </p>
+
           {/* Track Navigation Buttons / Tabs */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 mb-6">
             {tracks.map((track) => {
               const isSelected = activeTrack === track.slug;
+              const matchingProblems = track.problems.filter((p) =>
+                matchesFilter(p.id, typeFilter)
+              );
               return (
                 <button
                   key={track.slug}
@@ -231,7 +341,9 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
                     {track.shortName}
                   </span>
                   <span className="text-[10px] text-slate-400 font-mono block mt-1">
-                    {track.problems.length > 0 ? `${track.problems.length} Problems` : "Soon"}
+                    {typeFilter === "All"
+                      ? `${track.problems.length} Problems`
+                      : `${matchingProblems.length} ${matchingProblems.length === 1 ? "Problem" : "Problems"}`}
                   </span>
                 </button>
               );
@@ -261,46 +373,61 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold flex items-center gap-1.5">
                     <BookOpen className="w-3.5 h-3.5" />
-                    Problem Statements ({activeTrackData.problems.length})
+                    Problem Statements ({displayedProblems.length})
                   </span>
                   <span className="text-xs text-slate-400 font-mono">
                     Select a challenge to view details
                   </span>
                 </div>
 
-                {activeTrackData.problems.length === 0 ? (
-                  <div className="p-8 rounded-xl bg-slate-950/60 border border-slate-800 text-center">
+                {displayedProblems.length === 0 ? (
+                  <div className="p-8 sm:p-12 rounded-xl bg-slate-950/60 border border-slate-800 text-center">
                     <BookOpen className="w-10 h-10 text-slate-600 mx-auto mb-3" />
                     <p className="text-base text-slate-300 font-medium">
-                      Problem statements will be released soon.
+                      No problems of this type in this track.
                     </p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 gap-3">
-                    {activeTrackData.problems.map((prob) => (
-                      <div
-                        key={prob.id}
-                        className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3.5 p-4 sm:p-5 rounded-xl bg-slate-950/70 border border-slate-800/90 hover:border-emerald-500/40 hover:bg-slate-900/50 transition-all group"
-                      >
-                        <div className="flex items-start sm:items-center gap-3 flex-1 min-w-0">
-                          <span className="w-8 h-8 rounded-lg bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-xs font-mono font-bold text-emerald-400 shrink-0 mt-0.5 sm:mt-0">
-                            {String(prob.number).padStart(2, "0")}
-                          </span>
-                          <span className="text-sm sm:text-base font-display font-semibold text-white group-hover:text-emerald-300 transition-colors leading-snug">
-                            {prob.title}
-                          </span>
-                        </div>
-
-                        <button
-                          type="button"
-                          onClick={(e) => openDetails(prob, e.currentTarget)}
-                          className="w-full sm:w-auto px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-500 hover:text-slate-950 transition-all flex items-center justify-center gap-1.5 cursor-pointer shrink-0 shadow-sm"
+                    {displayedProblems.map((prob) => {
+                      const pType = PROBLEM_TYPES[prob.id];
+                      return (
+                        <div
+                          key={prob.id}
+                          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3.5 p-4 sm:p-5 rounded-xl bg-slate-950/70 border border-slate-800/90 hover:border-emerald-500/40 hover:bg-slate-900/50 transition-all group"
                         >
-                          Read Details
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                    ))}
+                          <div className="flex items-start sm:items-center gap-3 flex-1 min-w-0">
+                            <span className="w-8 h-8 rounded-lg bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-xs font-mono font-bold text-emerald-400 shrink-0 mt-0.5 sm:mt-0">
+                              {String(prob.number).padStart(2, "0")}
+                            </span>
+
+                            {/* Desktop / Tablet: pill next to number */}
+                            <div className="hidden sm:inline-flex shrink-0">
+                              <ProblemTypePill type={pType} />
+                            </div>
+
+                            <div className="flex-1 min-w-0">
+                              <span className="text-sm sm:text-base font-display font-semibold text-white group-hover:text-emerald-300 transition-colors leading-snug block">
+                                {prob.title}
+                              </span>
+                              {/* Mobile (< sm): pill sits under the title */}
+                              <div className="sm:hidden mt-2">
+                                <ProblemTypePill type={pType} />
+                              </div>
+                            </div>
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={(e) => openDetails(prob, e.currentTarget)}
+                            className="w-full sm:w-auto px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-500 hover:text-slate-950 transition-all flex items-center justify-center gap-1.5 cursor-pointer shrink-0 shadow-sm"
+                          >
+                            Read Details
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
               </div>
@@ -439,9 +566,12 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
             {/* Modal Header */}
             <div className="flex items-start justify-between gap-4 p-5 sm:p-7 border-b border-slate-800/90 bg-slate-900/60 shrink-0">
               <div className="flex-1 pr-2">
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 uppercase mb-2">
-                  {selectedProblem.track} • Problem {selectedProblem.number}
-                </span>
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 uppercase">
+                    {selectedProblem.track} • Problem {selectedProblem.number}
+                  </span>
+                  <ProblemTypePill type={PROBLEM_TYPES[selectedProblem.id]} />
+                </div>
                 <h3
                   id="problem-modal-title"
                   className="text-xl sm:text-2xl md:text-3xl font-display font-black text-white leading-tight"
@@ -520,7 +650,7 @@ export default function ForParticipants({ tracks }: ForParticipantsProps) {
               <span className="text-xs font-mono text-slate-400">
                 {currentProblemIndex >= 0
                   ? `Problem ${currentProblemIndex + 1} of ${currentTrackProblems.length}`
-                  : ""}
+                  : `Problem ${selectedProblem.number}`}
               </span>
 
               <button
