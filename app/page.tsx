@@ -11,6 +11,7 @@ import Timeline from "@/components/Timeline";
 import Rules from "@/components/Rules";
 import AccommodationNotice from "@/components/AccommodationNotice";
 import Venue from "@/components/Venue";
+import Certificate from "@/components/Certificate";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import FloatingCallButton from "@/components/FloatingCallButton";
@@ -56,6 +57,9 @@ export default function Home() {
 
         {/* 11. Venue and Transport */}
         <Venue />
+
+        {/* 11b. Download Certificate */}
+        <Certificate />
 
         {/* 12. Final Call to Action */}
         <FinalCTA />

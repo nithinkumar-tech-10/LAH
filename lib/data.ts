@@ -446,5 +446,6 @@ export const HACKATHON_DATA = {
     { label: "Timeline", href: "#timeline" },
     { label: "Rules", href: "#rules" },
     { label: "Venue", href: "#venue" },
+    { label: "Certificate", href: "#certificate" },
   ],
 };
